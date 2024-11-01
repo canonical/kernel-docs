@@ -1,23 +1,25 @@
-# Starter pack
+# Ubuntu Kernel documentation
 
-**A single sentence that says what the product is, succinctly and memorably.**
-Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-dolore magna aliqua.
+The Ubuntu Linux kernel is the core software enabling applications on Ubuntu to
+interact with system resources.
 
-**A paragraph of one to three short sentences, that describe what the product
-does.** Urna cursus eget nunc scelerisque viverra mauris in. Nibh mauris
-cursus mattis molestie a iaculis at vestibulum rhoncus est pellentesque
-elit. Diam phasellus vestibulum lorem sed.
+The Ubuntu kernel handles communication between system hardware and user-space
+applications, managing tasks like memory, processing, and security. Regular
+stable release updates (SRU) ensure the kernel stays secure, stable, and
+optimised.
 
-**A third paragraph of similar length, this time explaining what need the
-product meets.** Dui ut ornare lectus sit amet est. Nunc sed augue lacus
-viverra vitae congue eu consequat ac libero id faucibus nisl tincidunt eget
-nullam.
+Ubuntu kernels provide a reliable foundation for applications and system
+processes, meeting the need for secure, high-performance, Ubuntu environments.
+Kernels are also tested consistently for regressions to provide users with a
+reliable and smooth experience. Kernels are tailor made for Ubuntu Desktop,
+Ubuntu Server, a wide range of architectures, IoT devices, cloud providers, and
+more.
 
-**Finally, a paragraph that describes whom the product is useful for.** Nunc
-non blandit massa enim nec dui nunc mattis enim. Ornare arcu odio ut sem
-nulla pharetra diam porttitor leo a diam sollicitudin tempor id eu. Ipsum
-dolor sit amet consectetur adipiscing elit pellentesque habitant.
+This documentation serves developers, partners, and others working with Ubuntu
+kernels, offering guidance on kernel workflows, tools, SRU timelines, and
+processes for customisation and maintenance.
+
+
 
 ---------
 
@@ -69,7 +71,6 @@ Example Project is a member of the Ubuntu family. It’s an open source project 
 :hidden:
 :maxdepth: 2
 
-self
-contributing
 how-to/index
+contributing
 ```

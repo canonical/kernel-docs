@@ -23,7 +23,7 @@ import ast
 #
 # TODO: Update with the official name of your project or product
 
-project = "Kernel"
+project = "Ubuntu Kernel"
 author = "Canonical Kernel team"
 
 
