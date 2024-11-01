@@ -39,9 +39,11 @@ jobs:
             python3-venv \
             rustc
       - name: Build Sphinx venv
+        with:
+          working-directory: "docs"
         run: |
           set -ex
-          make -f docs/Makefile.sp \
+          make -f Makefile.sp \
             sp-install \
             PIPOPTS="--no-binary :all:" \
             || ( cat .sphinx/venv/pip_install.log && exit 1 )
