@@ -93,9 +93,9 @@ deb-src http://archive.ubuntu.com/ubuntu jammy-updates main
 To install the required packages and build dependencies, run:
 
 ```{code-block} shell
-sudo apt update
-sudo apt build-dep -y linux linux-image-unsigned-$(uname -r)
-sudo apt install -y fakeroot llvm libncurses-dev dwarves
+sudo apt update && \
+    sudo apt build-dep -y linux linux-image-unsigned-$(uname -r) && \
+    sudo apt install -y fakeroot llvm libncurses-dev dwarves
 ```
 
 (how-to-build-kernel-obtain-source)=
@@ -139,10 +139,12 @@ environment and the necessary scripts have execute permissions:
 
 ```{code-block} shell
 cd <kernel_source_working_directory>
-chmod a+x debian/rules
-chmod a+x debian/scripts/*
-chmod a+x debian/scripts/misc/*
-fakeroot debian/rules clean
+```
+```{code-block} shell
+chmod a+x debian/rules && \
+    chmod a+x debian/scripts/* && \
+    chmod a+x debian/scripts/misc/* && \
+    fakeroot debian/rules clean
 ```
 
 ### Modify ABI number
@@ -188,8 +190,10 @@ You are now ready to build the kernel.
 
 ```{code-block} shell
 cd <kernel_source_working_directory>
-fakeroot debian/rules clean
-fakeroot debian/rules binary
+```
+```{code-block} shell
+fakeroot debian/rules clean && \
+    fakeroot debian/rules binary
 ```
 
 ```{only} docx
