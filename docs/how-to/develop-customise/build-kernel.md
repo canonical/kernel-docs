@@ -141,8 +141,7 @@ environment and the necessary scripts have execute permissions:
 cd <kernel_source_working_directory>
 ```
 ```{code-block} shell
-chmod a+x debian/rules && \
-    chmod a+x debian/scripts/* && \
+chmod a+x debian/scripts/* && \
     chmod a+x debian/scripts/misc/* && \
     fakeroot debian/rules clean
 ```
