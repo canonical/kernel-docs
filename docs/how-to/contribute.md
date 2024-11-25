@@ -239,7 +239,7 @@ Thank you, and looking forward to your contributions!
 [Canonical's Sphinx starter pack]: https://github.com/canonical/sphinx-docs-starter-pack
 [Read the Docs]: https://about.readthedocs.com/
 [Kernel documentation GitHub repository]: https://github.com/canonical/kernel-docs
-[pull request (PR)]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requestsproposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork
+[pull request (PR)]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork
 [related issues, pull requests, and repositories]: https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls
 [conventional commits]: https://www.conventionalcommits.org/
 [GitHub Issue]: https://github.com/canonical/kernel-docs/issues
