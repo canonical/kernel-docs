@@ -1,0 +1,36 @@
+name: Verify Commit Signoff
+
+on:
+  push:
+    branches:
+      - '**' # Run on all branches
+
+jobs:
+  verify-signoff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get the list of commits in the push
+          COMMITS=$(git log --format='%H' ${{ github.event.before }}..${{ github.sha }})
+          
+          # Check each commit
+          for COMMIT in $COMMITS; do
+            # Get commit message and author email
+            MESSAGE=$(git show -s --format='%B' $COMMIT)
+            AUTHOR_EMAIL=$(git show -s --format='%ae' $COMMIT)
+
+            # Check for sign-off
+            if ! echo "$MESSAGE" | grep -q "Signed-off-by:"; then
+              echo "❌ Commit $COMMIT is missing a 'Signed-off-by:' line."
+              exit 1
+            fi
+          done
+
+          echo "✅ All commits are properly signed off."
