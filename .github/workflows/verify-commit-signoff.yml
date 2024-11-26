@@ -1,0 +1,44 @@
+name: Verify Commit Signoff
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  verify-signoff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ensure full history is available
+
+      - name: Validate commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch the base and head of the pull request
+          git fetch origin ${{ github.event.pull_request.base.ref }} --quiet
+          git fetch origin ${{ github.head_ref }} --quiet
+
+          # Get the commits only in the pull request branch
+          COMMITS=$(git log --format='%H' remotes/origin/${{ github.event.pull_request.base.ref }}..remotes/origin/${{ github.head_ref }})
+
+          # Validate each commit
+          for COMMIT in $COMMITS; do
+            MESSAGE=$(git show -s --format='%B' $COMMIT)
+
+            # Check for sign-off
+            if ! echo "$MESSAGE" | grep -q "Signed-off-by:"; then
+              echo "❌ Commit $COMMIT is missing a 'Signed-off-by:' line."
+              exit 1
+            fi
+          done
+
+          echo "✅ All commits are properly signed off."
