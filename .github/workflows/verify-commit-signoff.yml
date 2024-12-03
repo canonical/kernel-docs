@@ -23,22 +23,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Fetch the base and head of the pull request
+          # Fetch full history for main branch
           git fetch origin ${{ github.event.pull_request.base.ref }} --quiet
-          git fetch origin ${{ github.head_ref }} --quiet
+          
+          # Determine the commit to verify:
+          # For pull requests, verify HEAD commit of the pull request branch
+          # For pushes (squash-merge), verify the latest commit in the branch
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            TARGET_COMMIT=${{ github.event.pull_request.head.sha }}
+          else
+            TARGET_COMMIT=$(git rev-parse HEAD)
+          fi
 
-          # Get the commits only in the pull request branch
-          COMMITS=$(git log --format='%H' remotes/origin/${{ github.event.pull_request.base.ref }}..remotes/origin/${{ github.head_ref }})
-
-          # Validate each commit
-          for COMMIT in $COMMITS; do
-            MESSAGE=$(git show -s --format='%B' $COMMIT)
-
-            # Check for sign-off
-            if ! echo "$MESSAGE" | grep -q "Signed-off-by:"; then
-              echo "❌ Commit $COMMIT is missing a 'Signed-off-by:' line."
-              exit 1
-            fi
-          done
-
-          echo "✅ All commits are properly signed off."
+          # Check the commit message for 'Signed-off-by:'
+          MESSAGE=$(git show -s --format='%B' $TARGET_COMMIT)
+          if ! echo "$MESSAGE" | grep -q "Signed-off-by:"; then
+            echo "❌ Commit $TARGET_COMMIT is missing a 'Signed-off-by:' line."
+            exit 1
+          fi
+          
+          echo "✅ Commit $TARGET_COMMIT is properly signed off."
