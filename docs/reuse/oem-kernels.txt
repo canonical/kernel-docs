@@ -1,0 +1,6 @@
+overview-oem-kernel-start
+The OEM kernel is an optimised derivative Ubuntu kernel, designed specifically
+for use in Original Equipment Manufacturer (OEM) projects.
+OEM kernel variants are typically developed and customised for hardware that
+will be pre-installed with Ubuntu.
+overview-oem-kernel-end
