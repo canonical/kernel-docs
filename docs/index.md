@@ -46,9 +46,10 @@ new users
 **Technical information** - specifications, APIs, architecture
 ```
 
-```{grid-item-card} [Explanation](/explanation/ubuntu-linux-kernel-sources.md)
+```{grid-item-card} [Explanation](/explanation/index)
 
-**Discussion and clarification** about Ubuntu Linux kernel source repositories.
+**Discussion and clarification** about different aspects of the Ubuntu kernel
+and kernel development process at Canonical.
 ```
 
 ````
@@ -72,7 +73,7 @@ fixes and constructive feedback.
 :hidden:
 :maxdepth: 2
 
-how-to/index
-reference/index
-Explanation: About Ubuntu Linux kernel sources <explanation/ubuntu-linux-kernel-sources>
+/how-to/index
+/reference/index
+/explanation/index
 ```
