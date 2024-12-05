@@ -17,31 +17,31 @@ Member Profile
 Below is the general profile for those having per package upload rights for the
 Ubuntu kernel.
 
-- are members of the ubuntu-kernel-uploaders_ Launchpad team
+- Members of the ubuntu-kernel-uploaders_ Launchpad team
 
-- generally have commit access to the `Ubuntu kernel git repositories`_
+- Generally have commit access to the `Ubuntu kernel git repositories`_
 
-- actively follow and participate in discussions and patch reviews on the
+- Actively follow and participate in discussions and patch reviews on the
   `Ubuntu kernel-team mailing list`_
 
-- are collectively responsible for the maintenance of packages in the Ubuntu
+- Are collectively responsible for the maintenance of packages in the Ubuntu
   kernel package set for all supported releases as well as the development
   release
 
-- have a strong working knowledge of kernel packaging concepts and techniques,
+- Have a strong working knowledge of kernel packaging concepts and techniques,
   refined through experience
 
-- have a strong working knowledge of Ubuntu project procedures, especially
+- Have a strong working knowledge of Ubuntu project procedures, especially
   those related to the release process and support commitments, and an
   understanding of the reasons why they exist
 
-- have a history of substantial direct contributions to the distribution and
+- Have a history of substantial direct contributions to the distribution and
   particularly the kernel related packages
 
-- feel a sense of personal responsibility for the quality of Ubuntu releases
+- Feel a sense of personal responsibility for the quality of Ubuntu releases
   and for the satisfaction of Ubuntu users
 
-- exercise great care in their work, with the understanding that their efforts
+- Exercise great care in their work, with the understanding that their efforts
   have a direct impact on others, including:
 
   - every Ubuntu user
