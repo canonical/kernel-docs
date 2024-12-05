@@ -28,6 +28,13 @@ patch-acceptance-criteria
 
 ```{toctree}
 :maxdepth: 1
+:caption: Privileges
+
+upload-rights
+```
+
+```{toctree}
+:maxdepth: 1
 :caption: General
 
 glossary
