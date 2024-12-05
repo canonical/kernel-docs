@@ -97,11 +97,14 @@ Screening Process
 
 Once your application has been prepared and you are ready to be screened,
 please send an email to the `Ubuntu kernel-team mailing list`_ requesting your
-application be reviewed. You will then get a notification from the team about
-the scheduled IRC meeting (#ubuntu-kernel channel at irc.libera.chat) where you
-will be interviewed and a vote regarding your membership will be taken. As part
-of the interview you will be asked to briefly introduce yourself, so please
-prepare a 2-3 line introduction beforehand to speed up the process. Only
+application be reviewed.
+
+You will then get a notification from the team about the scheduled IRC meeting
+(#ubuntu-kernel channel at irc.libera.chat) where you will be interviewed and a
+vote regarding your membership will be taken. 
+
+As part of the interview you will be asked to briefly introduce yourself, so
+please prepare a 2-3 line introduction beforehand to speed up the process. Only
 existing members of the ubuntu-kernel-uploaders team are allowed to vote. An
 applicant must receive a minimum of 3 Ack's in order to be added to the team. 
 
