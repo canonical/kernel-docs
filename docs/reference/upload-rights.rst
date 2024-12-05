@@ -111,9 +111,10 @@ applicant must receive a minimum of 3 Ack's in order to be added to the team.
 .. _Ubuntu kernel-team mailing list: https://lists.ubuntu.com/mailman/listinfo/kernel-team
 
 Once an applicant has successfully passed the application process, an
-announcement will be made to both the Ubuntu kernel-team and devel-permissions
-mailing lists. The applicant will then be added to the ubuntu-kernel-uploaders
-team by an administrator.
+announcement will be made to both the Ubuntu kernel-team and `devel-permissions
+mailing lists`_. The applicant will then be added to the
+ubuntu-kernel-uploaders team by an administrator.
 
+.. _devel-permissions mailing lists: https://lists.ubuntu.com/mailman/listinfo/devel-permissions
 .. _ubuntu-kernel-uploaders: https://launchpad.net/~ubuntu-kernel-uploaders
 .. _Ubuntu kernel git repositories: http://kernel.ubuntu.com/git
