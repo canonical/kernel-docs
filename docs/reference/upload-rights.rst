@@ -1,5 +1,5 @@
-Kernel Package Upload Rights
-############################
+Upload Rights
+#############
 
 The responsibility bestowed upon those able to upload the kernel to the Ubuntu
 archive is not taken lightly.One avenue for obtaining per package upload
