@@ -88,9 +88,9 @@ An example application can also be seen at the following:
 
 https://wiki.ubuntu.com/LuisHenriques/PerPackageUploaderApplication 
 
-At least three existing ubuntu-kernel-uploaders members have to confirm that
-they have worked enough with you to judge your skills and that you meet the
-criteria above. Usually these three people are your sponsors.
+At least three existing ubuntu-kernel-uploaders members must confirm that they
+have worked with you sufficiently to assess your skills and verify that you meet
+the criteria above. These three individuals are typically your sponsors.
 
 Screening Process
 =================
