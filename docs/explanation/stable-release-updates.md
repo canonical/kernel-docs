@@ -19,6 +19,8 @@ releases. This typically covers:
 - Common Vulnerabilities and Exposures (CVE) security updates
 - Hardware enablement (HWE) patches
 
+(sru-cycle-cadence)=
+
 ## SRU cycle cadence
 
 Since August 2023, the Ubuntu Kernel team has adopted a 4/2 Kernel SRU cycle to
