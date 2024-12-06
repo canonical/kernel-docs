@@ -35,8 +35,8 @@ Ubuntu kernel.
   those related to the release process and support commitments, and an
   understanding of the reasons why they exist
 
-- Have a history of substantial direct contributions to the distribution and
-  particularly the kernel related packages
+- Have a history of substantial and direct contribution to the distribution,
+  particularly to kernel-related packages
 
 - Feel a sense of personal responsibility for the quality of Ubuntu releases
   and for the satisfaction of Ubuntu users
@@ -55,8 +55,8 @@ As alluded to in the member profile above, membership consideration for the
 ubuntu-kernel-uploaders_ team adheres to a strict policy. Anyone considering
 applying should meet **all** of the criteria listed below:
 
-1. Have a history of substantial and direct contribution to the distribution;
-   particularly the kernel related packages
+1. Have a history of substantial and direct contribution to the distribution,
+   particularly to kernel-related packages
 
 2. A thorough understanding of the Ubuntu kernel patch submission process
 
