@@ -80,7 +80,7 @@ applying should meet **all** of the criteria listed below:
 If you are not an official ubuntu-kernel-uploaders member yet, but fulfill all
 of the criteria above, you are likely a promising candidate for joining the
 team. If you are interested in joining, start by preparing your
-application. Use the following template for your application:
+application using the following template:
 
 https://wiki.ubuntu.com/Kernel/Dev/PPUApplicationTemplate
 
