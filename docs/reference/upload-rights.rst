@@ -1,8 +1,8 @@
 Upload Rights
 #############
 
-Those who are allowed to upload the kernel to the Ubuntu archive take their
-responsibility very seriously.
+Those who are allowed to upload the kernel to the Ubuntu archive have a serious
+responsibility.
 
 To obtain per package upload rights for the Ubuntu kernel, you can apply to
 become a member of the ubuntu-kernel-uploaders_ team in Launchpad.
