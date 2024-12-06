@@ -68,7 +68,7 @@ applying should meet **all** of the criteria listed below:
 3. A thorough understanding of the Ubuntu release cycle and associated
    milestone and freeze dates
 
-4. A thorough understanding of the Ubuntu Kernel SRU cadence
+4. A thorough understanding of the Ubuntu Kernel :ref:`sru-cycle-cadence`
 
 5. A thorough understanding of the upstream kernel development cycle and how it
    relates to the Ubuntu kernel development cycle
