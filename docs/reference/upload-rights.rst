@@ -52,7 +52,7 @@ Application Process
 ===================
 
 As alluded to in the member profile above, membership consideration for the
-ubuntu-kernel-uploaders team adheres to a strict policy. Anyone considering
+ubuntu-kernel-uploaders_ team adheres to a strict policy. Anyone considering
 applying should meet **all** of the criteria listed below:
 
 1. Have a history of substantial and direct contribution to the distribution;
