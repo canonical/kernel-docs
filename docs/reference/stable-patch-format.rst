@@ -1,26 +1,32 @@
-Stable Patch Format
+Stable patch format
 ===================
 
-Destination
------------
+Every Ubuntu LTS release during standard security maintenance period (see
+`The Ubuntu lifecycle and release cadence`_) welcomes contributions from
+anyone. However, patches must comply with the required format.
 
-Stable patches must be sent to: kernel-team@lists.ubuntu.com
+.. _The Ubuntu lifecycle and release cadence: https://ubuntu.com/about/release-cycle
 
-.. important::
+Prerequisites
+-------------
 
-   please subscribe `here <https://lists.ubuntu.com/mailman/listinfo/kernel-team>`__
-   to the mailing list before sending your first patch. Messages from
-   non-subscribers will be sent to a queue waiting for an admin approval. You
-   can also manage your subscription and access the mailing list archive on
-   https://lists.ubuntu.com/mailman/listinfo/kernel-team.
+Subscribe `here
+<https://lists.ubuntu.com/mailman/listinfo/kernel-team>`__ to join
+kernel-team@lists.ubuntu.com before submitting your first patch. Messages
+from non-subscribers will be held in a queue pending admin approval.
 
-Subject Line
-------------
+Preparing commits
+-----------------
+
+Every patch **must** adhere to the following guideline.
+
+Subject line
+^^^^^^^^^^^^
 
 #. Every patch submitted to a stable kernel **must** have have its subject line
    starting with "[SRU]" followed by the release name against which the
    patch is targeted. That release name **must** be enclosed in "[ ]" brackets
-   and **can** be abbreviated using the first letter of the release name (e.g.
+   and can be abbreviated using the first letter of the release name (e.g.
    "B" for "Bionic"). If a patch is to be applied to multiple releases a
    list of release names can be provided.
 
@@ -41,58 +47,61 @@ Subject Line
 
          [SRU][B,F,J][PATCH 0/1] UBUNTU: [Config]: Add support for modifying LDT
 
+        or::
+
+         [SRU][B/F/J][PATCH 0/1] UBUNTU: [Config]: Add support for modifying LDT
+
       * If the patch has to be applied to a specific derivative for multiple
         release this is the recommended format::
 
-         [SRU][B,F:linux-kvm] [PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
+         [SRU][B:linux-kvm,F:linux-kvm] [PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
 
 #. If the patch requested doesn't come from upstream it must contain one of
    the following on the Subject line after the release name string
    described previously:
 
-   .. list-table:: Example table
+   .. list-table::
       :header-rows: 1
 
       * - Descriptor
         - Meaning
-      * - UBUNTU:
-        - This is a patch to the Ubuntu Packaging, including the contents
-          of the various debian* directories (where not covered by a more
-          specific categorisation)
+      * - UBUNTU: SAUCE:
+        - This is a patch to the kernel code that has not been applied on
+          mainline (Linus' tree). This category covers the following cases:
+
+          #. The submitter has either authored the patch or obtained the
+             patch from a non-upstream source.
+          #. The patch has been applied to an upstream tree but not yet
+             merged on mainline.
+          #. The patch is never expected to be submitted upstream but is of
+             enough value for Ubuntu to carry it in our tree.
+          #. The patch has been submitted to upstream but is of enough
+             value for Ubuntu to carry it in our tree regardless of
+             upstream acceptance.
+
+      * - UBUNTU: [Packaging]
+        - This is an update relevant to Ubuntu Packaging, including the contents
+          of the various ``debian*/`` directories.
       * - UBUNTU: [Config]
         - This is an update to the kernel configuration as recorded in the
-          debian.<branch>/config directory. Please check
+          ``debian.<branch>/config`` directory. Please check
           ``debian.master/config/README.rst`` or `here
           <https://discourse.ubuntu.com/t/kernel-configuration-in-ubuntu/35857>`__
           for more information about the config format.
       * - UBUNTU: ubuntu
         - This is an update to an Ubuntu specific driver in the ubuntu/
-          directory.
-      * - UBUNTU: SAUCE:
-        - This is a patch to the kernel code that has not been applied on
-          mainline (Linus' tree). This category covers the following cases:
-
-             #. The submitter has either authored the patch or obtained the
-                patch from a non-upstream source.
-             #. The patch has been applied to an upstream tree but not yet
-                merged on mainline.
-             #. The patch is never expected to be submitted upstream but is of
-                enough value for Ubuntu to carry it in our tree.
-             #. The patch has been submitted to upstream but is of enough
-                value for Ubuntu to carry it in our tree regardless of
-                upstream acceptance.
-
-      * - UBUNTU: [Debian]
-        - This patch changes the debian rules files (``debian/rules,
-          debian*/rules.d/*`` and possibly ``debian*/control`` and
-          ``debian*/control.d/*``).
+          directory. It is rarely used these days, unless in special cases.
+      * - UBUNTU:
+        - This subject line is internally used by some automation scripts.
+          Avoid using it unless none of the other types are appropriate for
+          your case.
 
    Example::
 
      [SRU][FOCAL][PATCH 2/2] UBUNTU: SAUCE: shiftfs: prevent ESTALE for LOOKUP_JUMP lookups
 
-Comment Body
-------------
+Comment body
+^^^^^^^^^^^^
 
 #. Every patch associated with a launchpad bug must have a link to the bug
    in the commit's comment section in the form of a "BugLink" block. A
@@ -103,13 +112,13 @@ Comment Body
    #. A blank line.
    #. One or more lines containing "BugLink:" and a url to the launchpad
       bug. That url must be of the format:
-      "https://bugs.launchpad.net/bugs/<bug-id>" where <bug-id> is the
+      "https\://bugs.launchpad.net/bugs/<bug-id>" where <bug-id> is the
       bug number of the associated Launchpad bug.
    #. Another blank line.
 
    Every stable patch **must** have an associated Launchpad bug for
    tracking by the kernel stable and SRU teams. Exceptions are patches for
-   CVE fixes (see below).
+   CVE fixes (:ref:`see below <comment-body-cve>`).
 
    Example:
 
@@ -157,8 +166,8 @@ Comment Body
    who finally applied it to an official Ubuntu source tree. Cherry-picked from
    vs backported from:
 
-   If the patch required changes (it did not apply cleanly), 'backported-from
-   <sha1>' has to be used i.e::
+   If the patch required changes (it did not apply cleanly), 'backported from
+   commit <sha1>' has to be used i.e::
 
      (backported from commit <sha1> <upstream repo name>)
 
@@ -194,6 +203,8 @@ Comment Body
      Acked-by: Brad Figg <brad.figg@canonical.com>
      Acked-by: Steve Conklin <sconklin@canonical.com>
 
+   .. _comment-body-cve:
+
 #. Every **CVE** patch **must** contain a line at the beginning of the commit
    message that specifies the CVE number(s) related to the patch. This must be
    the first part of the body of the comment. There is the comment subject
@@ -202,7 +213,7 @@ Comment Body
 
    Example::
 
-     Subject: [SRU B/D] UBUNTU: SAUCE: nbd_genl_status: null check for nla_nest_start
+     Subject: [SRU][B/D] UBUNTU: SAUCE: nbd_genl_status: null check for nla_nest_start
 
      From: Navid Emamdoost <navid.emamdoost@gmail.com>
 
@@ -215,8 +226,18 @@ Comment Body
      out.
      ...
 
-Patch Series
-------------
+
+Submission preparation
+----------------------
+
+In most cases, patches should be submitted as a patch series accompanied by
+a cover letter. However, if the patch series is relatively large (e.g. more
+than 20 commits), consider sending a git pull request instead.
+
+Sending as a patch series
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When sending a patch series, please follow these guidelines:
 
 #. Every patch submitted to a stable kernel **must** be sent in a patch series
    with a cover letter, even if the patch series contains a single patch.
@@ -229,105 +250,117 @@ Patch Series
 
 #. All the emails in the patch series **must** be numbered (e.g. "[PATCH 0/3]",
    "[PATCH 1/3]", etc.) and all the patches sent in reply to the cover letter
-   (PATCH 0/N). See the option "--no-chain-reply-to" from git-send-email(1).
+   (PATCH 0/N). See the option "\-\-no-chain-reply-to" from git-send-email(1).
 
 .. _KernelTeam/KernelUpdates: https://wiki.ubuntu.com/KernelTeam/KernelUpdates
 
-Pull Request
-------------
+Sending as a pull request
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When the patch series is relatively large (e.g. more than 5 patches), please
-consider sending a git pull request instead of a patch series. A pull request
-is usually easier to review than a large number of patches in the same email
-thread. For a pull request, please follow these guidelines:
+When sending a pull request, please follow these guidelines:
 
-#. Include the git pull request information in the cover letter email, which
-   should still contain the information requested above.
-#. Please make sure the git repository is public.
-#. Add a "[PULL]" tag to the subject line of the cover letter instead of
-   "[PATCH X/N]".
+#. Include the git pull request information in the cover letter email.
+
+#. The cover letter **must** contain the "BugLink" or the CVE number like the
+   patch(es) itself.
+
+#. The cover letter **must** contain the SRU justification from the launchpad
+   bug or the CVE fix. See `KernelTeam/KernelUpdates`_.
+
+#. The subject line of the cover letter **must** contain "[PULL]" tag,
+   instead of "[PATCH X/N]".
+
+#. The git repository **must** be publicly accessible.
+
 #. The body of the commits should follow the same rules as for a patch series.
+
 #. The format of the title of the commits contained in the pull request should
    be the same as for the patch series, except for the tags at the beginning of
    the subject enclosed in "[]" brackets which would be removed by ``git am``
    on application.
 
-Complete Example
+Submit
+------
+
+Stable patches must be sent to: kernel-team@lists.ubuntu.com
+
+Complete example
 ----------------
 
-Cover letter
-^^^^^^^^^^^^
+Here is an example of a patch series that adheres to the guidelines.
 
-.. code-block:: none
+* Cover letter
 
-   Subject: [SRU][F][PATCH 0/1] s390/cpum_cf: Add new extended counters for IBM z15 (LP: 1881096)
-   From: frank.heimes@canonical.com
-   Date: 24.06.20, 22:11
-   To: kernel-team@lists.ubuntu.com
+  .. code-block:: none
 
-   Buglink: https://bugs.launchpad.net/bugs/1881096
+     Subject: [SRU][F][PATCH 0/1] s390/cpum_cf: Add new extended counters for IBM z15 (LP: 1881096)
+     From: frank.heimes@canonical.com
+     Date: 24.06.20, 22:11
+     To: kernel-team@lists.ubuntu.com
 
-   SRU Justification:
+     Buglink: https://bugs.launchpad.net/bugs/1881096
 
-   [Impact]
+     SRU Justification:
 
-   * With perf from Ubuntu 20.04 on IBM z15 hardware, some counters reported with lscpumf are not usable with 'perf stat -e'.
-   [...]
+     [Impact]
 
-   [Fix]
+     With perf from Ubuntu 20.04 on IBM z15 hardware, some counters
+     reported with lscpumf are not usable with 'perf stat -e'.
+     [...]
 
-   * d68d5d51dc898895b4e15bea52e5668ca9e76180 d68d5d51dc898895b "s390/cpum_cf: Add new extended counters for IBM z15"
+     [Fix]
 
-   [Test Plan]
+     Cherry-pick upstream commit:
+     d68d5d51dc89 ("s390/cpum_cf: Add new extended counters for IBM z15")
 
-   * Requires the fix/patch of the perf tool, as mentioned in the bug, too.
-   [...]
+     [Test Plan]
 
-   [Where problems could occur]
+     Requires the fix/patch of the perf tool, as mentioned in the bug, too.
+     [...]
 
-   * The regression can be considered as low, since:
-   [...]
+     [Where problems could occur]
 
-   [Other Info]
+     The regression can be considered as low, since:
+     [...]
 
-   * This requires a patch to be included into the perf itself, too - please see bug description for more details.
-   [...]
+     [Other Info]
 
-Patch 1/1
-^^^^^^^^^
+     This requires a patch to be included into the perf itself, too - please
+     see bug description for more details.
+     [...]
 
-.. code-block:: none
+* Patch 1/1
 
-   Subject: [SRU][F][PATCH 1/1] s390/cpum_cf: Add new extended counters for IBM z15
-   From: frank.heimes@canonical.com
-   Date: 24.06.20, 22:11
-   To: kernel-team@lists.ubuntu.com
+  .. code-block:: none
 
-   From: Thomas Richter <tmricht@linux.ibm.com>
+     Subject: [SRU][F][PATCH 1/1] s390/cpum_cf: Add new extended counters for IBM z15
+     From: frank.heimes@canonical.com
+     Date: 24.06.20, 22:11
+     To: kernel-team@lists.ubuntu.com
 
-   BugLink: https://bugs.launchpad.net/bugs/1881096
+     From: Thomas Richter <tmricht@linux.ibm.com>
 
-   Add CPU measurement counter facility event description for IBM z15.
+     BugLink: https://bugs.launchpad.net/bugs/1881096
 
-   Signed-off-by: Thomas Richter <tmricht@linux.ibm.com>
-   Reviewed-by: Sumanth Korikkar <sumanthk@linux.ibm.com>
-   Signed-off-by: Vasily Gorbik <gor@linux.ibm.com>
-   (cherry picked from commit d68d5d51dc898895b4e15bea52e5668ca9e76180)
-   Signed-off-by: Frank Heimes <frank.heimes@canonical.com>
+     Add CPU measurement counter facility event description for IBM z15.
 
-   [...]
+     Signed-off-by: Thomas Richter <tmricht@linux.ibm.com>
+     Reviewed-by: Sumanth Korikkar <sumanthk@linux.ibm.com>
+     Signed-off-by: Vasily Gorbik <gor@linux.ibm.com>
+     (cherry picked from commit d68d5d51dc898895b4e15bea52e5668ca9e76180)
+     Signed-off-by: Frank Heimes <frank.heimes@canonical.com>
+
+     [...]
 
 Tips
 ----
 
-When sending patches with git-send-email, use the option "--suppress-cc=all" in
+When sending patches with git-send-email, use the option "\-\-suppress-cc=all" in
 order to prevent adding the original author of the patch and other people from
 the provenance block as CC.
 
-See Also
+See also
 --------
 
-.. list-table::
-
-   * - `Kernel Update <https://wiki.ubuntu.com/KernelTeam/KernelUpdates>`_
-     - Shows the SRU Justification format to be added to a bug.
+* `Kernel Update <https://wiki.ubuntu.com/KernelTeam/KernelUpdates>`_:
+  shows the SRU Justification format to be added to a bug.
