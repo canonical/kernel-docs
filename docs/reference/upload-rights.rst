@@ -79,8 +79,8 @@ applying should meet **all** of the criteria listed below:
 
 If you are not an official ubuntu-kernel-uploaders member yet, but fulfill all
 of the criteria above, you are likely a promising candidate for joining the
-team. If you are interested in joining, please start by preparing your
-application. Please use the following template for your application:
+team. If you are interested in joining, start by preparing your
+application. Use the following template for your application:
 
 https://wiki.ubuntu.com/Kernel/Dev/PPUApplicationTemplate
 
@@ -96,7 +96,7 @@ Screening Process
 =================
 
 Once your application has been prepared and you are ready to be screened,
-please send an email to the `Ubuntu kernel-team mailing list`_ requesting your
+send an email to the `Ubuntu kernel-team mailing list`_ requesting your
 application be reviewed.
 
 You will then get a notification from the team about the scheduled IRC meeting
@@ -104,7 +104,7 @@ You will then get a notification from the team about the scheduled IRC meeting
 vote regarding your membership will be taken. 
 
 As part of the interview you will be asked to briefly introduce yourself, so
-please prepare a 2-3 line introduction beforehand to speed up the process. Only
+prepare a 2-3 line introduction beforehand to speed up the process. Only
 existing members of the ubuntu-kernel-uploaders team are allowed to vote. An
 applicant must receive a minimum of 3 Ack's in order to be added to the team. 
 
