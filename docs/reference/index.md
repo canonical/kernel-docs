@@ -23,6 +23,7 @@ oem-kernels
 :maxdepth: 1
 :caption: Kernel patch guidelines
 
+stable-patch-format
 patch-acceptance-criteria
 ```
 
