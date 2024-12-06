@@ -41,10 +41,14 @@ Subject Line
 
          [SRU][B,F,J][PATCH 0/1] UBUNTU: [Config]: Add support for modifying LDT
 
+        or::
+
+         [SRU][B/F/J][PATCH 0/1] UBUNTU: [Config]: Add support for modifying LDT
+
       * If the patch has to be applied to a specific derivative for multiple
         release this is the recommended format::
 
-         [SRU][B,F:linux-kvm] [PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
+         [SRU][B:linux-kvm,F:linux-kvm] [PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
 
 #. If the patch requested doesn't come from upstream it must contain one of
    the following on the Subject line after the release name string
@@ -55,7 +59,7 @@ Subject Line
 
       * - Descriptor
         - Meaning
-      * - UBUNTU:
+      * - UBUNTU: [Packaging]
         - This is a patch to the Ubuntu Packaging, including the contents
           of the various debian* directories (where not covered by a more
           specific categorisation)
@@ -236,7 +240,7 @@ Patch Series
 Pull Request
 ------------
 
-When the patch series is relatively large (e.g. more than 5 patches), please
+When the patch series is relatively large (e.g. more than 15 patches), please
 consider sending a git pull request instead of a patch series. A pull request
 is usually easier to review than a large number of patches in the same email
 thread. For a pull request, please follow these guidelines:
