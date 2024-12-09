@@ -46,8 +46,7 @@ may be subject to change.
 ## SRU patch submission and review process
 
 All updates that are applied to stable kernels go through the following patch
-submission and review process. More details can be found at [Ubuntu Wiki -
-Stable Patch Format].
+submission and review process. More details can be found at [Stable Patch Format].
 
 ### Patch creation
 
@@ -123,7 +122,7 @@ model.
 % LINKS
 
 [Ubuntu Kernel Team]: https://kernel.ubuntu.com/
-[Ubuntu Wiki - Stable Patch Format]: https://wiki.ubuntu.com/Kernel/Dev/StablePatchFormat
+[Stable Patch Format]: /reference/stable-patch-format
 [Ubuntu Wiki - Kernel Updates]: https://wiki.ubuntu.com/KernelTeam/KernelUpdates
 [Ubuntu archive has a single proposed pocket]: https://canonical-ubuntu-packaging-guide.readthedocs-hosted.com/en/latest/explanation/archive/#archivepockets
 [Discourse - Ubuntu Kernel 4/2 SRU Cycle Announcement]: https://discourse.ubuntu.com/t/ubuntu-kernel-4-2-sru-cycle-announcement/37478
