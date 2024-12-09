@@ -30,11 +30,9 @@ Usually, cherry-picks have the biggest rate of approval if it’s done correctly
 Backports and SAUCE patches are a bit tricky. In general, we avoid merging
 those as much as possible.
 
-For a detailed description on how to format patches before submission, see this
-`guideline document`_, while here is a quick (and far from complete)
+For a detailed description on how to format patches before submission, see
+:doc:`./stable-patch-format`, while here is a quick (and far from complete)
 introduction.
-
-.. _guideline document: https://wiki.ubuntu.com/Kernel/Dev/StablePatchFormat
 
 All patches
 -----------
