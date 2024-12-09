@@ -34,7 +34,7 @@ For a detailed description on how to format patches before submission, see this
 `guideline document`_, while here is a quick (and far from complete)
 introduction.
 
-.. _guideline document: https://wiki.ubuntu.com/Kernel/Dev/StablePatchFormat
+.. _guideline document: /reference/stable-patch-format
 
 All patches
 -----------
