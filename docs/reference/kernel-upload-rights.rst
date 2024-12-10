@@ -1,5 +1,5 @@
-Upload Rights
-#############
+Kernel Upload Rights
+####################
 
 Those who are allowed to upload the kernel to the Ubuntu archive have a serious
 responsibility.

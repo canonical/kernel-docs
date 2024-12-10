@@ -30,7 +30,7 @@ patch-acceptance-criteria
 :maxdepth: 1
 :caption: Privileges
 
-upload-rights
+kernel-upload-rights
 ```
 
 ```{toctree}
