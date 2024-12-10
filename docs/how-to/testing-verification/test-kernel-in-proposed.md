@@ -42,7 +42,7 @@ Add "\<series\>-proposed" (e.g. "jammy-proposed") to the following line in:
   deb http://archive.ubuntu.com/ubuntu/ <series>-proposed restricted main multiverse universe
   ```
 
-- {file}`/etc/apt/sources.list.d/` (for non-x86 architectures):
+- {file}`/etc/apt/sources.list` (for non-x86 architectures):
   ```{code-block} text
   deb http://ports.ubuntu.com/ubuntu-ports <series>-proposed restricted main multiverse universe
   ```
@@ -61,10 +61,13 @@ Then install the kernel as per usual. If the kernel version in -proposed is the
 highest in any pocket, install it by running:
 
 ```{code-block} none
-sudo apt install linux-<flavour>
+sudo apt install linux-<flavour> # install kernel metapackage
+# or
+sudo apt install linux-image-<version> # install the ABI-named image directly
 ```
 
-If you want a specific (earlier) version, include the version in the command:
+If you want a specific (earlier) version of a metapackage, include the version
+in the command:
 
 ```{code-block} none
 sudo apt install linux-<flavour>=<version>
@@ -88,7 +91,7 @@ start with the [built-in Linux selftests]. To run these selftests, download the
 kernel source and compile the tests.
 
 ```{code-block} none
-sudo apt source linux-image-unsigned-$(uname -r)
+apt source linux-image-unsigned-$(uname -r)
 cd <kernel_source_working_directory>
 sudo make -C tools/testing/selftests run_tests
 ```
