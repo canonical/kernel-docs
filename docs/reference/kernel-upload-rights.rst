@@ -18,8 +18,6 @@ Member Profile
 Below is the general profile for those having per package upload rights for the
 Ubuntu kernel.
 
-- Members of the ubuntu-kernel-uploaders_ Launchpad team
-
 - Generally have commit access to the `Ubuntu kernel git repositories`_
 
 - Actively follow and participate in discussions and patch reviews on the
@@ -54,27 +52,25 @@ Application Process
 
 As alluded to in the member profile above, membership consideration for the
 ubuntu-kernel-uploaders_ team adheres to a strict policy. Anyone considering
-applying should meet **all** of the criteria listed below:
+applying should align with the general profile outlined in the previous section
+and meet the criteria listed below:
 
-1. Have a history of substantial and direct contribution to the distribution,
-   particularly to kernel-related packages
-
-2. A thorough understanding of the Ubuntu kernel patch submission process
+1. A thorough understanding of the Ubuntu kernel patch submission process
 
    a. Demonstrates an understanding of this process by having submitted
       multiple patches which were accepted over a six-month development cycle
    b. Demonstrates an understanding of this process by having reviewed and
       Ack'd/Nack'd multiple patches over a six-month development cycle 
 
-3. A thorough understanding of the Ubuntu release cycle and associated
+2. A thorough understanding of the Ubuntu release cycle and associated
    milestone and freeze dates
 
-4. A thorough understanding of the Ubuntu Kernel :ref:`sru-cycle-cadence`
+3. A thorough understanding of the Ubuntu Kernel :ref:`sru-cycle-cadence`
 
-5. A thorough understanding of the upstream kernel development cycle and how it
+4. A thorough understanding of the upstream kernel development cycle and how it
    relates to the Ubuntu kernel development cycle
 
-6. Demonstrate a chain of trust by having multiple sponsored kernel uploads
+5. Demonstrate a chain of trust by having multiple sponsored kernel uploads
    over a six-month development cycle by various existing members of the
    ubuntu-kernel-uploaders team.
 
