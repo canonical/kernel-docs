@@ -66,7 +66,6 @@ cranky checkout noble:linux-gke
 ```
 
 Once this command is finished (It took ~20 minutes to complete), you should see the following directories inside the newly-created `./noble/linux-gke/` directory:
-- `linux-lrm/` <!-- TODO delete when moving to linux-gke -->
 - `linux-main/`: The actual Linux kernel source
 - `linux-meta/` <!-- TODO describe --> 
 - `linux-signed/`: Canonical's kernel signing stuff <!-- TODO describe better --> 
@@ -114,9 +113,13 @@ Run the following command:
 cranky open
 ```
 
-This command downloads ABI files <!--TODO what are ABI files? Link to an explanation--> from the previous release.
+This command creates a commit which signifies the start of a new release. It updates `debian.gke/changelog` to reflect this.
+Optionally, it may also update ABI versioning info. <!--TODO remove if extraneous-->
 
-This also creates a new commit. Run `git show` and see that this new commit starts with "UBUNTU: Start new release" and shows an update to `./debian.gke/changelog`.
+<!-- TODO what are ABI files? Link to more info somewhere appropriate. -->
+
+
+Run `git show` and see that this new commit starts with "UBUNTU: Start new release" and shows an update to `./debian.gke/changelog`.
 
 
 ### Review 
@@ -124,22 +127,20 @@ Sometimes the rebase doesn't get all the changes. Run this command to manually r
 ```bash
 cranky review-master-changes
 ```
-<!-- TODO what does the output look like? -->
+This command will output any outstanding changes in a list with their commit hashes and descriptions. Use `git show <commit-hash>` to view the changes.
 
-In particular, check if any changes were made to `debian.master/rules.d/` that
-should be reflected in `debian.aws/rules.d/`. Those commits may not be
-obvious in the master changelog.
+Usually these can be ignored, but there are a few instances where further investigation is necessary:
 
-<!-- TODO reword this to be more command-like and accurate -->
-In the event of a config change in the derivative, this commit title is
-used: "UBUNTU: \[Config\] <derivative>: Whatever title",
-i.e "UBUNTU: \[Config\] aws: Whatever title".
-This is useful in the changelog to make the distiction between a config
-change in the parent vs a change in the derivative.
+- Commits with changes to `debian.master/rules.d/`
+    - Choose if these changes should be reflected in `debian.gke/rules.d/`
+- Commits with descriptions starting with "UBUNTU: \[Config\]: ..."
+    - These indicate a change in the parent kernel's configuration.
+    - You'll need to compare this change with what appears in the derivative config (`debian.gke/`) to decide if it should be applied to this crank.
 
 ### Link to the Launchpad Bug Tracker
 
 Run the following command to link this kernel to its corresponding Launchpad bug tracker:
+<!-- TODO "what" are we linking? This kernel? This crank? This repo? What's the proper word to use? -->
 
 :::{caution}
 Use `--dry-run` unless you are actually cranking a kernel. Otherwise, this will overwrite Launchpad and might make destructive changes!
@@ -149,29 +150,45 @@ Use `--dry-run` unless you are actually cranking a kernel. Otherwise, this will 
 cranky link-tb --dry-run
 ```
 
-<!-- TODO describe output of dry run, it crashed on mine for some reason -->
+This updates the Launchpad tracking bug, which, among other things, will be used as an input for subsequent steps.
+
+<!-- TODO describe output. How can we see that this worked? -->
 
 ### Update DKMS Packages
+
+`debian.master/dkms-versions` specifies dkms modules to be packaged with its kernel. <!-- TODO does this sentence make sense in the context of the next sentence? -->
+
+This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the SRU cycle
+
 ```bash
 cranky update-dkms-versions
 ```
 
 <!-- TODO describe output -->
+In most cases there would be no change committed as the up-to-date versions should have been committed on the master kernel and picked-up by the derivative or backport on rebase. However, if there is any change, check that the version numbers only become higher and nothing gets dropped completely. In case anything looks suspicious, don’t hesitate to ask the team if the changes are expected.
+
 
 ### Closing commit
 This step creates one final commit before a release is prepared. Run:
 ```bash
 cranky close
 ```
-<!-- TODO describe output -->
+This command is a shortcut for several steps:
+
+1. Verifies there are no changes left. <!-- TODO elaborate? -->
+2. Inserts changes from the parent kernel into the changelog.
+3. Inserts git changes into the changelog.
+4. Updates the release series, author and date on the changelog, thus closing the changelog.
+5. Creates a commit signifying the finished crank.
 
 ## 4. Verify the Kernel Builds Successfully
 ### Cloud Builder 
+<!-- TODO WARNING: cbd is internal only (?) What should we put here instead? -->
+
 Connect to the canonical VPN. Then, run:
 
 <!-- TODO add git remote add cbd -->
 
-<!-- WARNING: cbd is internal only (so it seems)! What should we put here instead? -->
 
 ```bash
 git push cbd
