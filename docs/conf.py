@@ -214,7 +214,9 @@ linkcheck_anchors_ignore_for_url = [
 # NOTE: By default, the following MyST extensions are enabled:
 #       substitution, deflist, linkify
 
-# myst_enable_extensions = set()
+myst_enable_extensions = {
+    "colon_fence",
+}
 
 # Custom Sphinx extensions; see
 # https://www.sphinx-doc.org/en/master/usage/extensions/index.html
