@@ -22,12 +22,12 @@ The steps of cranking a kernel are relatively straightforward:
 <!-- TODO specify the SRU cycle -->
 In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`). Keep these codenames in mind for future commands.
 
-Learn more about Ubuntu releases and derivative kernels [here](TODo).
+Learn more about Ubuntu releases and derivative kernels [here].
 
 
 ## 1. Set Up/Update Environment
 
-First, follow the [Cranky Environment Setup](TODO) tutorial.
+First, follow the [Cranky Environment Setup] tutorial.
 
 ### chroot environment
 We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when kernel cranking. cranky helps us set up and manage these chroot jails.
@@ -151,6 +151,8 @@ cranky link-tb --dry-run
 ```
 
 This updates the Launchpad tracking bug, which, among other things, will be used as an input for subsequent steps.
+
+<!-- TODO when is the earliest/latest this step can be done? Is this ordering the most sensible? -->
 
 <!-- TODO describe output. How can we see that this worked? -->
 
