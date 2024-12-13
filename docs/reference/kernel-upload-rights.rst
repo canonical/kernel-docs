@@ -76,8 +76,13 @@ and meet the criteria listed below:
 
 If you are not an official ubuntu-kernel-uploaders member yet, but fulfill all
 of the criteria above, you are likely a promising candidate for joining the
-team. If you are interested in joining, start by preparing your
-application using the following template:
+team.
+
+Application template
+--------------------
+
+If you are interested in joining, start by preparing your application using the
+following template:
 
 https://wiki.ubuntu.com/Kernel/Dev/PPUApplicationTemplate
 
