@@ -69,4 +69,4 @@ SRU
   of the system.
 ````
 
-[dkms manpages]: https://manpages.ubuntu.com/manpages/latest/en/man8/dkms.8.html
+[dkms manpages]: https://manpages.ubuntu.com/manpages/noble/en/man8/dkms.8.html
