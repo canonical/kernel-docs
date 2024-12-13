@@ -4,7 +4,7 @@ Kernel upload rights
 Those who are allowed to upload the kernel to the Ubuntu archive have a serious
 responsibility.
 
-To obtain per package upload rights for the Ubuntu kernel, you can apply to
+To obtain per package upload rights for the Ubuntu kernel, you need to apply to
 become a member of the ubuntu-kernel-uploaders_ team in Launchpad. People can
 join this team only after going through a thorough application and review
 process.
