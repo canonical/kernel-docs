@@ -364,3 +364,6 @@ See also
 
 * `Kernel Update <https://wiki.ubuntu.com/KernelTeam/KernelUpdates>`_:
   shows the SRU Justification format to be added to a bug.
+* `ubuntu-check-commit
+  <https://kernel.ubuntu.com/gitea/actions/ubuntu-check-commit/src/branch/main/ubuntu-check-commit>`_:
+  script to check commits against Ubuntu submission rules.
