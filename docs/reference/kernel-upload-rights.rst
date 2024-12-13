@@ -12,7 +12,7 @@ process.
 The sections below describe the general member profile of the
 ubuntu-kernel-uploaders_ team, as well as the application process.
 
-Member Profile
+Member profile
 ==============
 
 Below is the general profile for those having per package upload rights for the
@@ -47,7 +47,7 @@ Ubuntu kernel.
   - the Ubuntu release team
   - corporate partners who provide support for Ubuntu
 
-Application Process
+Application process
 ===================
 
 As alluded to in the member profile above, membership consideration for the
@@ -89,7 +89,7 @@ At least three existing ubuntu-kernel-uploaders members must confirm that they
 have worked with you sufficiently to assess your skills and verify that you meet
 the criteria above. These three individuals are typically your sponsors.
 
-Screening Process
+Screening process
 =================
 
 Once your application has been prepared and you are ready to be screened,
