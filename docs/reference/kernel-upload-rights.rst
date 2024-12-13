@@ -18,34 +18,34 @@ Member profile
 Below is the general profile for those having per package upload rights for the
 Ubuntu kernel.
 
-- Generally have commit access to the `Ubuntu kernel git repositories`_
+- Generally have commit access to the `Ubuntu kernel git repositories`_.
 
 - Actively follow and participate in discussions and patch reviews on the
-  `Ubuntu kernel-team mailing list`_
+  `Ubuntu kernel-team mailing list`_.
 
 - Are collectively responsible for the maintenance of packages in the Ubuntu
   kernel package set for all supported releases as well as the development
-  release
+  release.
 
 - Have a strong working knowledge of kernel packaging concepts and techniques,
-  refined through experience
+  refined through experience.
 
 - Have a strong working knowledge of Ubuntu project procedures, especially
   those related to the release process and support commitments, and an
-  understanding of the reasons why they exist
+  understanding of the reasons why they exist.
 
 - Have a history of substantial and direct contribution to the distribution,
-  particularly to kernel-related packages
+  particularly to kernel-related packages.
 
 - Feel a sense of personal responsibility for the quality of Ubuntu releases
-  and for the satisfaction of Ubuntu users
+  and for the satisfaction of Ubuntu users.
 
 - Exercise great care in their work, with the understanding that their efforts
   have a direct impact on others, including:
 
-  - every Ubuntu user
-  - the Ubuntu release team
-  - corporate partners who provide support for Ubuntu
+  - every Ubuntu user;
+  - the Ubuntu release team;
+  - corporate partners who provide support for Ubuntu.
 
 Application process
 ===================
@@ -55,20 +55,21 @@ ubuntu-kernel-uploaders_ team adheres to a strict policy. Anyone considering
 applying should align with the general profile outlined in the previous section
 and meet the criteria listed below:
 
-1. A thorough understanding of the Ubuntu kernel patch submission process
+1. A thorough understanding of the Ubuntu kernel patch submission process:
 
    a. Demonstrates an understanding of this process by having submitted
-      multiple patches which were accepted over a six-month development cycle
+      multiple patches which were accepted over a six-month development cycle.
+
    b. Demonstrates an understanding of this process by having reviewed and
-      Ack'd/Nack'd multiple patches over a six-month development cycle 
+      Ack'd/Nack'd multiple patches over a six-month development cycle.
 
 2. A thorough understanding of the Ubuntu release cycle and associated
-   milestone and freeze dates
+   milestone and freeze dates.
 
-3. A thorough understanding of the Ubuntu Kernel :ref:`sru-cycle-cadence`
+3. A thorough understanding of the Ubuntu Kernel :ref:`sru-cycle-cadence`.
 
 4. A thorough understanding of the upstream kernel development cycle and how it
-   relates to the Ubuntu kernel development cycle
+   relates to the Ubuntu kernel development cycle.
 
 5. Demonstrate a chain of trust by having multiple sponsored kernel uploads
    over a six-month development cycle by various existing members of the
