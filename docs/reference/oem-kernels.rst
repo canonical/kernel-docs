@@ -7,24 +7,24 @@ OEM kernels
 ```
 
 This document provides some reference information about OEM kernels: the support
-lifecycle for rolling releases, current kernel in development, the next planned
+life cycle for rolling releases, current kernel in development, the next planned
 generic Ubuntu kernel version, kernel source code, and how to install the OEM
 kernels for use on your machine.
 
-Support lifecycle for OEM kernels
----------------------------------
+Support life cycle for OEM kernels
+----------------------------------
 
 OEM kernels have shorter life cycles than their generic Ubuntu kernel
 counterparts. They will typically get rolled off to the next HWE kernel once all
 the fixes have been forward-ported.
 
-The table below summarises the support lifecycle, development and stable release
+The table below summarizes the support life cycle, development and stable release
 schedules, EOL dates, and kernel migration target for supported and upcoming OEM
 kernels.
 
-.. _table-ref-oem-kernel-lifecycle-package:
+.. _table-ref-oem-kernel-life cycle-package:
 
-.. table:: OEM kernel lifecycle and package details
+.. table:: OEM kernel life cycle and package details
 
    +---------------------------+------------------------------+-------------------------+---------------------------+
    | Kernel and Ubuntu version | Source code and meta package | Key dates               | Migration target          |
@@ -41,7 +41,7 @@ kernels.
    |                           |                              +--------+----------------+                           |  
    |                           |                              | EOL    | February 2025  |                           |
    +---------------------------+------------------------------+--------+----------------+---------------------------+
-   | 6.11                      | s: `linux-oem-6.11`_         | Devel  | August 2024    | TBD                       |
+   | 6.11                      | s: `linux-oem-6.11`_         | Devel  | August 2024    | :spellexception:`TBD`     |
    |                           |                              +--------+----------------+                           |
    | 24.04 LTS (Noble)         | m: linux-oem-24.04b          | Stable | November 2024  |                           |
    |                           |                              +--------+----------------+                           |  
@@ -88,11 +88,11 @@ Downloading and installing OEM kernels
 
 To view and/or download the source code for OEM kernels, go to the kernel
 repository (e.g. “s: linux-oem-6.5”) listed in the “Source code and meta
-package” column in the :ref:`table-ref-oem-kernel-lifecycle-package` table.
+package” column in the :ref:`table-ref-oem-kernel-life cycle-package` table.
 
 To install an OEM kernel, use the meta-package name (e.g. “m: linux-oem-22.04d”)
 for the kernel version listed in the “Source code and meta package” column in
-the :ref:`table-ref-oem-kernel-lifecycle-package` table.
+the :ref:`table-ref-oem-kernel-life cycle-package` table.
 For example, to install OEM kernel version 6.8, run:
 
 .. code:: bash

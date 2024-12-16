@@ -2,7 +2,7 @@
 
 The kernel source code for each Ubuntu release is maintained in its own
 repository in Launchpad. Downloading the kernel source may be needed for
-customisation, development, or troubleshooting the kernel.
+customization, development, or troubleshooting the kernel.
 
 This document shows how you can obtain the kernel source for an Ubuntu release
 using Git.

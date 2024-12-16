@@ -2,7 +2,7 @@
 
 Ubuntu Linux kernel source packages are essential for users and developers who
 want to build, modify, or understand the kernel that powers Ubuntu systems.
-These packages are stored in Launchpad and organised by series (or release),
+These packages are stored in Launchpad and organized by series (or release),
 making it easy to find and work with the appropriate kernel version for any
 given Ubuntu release.
 
@@ -37,7 +37,7 @@ automatically updated list of [currently supported Ubuntu kernel Repositories].
 
 You will find the following branches in each Ubuntu kernel source repository.
 
-- `master`: The source for the Ubuntu distro kernel.
+- `master`: The source for the Ubuntu {spellexception}`distro` kernel.
 - `master-next`: Contains the commits that will be merged into the `master`
   branch for the next stable release update (SRU) for the series.
 

@@ -9,7 +9,7 @@ kernel packages and components.
 :hidden:
 
 Source code access and management </how-to/source-code/index>
-Development and customisation </how-to/develop-customise/index>
+Development and customization </how-to/develop-customize/index>
 Test kernels in -proposed </how-to/testing-verification/test-kernel-in-proposed>
 Contribute to kernel docs </how-to/contribute>
 ```
@@ -17,18 +17,18 @@ Contribute to kernel docs </how-to/contribute>
 ## Source code access and management
 
 Get access to kernel source code if you need to modify the kernel for specific
-requirements, optimise the performance for selected hardware, inspect the source
+requirements, optimize the performance for selected hardware, inspect the source
 tree to build custom kernel modules, and more.
 
 - [Obtain kernel source for an Ubuntu release using Git](/how-to/source-code/obtain-kernel-source-git)
 
-## Development and customisation
+## Development and customization
 
 The steps to build a kernel is similar but may have slightly difference
 configuration requirements on different platforms and/or architectures.
 
-- [Build an Ubuntu Linux kernel](/how-to/develop-customise/build-kernel)
-- [Build an Ubuntu Linux kernel snap](/how-to/develop-customise/build-kernel-snap)
+- [Build an Ubuntu Linux kernel](/how-to/develop-customize/build-kernel)
+- [Build an Ubuntu Linux kernel snap](/how-to/develop-customize/build-kernel-snap)
 
 ## Testing and verification
 

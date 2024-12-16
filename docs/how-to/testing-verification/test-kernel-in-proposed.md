@@ -68,14 +68,14 @@ version of the kernel in that series.
 If the kernel version in -proposed is the highest in any pocket, run:
 
 ```{code-block} none
-sudo apt install linux-<flavour>
+sudo apt install linux-<flavor>
 ```
 
 If you want a specific (earlier) version of a metapackage, include the version
 in the command:
 
 ```{code-block} none
-sudo apt install linux-<flavour>=<version>
+sudo apt install linux-<flavor>=<version>
 ```
 
 ### Install via ABI-named kernel image
@@ -84,7 +84,7 @@ Use this method to install a specific kernel version without being tied to the
 kernel series metapackage.
 
 ```{code-block} none
-sudo apt install linux-image-<abi>-<flavour>
+sudo apt install linux-image-<abi>-<flavor>
 ```
 
 ### Boot into the new kernel
@@ -96,7 +96,7 @@ that the correct kernel is loaded with:
 uname -r
 ```
 
-This should print the correct kernel version and flavour.
+This should print the correct kernel version and flavor.
 
 ## Test the kernel
 
@@ -115,7 +115,7 @@ sudo make -C tools/testing/selftests run_tests
 For other examples of kernel testing projects, see:
 
 - [Linux Test Project]
-- [stress-ng]
+- {spellexception}`[stress-ng]`
 
 
 ### Report regression bugs

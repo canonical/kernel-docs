@@ -185,9 +185,9 @@ Once you have set up your host machine, clone the Ubuntu Linux kernel snap recip
 git clone <kernel-source-repository>
 ```
 
-## Customise the kernel
+## Customize the kernel
 
-Add any firmware or binary blobs, or customise `initrd` as needed. This step is only required if you want to make your own changes to the kernel.
+Add any firmware or binary blobs, or customize `initrd` as needed. This step is only required if you want to make your own changes to the kernel.
 
 % TODO - create a template snapcraft.yaml file for any project
 

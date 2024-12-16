@@ -29,10 +29,10 @@ critical fixes. This approach enables more timely updates for critical issues
 while maintaining stability, and continues to support mid-cycle
 {ref}`respins <exp-sru-kernel-respins>` for regression fixes as needed.
 
-```{figure} /_images/exp-kernel-sru-lifecycle-stages.svg
-:alt: Ubuntu kernel lifecycle stages and ideal SRU 4/2 cadence timeline
+```{figure} /_images/exp-kernel-sru-life cycle-stages.svg
+:alt: Ubuntu kernel life cycle stages and ideal SRU 4/2 cadence timeline
 
-Ubuntu kernel lifecycle stages and ideal SRU 4/2 cadence timeline
+Ubuntu kernel life cycle stages and ideal SRU 4/2 cadence timeline
 ```
 
 See the [Ubuntu Kernel Team] home page for details on SRU cycle dates.
@@ -100,7 +100,7 @@ next cycle.
 ## Kernel streams
 
 Kernels that are ready for the full suite of testing and verification are
-promoted to the "testing" phase, where the built kernel binaries (and artefacts)
+promoted to the "testing" phase, where the built kernel binaries (and artifacts)
 are copied to a proposed location.
 
 As the [Ubuntu archive has a single proposed pocket], the support for multiple

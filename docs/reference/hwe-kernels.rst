@@ -2,12 +2,12 @@ HWE kernels
 ===========
 
 This document provides some reference information about Hardware Enablement
-(HWE) kernels: the support lifecycle, current kernel in development, the next
+(HWE) kernels: the support life cycle, current kernel in development, the next
 planned Ubuntu base kernel version, kernel source code, and how to install the
 HWE kernels for use on your machine.
 
-Support lifecycle for HWE kernels
----------------------------------
+Support life cycle for HWE kernels
+----------------------------------
 
 HWE kernels are only enabled on Ubuntu long-term support (LTS) releases, and
 have similar life cycles as their newer Ubuntu kernel counterparts. They will
@@ -19,13 +19,13 @@ released (until the next LTS).
 
    Example of HWE kernel release cycle for Jammy Jellyfish
 
-The table below summarises the support lifecycle, development and release
+The table below summarizes the support life cycle, development and release
 schedule, end-of-life (EOL) and Extended Security Maintenance (ESM) dates for
 supported and upcoming HWE kernels.
 
-.. _table-ref-HWE-kernel-lifecycle-package:
+.. _table-ref-HWE-kernel-life cycle-package:
 
-.. table:: HWE kernel lifecycle and package details
+.. table:: HWE kernel life cycle and package details
    :align: center
 
    +-----------------+------------------------+----------------+----------------------------------------------------------+
@@ -276,12 +276,12 @@ Related topics
 - See the `Stable Updates Cycles`_ for the dates of the last day for kernel
   patches (for HWE kernels) for each stable update cycle.
 - See the `Ubuntu kernel release cycle`_ for more details about the kernel
-  support lifecycle, including the ESM support phase.
-- See the `Ubuntu kernel lifecycle and enablement stack`_ for more details about
+  support life cycle, including the ESM support phase.
+- See the `Ubuntu kernel life cycle and enablement stack`_ for more details about
   HWE kernels and their support status.  
 
 .. LINKS
 
 .. _Stable Updates Cycles: https://kernel.ubuntu.com/
 .. _Ubuntu kernel release cycle: https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle
-.. _Ubuntu kernel lifecycle and enablement stack: https://ubuntu.com/kernel/lifecycle
+.. _Ubuntu kernel life cycle and enablement stack: https://ubuntu.com/kernel/life cycle

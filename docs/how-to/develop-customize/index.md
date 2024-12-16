@@ -1,4 +1,4 @@
-# Development and customisation
+# Development and customization
 
 These guides cover how to build kernel packages, kernel snaps, and kernel
 components.

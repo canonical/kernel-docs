@@ -17,15 +17,17 @@ The guidelines below will help keep your contributions effective and meaningful.
 
 When contributing, you must abide by the [Ubuntu Code of Conduct].
 
-## Licence and copyright
+## License and copyright
 
 By default, all contributions to Kernel documentation are licensed under the
-Creative Commons Attribution-Share Alike (CC-BY-SA) 3.0 Unported License. To
-view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/
-or send a letter to Creative Commons, 171 Second Street, Suite 300, San
-Francisco, California, 94105, USA.
+Creative Commons Attribution-Share Alike {spellexception}`(CC-BY-SA)` 3.0
+Unported License.
+To view a copy of this license, visit
+https://creativecommons.org/licenses/by-sa/3.0/ or send a
+letter to Creative Commons, 171 Second Street, Suite 300, San Francisco,
+California, 94105, USA.
 
-All contributors must sign the [Canonical contributor licence agreement], which
+All contributors must sign the [Canonical contributor license agreement], which
 grants Canonical permission to use the contributions. The author of a change
 remains the copyright owner of their code (no copyright assignment occurs).
 
@@ -102,7 +104,7 @@ merged.
 To be properly considered, reviewed, and merged, your pull request must provide
 the following details:
 
-- **Title**: Summarise the change in a short, descriptive title.
+- **Title**: Summarize the change in a short, descriptive title.
 - **Description**: Explain the problem that your pull request solves. Mention
 any new features, bug fixes, or refactoring.
 - **Relevant issues**: Reference any [related issues, pull requests, and repositories].
@@ -235,7 +237,7 @@ Thank you, and looking forward to your contributions!
 <!-- LINKS -->
 
 [Ubuntu Code of Conduct]: https://ubuntu.com/community/ethos/code-of-conduct
-[Canonical contributor licence agreement]: https://ubuntu.com/legal/contributors
+[Canonical contributor license agreement]: https://ubuntu.com/legal/contributors
 [Canonical's Sphinx starter pack]: https://github.com/canonical/sphinx-docs-starter-pack
 [Read the Docs]: https://about.readthedocs.com/
 [Kernel documentation GitHub repository]: https://github.com/canonical/kernel-docs

@@ -6,7 +6,7 @@ interact with system resources.
 The Ubuntu kernel handles communication between system hardware and user-space
 applications, managing tasks like memory, processing, and security. Regular
 stable release updates (SRU) ensure the kernel stays secure, stable, and
-optimised.
+optimized.
 
 Ubuntu kernels provide a reliable foundation for applications and system
 processes, meeting the need for secure, high-performance, Ubuntu environments.
@@ -17,7 +17,7 @@ more.
 
 This documentation serves developers, partners, and others working with Ubuntu
 kernels, offering guidance on kernel workflows, tools, SRU timelines, and
-processes for customisation and maintenance.
+processes for customization and maintenance.
 
 ---------
 

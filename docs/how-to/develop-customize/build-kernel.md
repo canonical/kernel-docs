@@ -2,7 +2,7 @@
 
 If you have patches you need to apply to the Ubuntu Linux kernel, or you want to
 change some kernel configs, you may need to build your kernel from source.
-Follow these steps to customise and build the Ubuntu Linux kernel.
+Follow these steps to customize and build the Ubuntu Linux kernel.
 
 ```{only} docx
 *__Important__: Kernels built using this method are not intended for use in
@@ -179,7 +179,7 @@ configuration files related to the Ubuntu kernel package.
 You will need to explicitly respond with {kbd}`Y` or {kbd}`N` when making any
 config changes to avoid getting errors later in the build process.
 
-## Customise the kernel
+## Customize the kernel
 
 (Optional) Add any firmware, binary blobs, or patches as needed.
 
@@ -237,7 +237,7 @@ sudo reboot
 
 ## Test the new kernel
 
-Run any necessary testing to confirm that your changes and customisations have
+Run any necessary testing to confirm that your changes and customizations have
 taken effect. You should also confirm that the newly installed kernel version
 matches the value in the
 `<kernel_source_working_directory>/debian.master/changelog` file by running:

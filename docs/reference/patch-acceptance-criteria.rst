@@ -194,8 +194,8 @@ tree in full::
 Signed-off-by
 ^^^^^^^^^^^^^
 
-The patches must have your Signed-off-by as the last line, after the upstream
-cherry-picked line. It can be generated using the ``-s`` option of the
+The patches must have your Signed-off-by (SoB) as the last line, after the
+upstream cherry-picked line. It can be generated using the ``-s`` option of the
 git-cherry-pick_ command.
 
 If the patch is from yourself and already has your SoB, a new SoB must be
