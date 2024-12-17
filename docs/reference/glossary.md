@@ -68,6 +68,12 @@ OEM kernel
 
   See {doc}`/reference/oem-kernels` for more information.
 
+SAUCE
+  A SAUCE patch is a patch not included in Linus Torvalds' tree or linux-next, either because it hasn't
+  been pulled in, or because it is obtained from other non-upstream sources and is unlikely to be upstreamed.
+
+  See {doc}`/reference/patch-acceptance-criteria` for more information.
+
 SRU
   Stands for Stable Release Update, a process in distributions like Ubuntu used to provide important 
   updates to packages, including kernel packages, after the release of a stable version. SRUs deliver 
