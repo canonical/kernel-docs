@@ -2,28 +2,10 @@
 
 ## Introduction
 
-In this tutorial, we will crank an Ubuntu kernel, which means to apply updates to an existing derivative Ubuntu kernel from its parent kernel, package it, and prepare it for testing.
-
-[cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) is a toolchain which assists in all of these steps.
-
-### Table of Contents/Steps in this Guide
-
-The steps of cranking a kernel are relatively straightforward:
-
-1. Set Up/Update Environment
-2. Download Current Version of the Kernel
-3. Apply Updates from the Upstream Kernel 
-4. Verify the Kernel Builds Successfully
-5. Package the kernel for Release
-6. Upload kernel for release/review
-
----
+Cranking an Ubuntu kernel is the process of applying updates to an existing Ubuntu kernel, packaging it, and preparing it for testing. [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) is a toolchain which assists in all of these steps.
 
 <!-- TODO specify the SRU cycle -->
 In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`). Keep these codenames in mind for future commands.
-
-Learn more about Ubuntu releases and derivative kernels [here].
-
 
 ## 1. Set Up/Update Environment
 
@@ -260,3 +242,5 @@ cd linux-main/
 cranky push-review -s 2024.10.08 kathleen
 ```
 
+## Related topics
+Learn more about Ubuntu releases and derivative kernels [here].
