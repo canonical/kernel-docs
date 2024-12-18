@@ -54,6 +54,7 @@ Finally, update your local clone of kteam-tools to the latest commit on the main
 cd ~/canonical/kteam-tools/
 git pull
 ```
+<!--TODO checkout a `cranky-tutorial` git tag instead to ensure it's the same-->
 
 ## 2. Download Current Version of the Kernel
 Next, clone the chosen kernel in its current state.
@@ -188,6 +189,7 @@ This command is a shortcut for several steps:
 <!-- TODO WARNING: cbd is internal only (?) What should we put here instead? -->
 
 Connect to the canonical VPN. Then, run:
+<!-- Add to prerequisites: VPN set up! -->
 
 <!-- TODO add git remote add cbd -->
 
@@ -198,6 +200,8 @@ git push cbd
 
 <!-- TODO describe output -->
 <!-- TODO describe ssh -->
+
+<!-- TODO ask others about alternatives to CBD/kathleen. Those are for canonicalers only. Is it possible/easy to test in a way that anyone can do? -->
 
 ## 5. Package the kernel for Release
 Run the following command:
