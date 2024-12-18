@@ -1,4 +1,4 @@
-# Turning the Crank
+# Tutorial: Crank your first kernel
 
 ## Introduction
 
