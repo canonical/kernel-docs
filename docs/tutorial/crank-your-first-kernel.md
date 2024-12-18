@@ -11,7 +11,7 @@ In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Go
 
 First, follow the [Cranky Environment Setup] tutorial.
 
-### chroot environment
+### 1.1. Update chroot environment
 We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when kernel cranking. cranky helps us set up and manage these chroot jails.
 
 If it's our first time creating a chroot for this release (Noble Numbat), we must first create the chroot base:
@@ -29,14 +29,36 @@ This will also output a lot of text as it uses apt to install various packages n
 
 <!-- TODO can we be more specific about what each command does? Why are they separate if the descriptions are basically identical? -->
 
-### Update kteam-tools
+### 1.2. Update kteam-tools
 Finally, update your local clone of kteam-tools to the latest commit on the main branch:
+For the scope of this tutorial, we will use a particular version of cranky. Run the following commands to get it:
+
+:::{WARNING}
+If your kteam-tools tree isn't clean, be sure to save your work before running the commands. 
+They will modify the repository!
+Git should warn you if any destructive actions might occur.
+:::
 
 ```bash
 cd ~/canonical/kteam-tools/
 git pull
+git checkout cranky-tutorial
 ```
 <!--TODO checkout a `cranky-tutorial` git tag instead to ensure it's the same-->
+
+After `checkout`, you should see output similar similar to this:
+
+:::{terminal}
+    :input: git checkout cranky-tutorial
+    :dir: ~/canonical/kteam-tools/
+    :user: user
+    :host: host
+Note: switching to 'cranky-tutorial'.
+
+...
+
+HEAD is now at de4674e4 mainline-build/cod-update-virgin: Split script and update freedesktop repos
+:::
 
 ## 2. Download Current Version of the Kernel
 Next, clone the chosen kernel in its current state.
@@ -55,7 +77,7 @@ Once this command is finished (It took ~20 minutes to complete), you should see 
 
 
 ## 3. Apply Updates from the Upstream Kernel 
-The upstream kernel will have updates that should be propagated down to this kernel.
+The upstream kernel will have changes that should be propagated down to this kernel.
 
 ### 3.1. Fix helper scripts
 Update the local (in-tree) helper scripts cranky uses to the latest version:
@@ -85,8 +107,8 @@ cranky fix
 ```
 
 <!-- TODO what should this section be called? -->
-## TODO new section
-### Starting commit
+## 4. TODO new section
+### 4.1. Starting commit
 
 <!-- TODO this section doesn't really explain why we are doing these things. Learn what's going on and then document better. -->
 
@@ -105,7 +127,7 @@ Optionally, it may also update ABI versioning info. <!--TODO remove if extraneou
 Run `git show` and see that this new commit starts with "UBUNTU: Start new release" and shows an update to `./debian.gke/changelog`.
 
 
-### Review 
+### 4.2. Review 
 Sometimes the rebase doesn't get all the changes. Run this command to manually review any outstanding changes:
 ```bash
 cranky review-master-changes
@@ -120,7 +142,7 @@ Usually these can be ignored, but there are a few instances where further invest
     - These indicate a change in the parent kernel's configuration.
     - You'll need to compare this change with what appears in the derivative config (`debian.gke/`) to decide if it should be applied to this crank.
 
-### Link to the Launchpad Bug Tracker
+### 4.3. Link to the Launchpad Bug Tracker
 
 Run the following command to link this kernel to its corresponding Launchpad bug tracker:
 <!-- TODO "what" are we linking? This kernel? This crank? This repo? What's the proper word to use? -->
@@ -139,7 +161,7 @@ This updates the Launchpad tracking bug, which, among other things, will be used
 
 <!-- TODO describe output. How can we see that this worked? -->
 
-### Update DKMS Packages
+### 4.4. Update DKMS Packages
 
 `debian.master/dkms-versions` specifies dkms modules to be packaged with its kernel. <!-- TODO does this sentence make sense in the context of the next sentence? -->
 
@@ -153,7 +175,7 @@ cranky update-dkms-versions
 In most cases there would be no change committed as the up-to-date versions should have been committed on the master kernel and picked-up by the derivative or backport on rebase. However, if there is any change, check that the version numbers only become higher and nothing gets dropped completely. In case anything looks suspicious, don’t hesitate to ask the team if the changes are expected.
 
 
-### Closing commit
+### 4.5. Closing commit
 This step creates one final commit before a release is prepared. Run:
 ```bash
 cranky close
@@ -166,7 +188,9 @@ This command is a shortcut for several steps:
 4. Updates the release series, author and date on the changelog, thus closing the changelog.
 5. Creates a commit signifying the finished crank.
 
-## 4. Verify the Kernel Builds Successfully
+## 5. Verify the Kernel Builds Successfully
+At this point, the kernel is built and packaged. We should test that it builds successfully.
+<!-- TODO verify above statement! -->
 ### Cloud Builder 
 <!-- TODO WARNING: cbd is internal only (?) What should we put here instead? -->
 
@@ -185,27 +209,27 @@ git push cbd
 
 <!-- TODO ask others about alternatives to CBD/kathleen. Those are for canonicalers only. Is it possible/easy to test in a way that anyone can do? -->
 
-## 5. Package the kernel for Release
+## 6. Package the kernel for Release
 Run the following command:
 <!--TODO add note that it's "dependents", not "dependent". -->
 ```bash
 cranky update-dependents
 ```
 
-### Tag commit
+### 6.1. Tag commit
 ```bash
 cranky tags
 ```
 <!-- TODO describe output -->
 
-### Verify Preparation
+### 6.2. Verify Preparation
 ```bash
 cranky verify-release-ready
 ```
 
 The `tag pushed: warning` is an expected warning if you do not have commit rights.
 
-### Pull sources
+### 6.3. Pull sources
 
 ```bash
 cd ..
@@ -214,20 +238,20 @@ cd ..
 cranky pull-sources noble:linux-gke --latest
 ```
 
-### Build Sources
+### 6.4. Build Sources
 ```bash
 cd linux-main/
 cranky build-sources
 ```
 
-## Review
+## 7. Review
 ```bash
 cd ..
 # CWD == ~/canonical/kernel/noble/linux-gke/
 cranky review *.changes
 ```
 
-## Upload
+## 8. Upload
 
 <!-- TODO take note of SRU cycle earlier in the process -->
 
