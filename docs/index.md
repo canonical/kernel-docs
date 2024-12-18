@@ -76,5 +76,5 @@ fixes and constructive feedback.
 /how-to/index
 /reference/index
 /explanation/index
-/tutorial/cranking-the-kernel.md
+/tutorial/crank-your-first-kernel.md
 ```
