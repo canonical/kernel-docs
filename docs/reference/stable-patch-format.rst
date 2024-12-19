@@ -103,10 +103,10 @@ following on the subject line after the release name and patch number.
    * - UBUNTU: [Config]
      - This is an update to the kernel configuration as recorded in the
        ``debian.<branch>/config`` directory. 
-       
-       See the ``debian.master/config/README.rst`` or
-       `Discourse - Kernel configuration in Ubuntu`_ for more information about
-       the config format.
+
+       See the ``debian.master/config/README.rst`` :none:`wokeignore:rule=master,`
+       or `Discourse - Kernel configuration in Ubuntu`_ for more information
+       about the config format.
    * - UBUNTU: ubuntu
      - This is an update to an Ubuntu specific driver in the ``ubuntu/``
        directory. This category is rarely used anymore except in special cases.
