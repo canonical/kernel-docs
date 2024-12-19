@@ -325,7 +325,7 @@ Sending as a pull request
 Submitting the patch
 --------------------
 
-Stable patches must be sent to <kernel-team@lists.ubuntu.com>.
+Stable patches must be sent to kernel-team@lists.ubuntu.com.
 
 Patch series example
 --------------------
