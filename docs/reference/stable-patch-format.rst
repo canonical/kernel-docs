@@ -27,46 +27,51 @@ Every patch submitted to a stable kernel **must** have have its subject line
 starting with "[SRU]" followed by the release name against which the
 patch is targeted.
 
-The release name **must** be enclosed in "[ ]" brackets and can be
-abbreviated using the first letter of the release name (e.g. "B" for
-"Bionic"). For example:
+The release name **must** be enclosed in "[ ]" brackets and **should** be
+abbreviated using the first letter of the release name (e.g. "N" for
+"Noble"). For example:
 
 .. code-block:: none
 
-   [SRU][Focal][PULL] Focal update: v5.4.56 upstream stable release
+   [SRU][N][PATCH 0/1] Fix error of resume on rtl8168fp
 
 * If a patch is to be applied to multiple releases, a list of release names
-  must be provided. For example:
+  must be provided. For example, when it targets Bionic and Focal:
 
   .. code-block:: none
 
-     [SRU][B][F][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
+     [SRU][B/F][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
 
-* If the patch has to be applied to multiple releases, you can drop some of
-  the square brackets and use the comma "," or forward slash "/" character
-  to separate the releases.
+  .. note::
 
-  For example, if the patch has to be applied to the "Bionic, "Focal", and
-  "Jammy" release, change from this:
+     Historically, the rule has been somewhat flexible, and various styles
+     have been permitted. You may find examples like the following in the
+     `mailing list archive
+     <https://lists.ubuntu.com/archives/kernel-team/>`__:
 
-  .. code-block:: none
+     .. code-block:: none
 
-     [SRU][B][F][J][PATCH 0/1] UBUNTU: [Config]: Add support for modifying LDT
+        [SRU][B,F][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
+        or
+        [SRU][B][F][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
+        or
+        [SRU][Bionic,Focal][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
+        or
+        [SRU][Bionic/Focal][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
+        or
+        [SRU][Bionic][Focal][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
 
-  To a comma- or forward slash-separated list:
+     Please adhere to the ``[B/F]`` style.
 
-  .. code-block:: none
-
-     [SRU][B,F,J][PATCH 0/1] UBUNTU: [Config]: Add support for modifying LDT
-
-     [SRU][B/F/J][PATCH 0/1] UBUNTU: [Config]: Add support for modifying LDT
+     * Use initial letter(s) in UPPER case
+     * Separate each series with "/"
 
 * If the patch has to be applied to a specific derivative for multiple
   releases, indicate the derivative after the release. For example:
 
   .. code-block:: none
 
-     [SRU][B:linux-kvm,F:linux-kvm] [PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
+     [SRU][B:linux-kvm/F:linux-kvm] [PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
 
 Subject line for non-upstream patches
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,7 +124,7 @@ For example, for a patch that falls under the "UBUNTU: SAUCE:" category:
 
 .. code-block:: none
 
-   [SRU][FOCAL][PATCH 2/2] UBUNTU: SAUCE: shiftfs: prevent ESTALE for LOOKUP_JUMP lookups
+   [SRU][F][PATCH 2/2] UBUNTU: SAUCE: shiftfs: prevent ESTALE for LOOKUP_JUMP lookups
 
 
 Comment body
@@ -145,12 +150,11 @@ Comment body
    Example:
 
    .. code-block:: none
-      :emphasize-lines: 2-5
+      :emphasize-lines: 2-4
 
-      Subject: [PATCH 1/1][SRU][B] UBUNTU: SAUCE: platform/x86: dell-uart-backlight: add get_display_mode command
+      Subject: [SRU][F][PATCH 1/1] UBUNTU: SAUCE: netfilter: nf_tables: Fix EBUSY on deleting unreferenced chain
 
-      BugLink: https://bugs.launchpad.net/bugs/1865402
-      BugLink: https://bugs.launchpad.net/bugs/1234567
+      BugLink: https://bugs.launchpad.net/bugs/2089699
 
       [...]
 
@@ -167,25 +171,6 @@ Comment body
       Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
       (backported from commit 5620ae29f1eabe655f44335231b580a78c8364ea)
       Signed-off-by: Manoj Iyer <manoj.iyer@canonical.com>
-
-#. Where Acks are needed they should be placed in the provenance block.
-   Every patch against development releases following kernel freeze, and
-   **all** patches against released kernels **must** have two "Acked-by"
-   replies by members of the Ubuntu Kernel Team.
-
-   Example:
-
-   .. code-block:: none
-      :emphasize-lines: 6-8
-
-      Signed-off-by: Adam Jackson <ajax@redhat.com>
-      Signed-off-by: Eric Anholt <eric@anholt.net>
-      Signed-off-by: Greg Kroah-Hartman <gregkh@suse.de>
-      (cherry picked from commit d4e0018e3e4dd685af25d300fd26a0d5a984482e 2.6.34.y)
-      Signed-off-by: Manoj Iyer <manoj.iyer@canonical.com>
-      Acked-by: Tim Gardner <tim.gardner@canonical.com>
-      Acked-by: Brad Figg <brad.figg@canonical.com>
-      Acked-by: Steve Conklin <sconklin@canonical.com>
 
 #. Every patch **must** display the provenance of the patch. We want to
    preserve where the patch came from, who signed off on it, who ack'd it,
@@ -219,10 +204,10 @@ Comment body
      .. code-block:: none
 
         (cherry picked from commit <sha1> <upstream repo name>)
- 
-   .. note::
 
-      Omit the "<upstream repo name>" if the patch comes from the mainline tree.
+     .. note::
+
+        Omit the "<upstream repo name>" if the patch comes from the mainline tree.
 
    Example:
 
@@ -232,11 +217,8 @@ Comment body
       Signed-off-by: Adam Jackson <ajax@redhat.com>
       Signed-off-by: Eric Anholt <eric@anholt.net>
       Signed-off-by: Greg Kroah-Hartman <gregkh@suse.de>
-      (cherry picked from commit d4e0018e3e4dd685af25d300fd26a0d5a984482e 2.6.34.y)
+      (cherry picked from commit d4e0018e3e4dd685af25d300fd26a0d5a984482e linux-2.6.34.y)
       Signed-off-by: Manoj Iyer <manoj.iyer@canonical.com>
-      Acked-by: Tim Gardner <tim.gardner@canonical.com>
-      Acked-by: Brad Figg <brad.figg@canonical.com>
-      Acked-by: Steve Conklin <sconklin@canonical.com>
 
    .. _comment-body-cve:
 #. Every **CVE** patch **must** contain a line at the beginning of the commit
@@ -294,7 +276,7 @@ Sending as a patch series
    .. tip::
 
       When sending patches with git-send-email, use the option
-      "\-\-suppress-cc=all" in order to prevent adding the original author of 
+      "\-\-suppress-cc=all" in order to prevent adding the original author of
       the patch and other people from the provenance block as CC.
 
 Sending as a pull request
@@ -308,7 +290,7 @@ Sending as a pull request
 #. The cover letter **must** contain the SRU justification from the launchpad
    bug or the CVE fix.
    See `KernelTeam/KernelUpdates`_ wiki for more information about the SRU
-   justification format to be added to a bug.   
+   justification format to be added to a bug.
 
 #. The subject line of the cover letter **must** contain the "[PULL]" tag,
    instead of "[PATCH X/N]".
@@ -326,6 +308,9 @@ Submitting the patch
 --------------------
 
 Stable patches must be sent to kernel-team@lists.ubuntu.com.
+
+Once the patch receives two "Acked-by" replies from members of the Ubuntu
+Kernel Team, it will be merged.
 
 Patch series example
 --------------------
