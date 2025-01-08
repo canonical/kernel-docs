@@ -29,14 +29,14 @@ patch is targeted.
 
 The release name **must** be enclosed in "[ ]" brackets and **should** be
 abbreviated using the first letter of the release name (e.g. "N" for
-"Noble"). For example:
+"Noble") in upper case. For example:
 
 .. code-block:: none
 
    [SRU][N][PATCH 0/1] Fix error of resume on rtl8168fp
 
 * If a patch is to be applied to multiple releases, a list of release names
-  must be provided. For example, when it targets Bionic and Focal:
+  must be provided, with "/" separating the uppercase letter representing each release. For example, when it targets Bionic and Focal:
 
   .. code-block:: none
 
@@ -45,25 +45,22 @@ abbreviated using the first letter of the release name (e.g. "N" for
   .. note::
 
      Historically, the rule has been somewhat flexible, and various styles
-     have been permitted. You may find examples like the following in the
-     `mailing list archive
+     have been permitted.  You may find examples of various styles (such as the
+     ones below) in the `mailing list archive
      <https://lists.ubuntu.com/archives/kernel-team/>`__:
 
      .. code-block:: none
+        :linenos:
 
         [SRU][B,F][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
-        or
         [SRU][B][F][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
-        or
         [SRU][Bionic,Focal][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
-        or
         [SRU][Bionic/Focal][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
-        or
         [SRU][Bionic][Focal][PATCH 1/1] KVM: fix overflow of zero page refcount with ksm running
 
      Please adhere to the ``[B/F]`` style.
 
-     * Use initial letter(s) in UPPER case
+     * Use initial letter(s) in upper case
      * Separate each series with "/"
 
 * If the patch has to be applied to a specific derivative for multiple
@@ -205,9 +202,9 @@ Comment body
 
         (cherry picked from commit <sha1> <upstream repo name>)
 
-     .. note::
+   .. note::
 
-        Omit the "<upstream repo name>" if the patch comes from the mainline tree.
+      Omit the "<upstream repo name>" if the patch comes from the mainline tree.
 
    Example:
 
