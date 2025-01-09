@@ -36,7 +36,8 @@ abbreviated using the first letter of the release name (e.g. "N" for
    [SRU][N][PATCH 0/1] Fix error of resume on rtl8168fp
 
 * If a patch is to be applied to multiple releases, a list of release names
-  must be provided, with "/" separating the uppercase letter representing each release. For example, when it targets Bionic and Focal:
+  must be provided, with "/" separating the uppercase letter representing
+  each release. For example, when it targets Bionic and Focal:
 
   .. code-block:: none
 
@@ -47,7 +48,7 @@ abbreviated using the first letter of the release name (e.g. "N" for
      Historically, the rule has been somewhat flexible, and various styles
      have been permitted.  You may find examples of various styles (such as the
      ones below) in the `mailing list archive
-     <https://lists.ubuntu.com/archives/kernel-team/>`__:
+     <https://lists.ubuntu.com/archives/kernel-team/>`_:
 
      .. code-block:: none
         :linenos:
@@ -68,7 +69,7 @@ abbreviated using the first letter of the release name (e.g. "N" for
 
   .. code-block:: none
 
-     [SRU][B:linux-kvm/F:linux-kvm] [PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
+     [SRU][B:linux-kvm/F:linux-kvm][PATCH 0/1] UBUNTU: [Config] kvm: Add support for modifying LDT
 
 Subject line for non-upstream patches
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
