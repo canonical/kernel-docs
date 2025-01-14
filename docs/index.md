@@ -25,7 +25,7 @@ processes for customization and maintenance.
 
 ````{grid} 1 1 2 2
 
-```{grid-item-card} [Tutorials](index)
+```{grid-item-card} [Tutorials](/tutorial/index)
 
 **Start here**: a hands-on introduction to Ubuntu Linux kernel development for
 new users
@@ -76,5 +76,5 @@ fixes and constructive feedback.
 /how-to/index
 /reference/index
 /explanation/index
-/tutorial/crank-your-first-kernel.md
+/tutorial/index
 ```
