@@ -32,6 +32,7 @@ patch-acceptance-criteria
 :caption: Privileges
 
 kernel-upload-rights
+dkms-upload-rights
 ```
 
 ```{toctree}

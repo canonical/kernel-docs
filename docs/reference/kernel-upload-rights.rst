@@ -1,3 +1,5 @@
+.. _kernel-upload-rights:
+
 Kernel upload rights
 ####################
 
