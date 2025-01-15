@@ -161,7 +161,7 @@ This updates the Launchpad tracking bug, which, among other things, will be used
 
 This will create a git commit. Run `git show` to see it. It should look something like this:
 
-```gitdiff
+```diff
 commit 4345a7fc255b03ff9072cdcec1779a9b39d7519b (HEAD -> cranky/master-next)
 Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
 Date:   Wed Jan 15 12:14:59 2025 -0500
@@ -222,7 +222,7 @@ This command is a shortcut for several steps:
 5. Creates a commit signifying the finished crank.
 
 If the output went well, you should see a new commit when you run `git show`:
-```gitdiff
+```diff
 commit 6c9a5055b22f4c30aa3ba0c9df306762edb29197 (HEAD -> cranky/master-next)
 Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
 Date:   Wed Jan 15 12:42:31 2025 -0500
