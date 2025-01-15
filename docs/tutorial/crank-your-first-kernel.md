@@ -279,6 +279,21 @@ git push cbd
 <!-- TODO describe output -->
 <!-- TODO describe ssh -->
 
+The output will initially look like this:
+```
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: *** kernel-cbd *********************************************************
+remote: * Queueing builds (your 'cranky/master-next'); ok to interrupt
+remote: * For results:  ssh cbd ls benjaminwheeler-noble-6c9a5055b22f-szkb
+```
+
+At this point you can interrupt the command with Ctrl-C and periodically check the build status with the ssh command it printed.
+
+When running it, you'll see a few files either called `BUILDING` or `BUILD-OK`.
+
+Once all the arches have `BUILD-OK`, we know the kernel built successfully.
+
+
 <!-- TODO ask others about alternatives to CBD/kathleen. Those are for canonicalers only. Is it possible/easy to test in a way that anyone can do? -->
 
 ## 6. Package the kernel for Release
