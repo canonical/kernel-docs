@@ -159,7 +159,36 @@ This updates the Launchpad tracking bug, which, among other things, will be used
 
 <!-- TODO when is the earliest/latest this step can be done? Is this ordering the most sensible? -->
 
-<!-- TODO describe output. How can we see that this worked? -->
+This will create a git commit. Run `git show` to see it. It should look something like this:
+
+```gitdiff
+commit 4345a7fc255b03ff9072cdcec1779a9b39d7519b (HEAD -> cranky/master-next)
+Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
+Date:   Wed Jan 15 12:14:59 2025 -0500
+
+    UBUNTU: link-to-tracker: update tracking bug
+    
+    BugLink: https://bugs.launchpad.net/bugs/2093494
+    Properties: no-test-build
+    Signed-off-by: Benjamin Wheeler <benjamin.wheeler@canonical.com>
+
+diff --git a/debian.gke/tracking-bug b/debian.gke/tracking-bug
+index 6f5c6b4a700c..b3436ee66bdd 100644
+--- a/debian.gke/tracking-bug
++++ b/debian.gke/tracking-bug
+@@ -1 +1 @@
+-2090338 s2024.10.28-1
++2093494 s2024.12.02-1
+```
+
+Then, click the `BugLink` URL to see the relevant Launchpad tracking bug. 
+A comment should appear on there that says something like:
+```
+ summary: 	- noble/linux-gke: <version to be filled> -proposed tracker
+    + noble/linux-gke: 6.8.0-1017.21 -proposed tracker 
+```
+
+If you see similar results, you've successfully linked to the tracking bug.
 
 ### 4.4. Update DKMS Packages
 
