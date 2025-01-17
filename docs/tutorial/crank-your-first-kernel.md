@@ -1,43 +1,65 @@
 # Tutorial: Crank your first kernel
 
-## Introduction
-
-Cranking an Ubuntu kernel is the process of applying updates to an existing Ubuntu kernel, packaging it, and preparing it for testing. [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) is a toolchain which assists in all of these steps.
+Cranking an Ubuntu kernel is the process of applying patches and updates to an existing Ubuntu kernel, packaging it, and preparing it for testing. All this done using the [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) toolchain.
 
 <!-- TODO specify the SRU cycle -->
 In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`). Keep these codenames in mind for future commands.
 
-## 1. Set Up/Update Environment
+## Set up and update build environment
 
-First, follow the [Cranky Environment Setup] tutorial.
+<!-- TODO add cranky setup how-to -->
+You will need to complete the setup according to the {doc}`cranky environment setup </how-to/cranking/set-up-cranky-environment>` guide before continuing.
 
-### 1.1. Update chroot environment
-We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when kernel cranking. cranky helps us set up and manage these chroot jails.
+### Update chroot environment
 
-If it's our first time creating a chroot for this release (Noble Numbat), we must first create the chroot base:
+We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when doing kernel cranking. `cranky` helps us set up and manage these chroot jails.
+
+<!-- FEEDBACK: it isn't obvious which part is specific to the "first time setup". Meaning if this is NOT the first time you're working on it, does it mean you skip this particular create-base step or skip the whole section? Maybe add "if not, skip create-base step", along those lines. -->
+If this is your first time creating a chroot for the Noble Numbat release, you must first create the chroot base:
+
 ```bash
 cranky chroot create-base noble:linux-gke
 ```
-This will output a lot of text as it installs various packages needed for the chroot to work properly. (It took ~20 minutes to complete.)
+
+This can take up to 20 minutes to complete.
+If successful, you should observe the following output in your terminal.
+
+```{terminal}
+:input: cranky chroot create-base noble:linux-gke
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~
+
+[...]
+W: --force-yes is deprecated, use one of the options starting with --allow instead.
+
+Done building noble-amd64.
+
+ To CHANGE the golden image: sudo schroot -c source:noble-amd64 -u root
+ To ENTER an image snapshot: schroot -c noble-amd64
+ To BUILD within a snapshot: sbuild -A -d noble-amd64 PACKAGE*.dsc
+```
 
 Next, create the chroot session:
+
 ```bash
 cranky chroot create-session noble:linux-gke
 ```
 
-This will also output a lot of text as it uses apt to install various packages needed for the crank. (It took ~2 minutes to complete.)
+This step uses apt to install various packages needed for the crank and takes about two minutes to complete.
 
-<!-- TODO can we be more specific about what each command does? Why are they separate if the descriptions are basically identical? -->
+### Update kteam-tools repository
 
-### 1.2. Update kteam-tools
-Finally, update your local clone of kteam-tools to the latest commit on the main branch:
+Update your local clone of `kteam-tools` to the latest commit on the `master` branch:
 For the scope of this tutorial, we will use a particular version of cranky. Run the following commands to get it:
 
-:::{WARNING}
+<!-- FEEDBACK: I think maybe stick to the `master` branch. I read through the discussion on Rake and i guess it makes sense for the `master` version to always work so it can be referenced. If it breaks then it's good for the tutorial to catch it also. -->
+
+```{warning}
 If your kteam-tools tree isn't clean, be sure to save your work before running the commands. 
 They will modify the repository!
 Git should warn you if any destructive actions might occur.
-:::
+```
 
 ```bash
 cd ~/canonical/kteam-tools/
@@ -60,15 +82,21 @@ Note: switching to 'cranky-tutorial'.
 HEAD is now at de4674e4 mainline-build/cod-update-virgin: Split script and update freedesktop repos
 :::
 
-## 2. Download Current Version of the Kernel
-Next, clone the chosen kernel in its current state.
+## Download current version of kernel
+
+You're now ready to clone the `linux-gke` kernel in its current state.
 
 <!-- TODO is the cd required? Or does cranky checkout default to this dir? -->
 <!-- TODO this probably needs SRU cycles specified so it's more reproducible. -->
+
+
+<!-- FEEDBACK: I think this is missing a step as the directory shows up out of nowhere. a mkdir is needed i think for ~/canonical/kernel/ubuntu/ -->
 ```bash
 cd ~/canonical/kernel/ubuntu/
 cranky checkout noble:linux-gke
 ```
+
+<!-- FEEDBACK: Could you restructure the sentences here similar to the previous paragraph? Which have command + expected output + expected completion time -->
 
 Once this command is finished (It took ~20 minutes to complete), you should see the following directories inside the newly-created `./noble/linux-gke/` directory:
 - `linux-main/`: The actual Linux kernel source
