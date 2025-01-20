@@ -47,7 +47,7 @@ linux-meta
   When a new kernel version is released and marked stable, the linux-meta
   package is updated to reference the new version, allowing automatic upgrades.  
 
-linux-signed 
+linux-signed
   Refers to kernel packages that are cryptographically signed to ensure their
   integrity and authenticity.
   These signatures are crucial for secure boot environments, as they enable the  
