@@ -1,7 +1,7 @@
 # Tutorials
 
-The following tutorials will present you with different tutorials that address
-key concepts, tools, processes and operations.
+The following section will present you with different tutorials that address
+key concepts, tools, processes, and operations relevant to the kernel team.
 
 
 ```{toctree}

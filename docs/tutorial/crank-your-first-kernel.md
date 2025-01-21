@@ -1,43 +1,50 @@
 # Tutorial: Crank your first kernel
 
-## Introduction
-
-Cranking an Ubuntu kernel is the process of applying updates to an existing Ubuntu kernel, packaging it, and preparing it for testing. [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) is a toolchain which assists in all of these steps.
+Cranking an Ubuntu kernel is the process of applying patches and updates to an existing Ubuntu kernel, packaging it, and preparing it for testing. All this done using the [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) toolchain.
 
 <!-- TODO specify the SRU cycle -->
 In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`). Keep these codenames in mind for future commands.
 
-## 1. Set Up/Update Environment
+## Set up and update build environment
 
-First, follow the [Cranky Environment Setup] tutorial.
+<!-- TODO add cranky setup how-to -->
+You will need to complete the setup according to the {doc}`cranky environment setup </how-to/cranking/set-up-cranky-environment>` guide before continuing.
 
-### 1.1. Update chroot environment
-We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when kernel cranking. cranky helps us set up and manage these chroot jails.
+### Update chroot environment
 
-If it's our first time creating a chroot for this release (Noble Numbat), we must first create the chroot base:
+We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when doing kernel cranking. `cranky` helps us set up and manage these chroot jails.
+
+<!-- FEEDBACK: it isn't obvious which part is specific to the "first time setup". Meaning if this is NOT the first time you're working on it, does it mean you skip this particular create-base step or skip the whole section? Maybe add "if not, skip create-base step", along those lines. -->
+If this is your first time creating a chroot for the Noble Numbat release, you must first create the chroot base:
+
+<!-- FEEDBACK: It seems like you MUST run this command from the ~ directory? If yes i guess it should be mentioned somewhere -->
 ```bash
 cranky chroot create-base noble:linux-gke
 ```
-This will output a lot of text as it installs various packages needed for the chroot to work properly. (It took ~20 minutes to complete.)
+
+This can take up to 20 minutes to complete.
+If successful, you should observe the various packages being installed and set up in the terminal output.
 
 Next, create the chroot session:
+
 ```bash
 cranky chroot create-session noble:linux-gke
 ```
 
-This will also output a lot of text as it uses apt to install various packages needed for the crank. (It took ~2 minutes to complete.)
+This step uses APT to install various packages needed for the crank and takes about two minutes to complete.
 
-<!-- TODO can we be more specific about what each command does? Why are they separate if the descriptions are basically identical? -->
+### Update kteam-tools repository
 
-### 1.2. Update kteam-tools
-Finally, update your local clone of kteam-tools to the latest commit on the main branch:
+Update your local clone of `kteam-tools` to the latest commit on the `master` branch:
 For the scope of this tutorial, we will use a particular version of cranky. Run the following commands to get it:
 
-:::{WARNING}
+<!-- FEEDBACK: I think maybe stick to the `master` branch. I read through the discussion on Rake and i guess it makes sense for the `master` version to always work so it can be referenced. If it breaks then it's good for the tutorial to catch it also. -->
+
+```{warning}
 If your kteam-tools tree isn't clean, be sure to save your work before running the commands. 
 They will modify the repository!
 Git should warn you if any destructive actions might occur.
-:::
+```
 
 ```bash
 cd ~/canonical/kteam-tools/
@@ -60,46 +67,60 @@ Note: switching to 'cranky-tutorial'.
 HEAD is now at de4674e4 mainline-build/cod-update-virgin: Split script and update freedesktop repos
 :::
 
-## 2. Download Current Version of the Kernel
-Next, clone the chosen kernel in its current state.
+## Download current version of kernel
+
+You're now ready to clone the `linux-gke` kernel in its current state.
 
 <!-- TODO is the cd required? Or does cranky checkout default to this dir? -->
 <!-- TODO this probably needs SRU cycles specified so it's more reproducible. -->
+
+
+<!-- FEEDBACK: I think this is missing a step as the directory shows up out of nowhere. a mkdir is needed i think for ~/canonical/kernel/ubuntu/ -->
 ```bash
 cd ~/canonical/kernel/ubuntu/
 cranky checkout noble:linux-gke
 ```
 
+<!-- FEEDBACK: Could you restructure the sentences here similar to the previous paragraph? Which have command + expected output + expected completion time -->
+
 Once this command is finished (It took ~20 minutes to complete), you should see the following directories inside the newly-created `./noble/linux-gke/` directory:
-- `linux-main/`: The actual Linux kernel source
-- `linux-meta/` <!-- TODO describe --> 
-- `linux-signed/`: Canonical's kernel signing stuff <!-- TODO describe better --> 
+- `linux-main`: The actual Linux kernel source.
+- `linux-meta`: Stores a set of meta-packages for the kernel. See {term}`linux-meta` for more information.
+- `linux-signed`: Kernel packages that are cryptographically signed to ensure their integrity and authenticity. See {term}`linux-signed` for more information.
 
+<!-- FEEDBACK: This is why we have glossary terms! We can link to it. -->
 
-## 3. Apply Updates from the Upstream Kernel 
-The upstream kernel will have changes that should be propagated down to this kernel.
+## Apply updates from upstream kernel
 
-### 3.1. Fix helper scripts
+The upstream kernel will possibly have changes that should be propagated down to this kernel.
+
+### Fix helper scripts
+
 Update the local (in-tree) helper scripts cranky uses to the latest version:
+
 ```bash
 cd ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main/
 cranky fix
 ```
 You should see some output showing that cranky executed several scripts.
+You see observe cranky going through the updating process for various scripts in the output terminal.
 
+### Rebase on top of updated parent
 
-### 3.2. Rebase on top of updated parent
-Because this is a derivative kernel, we need to apply updates from its parent, the generic kernel:
+As `linux-gke` is a derivative kernel, we need to apply updates from its parent, the generic kernel:
 
 ```bash
 cranky rebase
 ```
 
-:::{tip}
-For non-derivative kernels (e.g., `noble:linux`), this step is not required, and doesn't do anything.
-:::
+<!-- FEEDBACK: is it likely for someone going through this step to encounter rebase failures? -->
 
-### 3.3. Fix helper scripts (again)
+```{tip}
+For non-derivative kernels (e.g., `noble:linux`), this step is not required.
+```
+
+### Fix helper scripts (again)
+
 Sometimes after a `cranky rebase`, the helper scripts get updated. It's good practice to always re-run:
 
 ```bash
@@ -107,32 +128,90 @@ cranky fix
 ```
 
 <!-- TODO what should this section be called? -->
-## 4. TODO new section
-### 4.1. Starting commit
+## Commit and review updates
+
+Now that we've pulled in all the upstream changes, we are ready to review and apply the commits to the `linux-gke` kernel.
+
+### Add starting commit
 
 <!-- TODO this section doesn't really explain why we are doing these things. Learn what's going on and then document better. -->
+<!-- FEEDBACK: we need minimal explanation for a tutorial. But if anything more is needed it can be added into a 'reference' for cranky which would be more detailed. And would the --help output from cranky be useful to help document this step? -->
 
-Run the following command:
+Create a commit that signifies the start of a new release. This new commit will contain {term}`ABI` changes and any customization required by backport kernels.
 
 ```bash
 cranky open
 ```
 
-This command creates a commit which signifies the start of a new release. It updates `debian.gke/changelog` to reflect this.
-Optionally, it may also update ABI versioning info. <!--TODO remove if extraneous-->
+You should observe something similar in the output terminal:
 
-<!-- TODO what are ABI files? Link to more info somewhere appropriate. -->
+```{terminal}
+:input: cranky chroot create-base noble:linux-gke
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+[...]
+/home/kernel-engineer/canonical/kteam-tools/cranky/cranky startnewrelease --commit
+Creating new changelog set for 6.8.0-1018.22...
+[cranky/master-next 7c8a6e1e1f8b] UBUNTU: Start new release
+ 1 file changed, 8 insertions(+)
 
 
-Run `git show` and see that this new commit starts with "UBUNTU: Start new release" and shows an update to `./debian.gke/changelog`.
+***** Now please inspect the commit before pushing *****
+```
 
+Run `git show` to verify that this new commit starts with "UBUNTU: Start new release" and shows an update to {file}`./debian.gke/changelog`.
 
-### 4.2. Review 
-Sometimes the rebase doesn't get all the changes. Run this command to manually review any outstanding changes:
+```{terminal}
+:input: git show
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+Author: kernel-engineer <kernel.engineer@canonical.com>
+Date:   Mon Jan 20 16:55:52 2025 +0800
+
+    UBUNTU: Start new release
+    
+    Ignore: yes
+    Signed-off-by: annecyh <anne.chew@canonical.com>
+
+diff --git a/debian.gke/changelog b/debian.gke/changelog
+[...]
+```
+
+### Review rebased changes
+
+Sometimes the rebase doesn't get all the changes. So we need to run this command to manually review any outstanding changes:
+
 ```bash
 cranky review-master-changes
 ```
 This command will output any outstanding changes in a list with their commit hashes and descriptions. Use `git show <commit-hash>` to view the changes.
+
+```{terminal}
+:input: cranky review-master-changes
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+Listing changes in "debian.master/" since 9f8080a647a9e2c8c9a52b3e471b3f22d4dc0c67...
+
+851f47333771 UBUNTU: [Packaging] debian.master/dkms-versions -- update from kernel-versions (main/2025.01.13)
+41b4e628ce36 UBUNTU: Upstream stable to v6.6.55, v6.10.14
+1de0f53d2545 UBUNTU: [Config] updateconfigs for MICROSOFT_MANA
+547230d18843 UBUNTU: [Config] updateconfigs for deprecated CONFIG_Z3FOLD
+1b64b00b69b7 UBUNTU: [Config] updateconfigs to set ILLEGAL_POINTER_VALUE for riscv64
+14549d19d4b5 UBUNTU: [Config] updateconfigs to select PROC_MEM_ALWAYS_FORCE
+3eb67a5e5da8 UBUNTU: [Packaging] Add list of used source files to buildinfo package
+3b9e978a6cb4 UBUNTU: [Packaging] Sort build dependencies alphabetically
+18d768dbc001 UBUNTU: Upstream stable to v6.6.54, v6.10.13
+0861dae772cb UBUNTU: [Config] update configs for CONFIG_CRYPTO_AES_GCM_P10
+82fbe5ae5484 UBUNTU: Upstream stable to v6.6.53, v6.10.12
+```
+
+<!-- FEEDBACK: In a tutorial these shouldn't be necessary. A more generic how-to should contain all these instead. For the tutorial, the author should be aware of what changes are outstanding and expected in this list. -->
 
 Usually these can be ignored, but there are a few instances where further investigation is necessary:
 
@@ -142,86 +221,88 @@ Usually these can be ignored, but there are a few instances where further invest
     - These indicate a change in the parent kernel's configuration.
     - You'll need to compare this change with what appears in the derivative config (`debian.gke/`) to decide if it should be applied to this crank.
 
-### 4.3. Link to the Launchpad Bug Tracker
+### Link to Launchpad bug tracker
 
 Run the following command to link this kernel to its corresponding Launchpad bug tracker:
 <!-- TODO "what" are we linking? This kernel? This crank? This repo? What's the proper word to use? -->
+<!-- FEEDBACK: good point. some brief context would be helpful here. -->
 
-:::{caution}
+```{warning}
 Use `--dry-run` unless you are actually cranking a kernel. Otherwise, this will overwrite Launchpad and might make destructive changes!
-:::
+```
 
 ```bash
 cranky link-tb --dry-run
 ```
 
-This updates the Launchpad tracking bug, which, among other things, will be used as an input for subsequent steps.
+```{tip}
+If you are running `cranky link-tb` for the first time, you will be directed to the "Authorize application to access Launchpad on your behalf" page. Choose your preferred option before continuing.
+```
+
+This step should update the Launchpad tracking bug -- which, among other things, will be used as an input for subsequent steps -- and create a git commit.
+
+But since we used the `--dry-run` option for this tutorial, no changes are made to the local tree and no commit is created.
+
+```{terminal}
+:input: cranky link-tb --dry-run
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+(This is a dry-run)
+LP: #2093652 (noble/linux-gke: <version to be filled> -proposed tracker) 2025.01.13-1
+Dry Run -- no changes made
+```
 
 <!-- TODO when is the earliest/latest this step can be done? Is this ordering the most sensible? -->
+<!-- FEEDBACK: I believe we should be skipping this step to run `git show` since no commit happens for a dry run. This can be kept in a how-to -->
 
-This will create a git commit. Run `git show` to see it. It should look something like this:
+### Update DKMS packages
 
-```diff
-commit 4345a7fc255b03ff9072cdcec1779a9b39d7519b (HEAD -> cranky/master-next)
-Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
-Date:   Wed Jan 15 12:14:59 2025 -0500
-
-    UBUNTU: link-to-tracker: update tracking bug
-    
-    BugLink: https://bugs.launchpad.net/bugs/2093494
-    Properties: no-test-build
-    Signed-off-by: Benjamin Wheeler <benjamin.wheeler@canonical.com>
-
-diff --git a/debian.gke/tracking-bug b/debian.gke/tracking-bug
-index 6f5c6b4a700c..b3436ee66bdd 100644
---- a/debian.gke/tracking-bug
-+++ b/debian.gke/tracking-bug
-@@ -1 +1 @@
--2090338 s2024.10.28-1
-+2093494 s2024.12.02-1
-```
-
-Then, click the `BugLink` URL to see the relevant Launchpad tracking bug. 
-A comment should appear on there that says something like:
-```
- summary: 	- noble/linux-gke: <version to be filled> -proposed tracker
-    + noble/linux-gke: 6.8.0-1017.21 -proposed tracker 
-```
-
-If you see similar results, you've successfully linked to the tracking bug.
-
-### 4.4. Update DKMS Packages
-
-`debian.master/dkms-versions` specifies dkms modules to be packaged with its kernel. <!-- TODO does this sentence make sense in the context of the next sentence? -->
-
-This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the SRU cycle
+The `debian.master/dkms-versions` file specifies dkms modules to be packaged with its kernel. This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the <which> SRU cycle.
+<!-- FEEDBACK: which SRU cycle are we referring to here? -->
 
 ```bash
 cranky update-dkms-versions
 ```
 
-No changes are needed this time, so you'll see this output:
-```
+Since no changes are needed at this time, you should observe the following output:
+
+```{terminal}
+:input: cranky update-dkms-versions
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+[...]
+
 debian.gke/dkms-versions: No changes from kernel-versions
 ```
 
-In most cases there would be no change committed as the up-to-date versions should have been committed on the master kernel and picked-up by the derivative or backport on rebase. However, if there is any change, check that the version numbers only become higher and nothing gets dropped completely. In case anything looks suspicious, don’t hesitate to ask the team if the changes are expected.
+<!-- FEEDBACK: The explanation can be simplified for the tutorial but I agree it would be helpful for those cranking regularly in case something pops up unexpectedly -->
+```{tip}
+In most cases, no changes are expected as the up-to-date DKMS versions should have been committed on the generic kernel and picked up by the derivative or backport on rebase. 
+```
 
+### Add closing commit
 
-### 4.5. Closing commit
-This step creates one final commit before a release is prepared. Run:
+We will now create one final commit before preparing a release by running:
+
 ```bash
 cranky close
 ```
-This command is a shortcut for several steps:
 
+This command is a shortcut that does the following:
+
+<!-- FEEDBACK: maybe indicate what you mean by parent kernel? e.g. specify the kernel in this case -->
+<!-- FEEDBACK: changelog? specifying the file path would help -->
 1. Verifies there are no changes left. <!-- TODO elaborate? -->
 2. Inserts changes from the parent kernel into the changelog.
 3. Inserts git changes into the changelog.
 4. Updates the release series, author and date on the changelog, thus closing the changelog.
 5. Creates a commit signifying the finished crank.
 
-If the output went well, you should see a new commit when you run `git show`:
+If successful, you should see a new commit when you run `git show`:
 ```diff
 commit 6c9a5055b22f4c30aa3ba0c9df306762edb29197 (HEAD -> cranky/master-next)
 Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
