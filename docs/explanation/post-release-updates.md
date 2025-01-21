@@ -82,7 +82,7 @@ into any of the following categories:
 
 % LINKS
 
-[StableReleaseUpdates]: https://wiki.ubuntu.com/StableReleaseUpdates
-[StablePatchFormat]: https://wiki.ubuntu.com/Kernel/Dev/StablePatchFormat
+[StableReleaseUpdates]: /explanation/stable-release-updates
+[StablePatchFormat]: /reference/stable-patch-format
 [kernel-team mailing list]: mailto:kernel-team@lists.ubuntu.com
 [stable@kernel.org]: mailto:stable@kernel.org
