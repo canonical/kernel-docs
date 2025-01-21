@@ -73,12 +73,13 @@ into any of the following categories:
 ## How will updates be provided in the archive?
 
 - Security updates will be uploaded directly into -security without other
-  changes. This just requires a temporary GIT fork which will be immediately
-  merged back into the main branch for that stable release.
-- Normal updates will be provided as pre-releases through the kernel-ppa users
-  PPA. At certain points those get made into proposed releases which are
-  uploaded to the proposed pocket. Then again they have to get verified to fix
-  the problems and not to cause regressions.
+  changes. The next full release will include these security changes in addition
+  to the normal changes.
+- Normal updates will be provided as pre-releases through the corresponding kernel
+  build PPA. At certain points those get made into proposed releases which are
+  uploaded to the proposed pocket. Before proposed releases can migrate to other
+  pockets, it must be verified that the changes fix the targeted issues without
+  causing regressions.
 
 % LINKS
 
