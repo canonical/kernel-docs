@@ -1,10 +1,9 @@
 OEM kernels
 ===========
 
-```{include} /reuse/oem-kernels.txt
-:start-after: overview-oem-kernel-start
-:end-before: overview-oem-kernel-end
-```
+.. include:: /reuse/oem-kernels.txt
+   :start-after: overview-oem-kernel-start
+   :end-before: overview-oem-kernel-end
 
 This document provides some reference information about OEM kernels: the support
 life cycle for rolling releases, current kernel in development, the next planned
