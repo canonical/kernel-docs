@@ -243,6 +243,17 @@ This step should update the Launchpad tracking bug -- which, among other things,
 
 But since we used the `--dry-run` option for this tutorial, no changes are made to the local tree and no commit is created.
 
+```{terminal}
+:input: cranky link-tb --dry-run
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+(This is a dry-run)
+LP: #2093652 (noble/linux-gke: <version to be filled> -proposed tracker) 2025.01.13-1
+Dry Run -- no changes made
+```
+
 <!-- TODO when is the earliest/latest this step can be done? Is this ordering the most sensible? -->
 <!-- FEEDBACK: I believe we should be skipping this step to run `git show` since no commit happens for a dry run. This can be kept in a how-to -->
 
@@ -255,29 +266,43 @@ The `debian.master/dkms-versions` file specifies dkms modules to be packaged wit
 cranky update-dkms-versions
 ```
 
-Since changes are needed at this time, you should observe the following output:
+Since no changes are needed at this time, you should observe the following output:
 
-```
+```{terminal}
+:input: cranky update-dkms-versions
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+[...]
+
 debian.gke/dkms-versions: No changes from kernel-versions
 ```
 
-In most cases there would be no change committed as the up-to-date versions should have been committed on the master kernel and picked-up by the derivative or backport on rebase. However, if there is any change, check that the version numbers only become higher and nothing gets dropped completely. In case anything looks suspicious, don’t hesitate to ask the team if the changes are expected.
+<!-- FEEDBACK: The explanation can be simplified for the tutorial but I agree it would be helpful for those cranking regularly in case something pops up unexpectedly -->
+```{tip}
+In most cases, no changes are expected as the up-to-date DKMS versions should have been committed on the generic kernel and picked up by the derivative or backport on rebase. 
+```
 
+### Add closing commit
 
-### 4.5. Closing commit
-This step creates one final commit before a release is prepared. Run:
+We will now create one final commit before preparing a release by running:
+
 ```bash
 cranky close
 ```
-This command is a shortcut for several steps:
 
+This command is a shortcut that does the following:
+
+<!-- FEEDBACK: maybe indicate what you mean by parent kernel? e.g. specify the kernel in this case -->
+<!-- FEEDBACK: changelog? specifying the file path would help -->
 1. Verifies there are no changes left. <!-- TODO elaborate? -->
 2. Inserts changes from the parent kernel into the changelog.
 3. Inserts git changes into the changelog.
 4. Updates the release series, author and date on the changelog, thus closing the changelog.
 5. Creates a commit signifying the finished crank.
 
-If the output went well, you should see a new commit when you run `git show`:
+If successful, you should see a new commit when you run `git show`:
 ```diff
 commit 6c9a5055b22f4c30aa3ba0c9df306762edb29197 (HEAD -> cranky/master-next)
 Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
