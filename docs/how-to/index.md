@@ -10,6 +10,7 @@ kernel packages and components.
 
 Source code access and management </how-to/source-code/index>
 Development and customization </how-to/develop-customize/index>
+Set up cranky environment </how-to/cranking/set-up-cranky-environment>
 Test kernels in -proposed </how-to/testing-verification/test-kernel-in-proposed>
 Contribute to kernel docs </how-to/contribute>
 ```
@@ -21,6 +22,14 @@ requirements, optimize the performance for selected hardware, inspect the source
 tree to build custom kernel modules, and more.
 
 - [Obtain kernel source for an Ubuntu release using Git](/how-to/source-code/obtain-kernel-source-git)
+
+## Cranking kernels
+
+In Canonical, "kernel cranking" refers to the process of applying patches and
+updates to an Ubuntu kernel, packaging it, and getting it ready for testing --
+all done using the `cranky` toolchain.
+
+- [Set up cranky environment](/how-to/cranking/set-up-cranky-environment)
 
 ## Development and customization
 

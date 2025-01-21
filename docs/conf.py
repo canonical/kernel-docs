@@ -216,6 +216,7 @@ linkcheck_anchors_ignore_for_url = [
 
 myst_enable_extensions = {
     "colon_fence",
+    "substitution",
 }
 
 # Custom Sphinx extensions; see
