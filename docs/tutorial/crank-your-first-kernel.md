@@ -236,56 +236,27 @@ cranky link-tb --dry-run
 ```
 
 ```{tip}
-If you are running this for the first time, you will be directed to the "Authorize application to access Launchpad on your behalf" page. Choose your preferred option before continuing.
-
+If you are running `cranky link-tb` for the first time, you will be directed to the "Authorize application to access Launchpad on your behalf" page. Choose your preferred option before continuing.
 ```
 
-This updates the Launchpad tracking bug -- which, among other things, will be used as an input for subsequent steps-- and creates a git commit.
+This step should update the Launchpad tracking bug -- which, among other things, will be used as an input for subsequent steps -- and create a git commit.
+
+But since we used the `--dry-run` option for this tutorial, no changes are made to the local tree and no commit is created.
 
 <!-- TODO when is the earliest/latest this step can be done? Is this ordering the most sensible? -->
+<!-- FEEDBACK: I believe we should be skipping this step to run `git show` since no commit happens for a dry run. This can be kept in a how-to -->
 
-Run `git show` to see the commit, which should output something similar as below:
+### Update DKMS packages
 
-```diff
-commit 4345a7fc255b03ff9072cdcec1779a9b39d7519b (HEAD -> cranky/master-next)
-Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
-Date:   Wed Jan 15 12:14:59 2025 -0500
-
-    UBUNTU: link-to-tracker: update tracking bug
-    
-    BugLink: https://bugs.launchpad.net/bugs/2093494
-    Properties: no-test-build
-    Signed-off-by: Benjamin Wheeler <benjamin.wheeler@canonical.com>
-
-diff --git a/debian.gke/tracking-bug b/debian.gke/tracking-bug
-index 6f5c6b4a700c..b3436ee66bdd 100644
---- a/debian.gke/tracking-bug
-+++ b/debian.gke/tracking-bug
-@@ -1 +1 @@
--2090338 s2024.10.28-1
-+2093494 s2024.12.02-1
-```
-
-Then, click the `BugLink` URL to see the relevant Launchpad tracking bug. 
-A comment should appear on there that says something like:
-```
- summary: 	- noble/linux-gke: <version to be filled> -proposed tracker
-    + noble/linux-gke: 6.8.0-1017.21 -proposed tracker 
-```
-
-If you see similar results, you've successfully linked to the tracking bug.
-
-### 4.4. Update DKMS Packages
-
-`debian.master/dkms-versions` specifies dkms modules to be packaged with its kernel. <!-- TODO does this sentence make sense in the context of the next sentence? -->
-
-This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the SRU cycle
+The `debian.master/dkms-versions` file specifies dkms modules to be packaged with its kernel. This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the <which> SRU cycle.
+<!-- FEEDBACK: which SRU cycle are we referring to here? -->
 
 ```bash
 cranky update-dkms-versions
 ```
 
-No changes are needed this time, so you'll see this output:
+Since changes are needed at this time, you should observe the following output:
+
 ```
 debian.gke/dkms-versions: No changes from kernel-versions
 ```
