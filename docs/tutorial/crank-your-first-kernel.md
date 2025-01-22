@@ -15,14 +15,14 @@ You will need to complete the setup according to the {doc}`cranky environment se
 We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when doing kernel cranking. `cranky` helps us set up and manage these chroot jails.
 
 <!-- FEEDBACK: it isn't obvious which part is specific to the "first time setup". Meaning if this is NOT the first time you're working on it, does it mean you skip this particular create-base step or skip the whole section? Maybe add "if not, skip create-base step", along those lines. -->
-If this is your first time creating a chroot for the Noble Numbat release, you must first create the chroot base:
+Creating the chroot jail is done in two steps. First, create the chroot base:
 
 <!-- FEEDBACK: It seems like you MUST run this command from the ~ directory? If yes i guess it should be mentioned somewhere -->
 ```bash
 cranky chroot create-base noble:linux-gke
 ```
 
-This can take up to 20 minutes to complete.
+This can take several minutes to complete.
 If successful, you should observe the various packages being installed and set up in the terminal output.
 
 Next, create the chroot session:
@@ -31,14 +31,11 @@ Next, create the chroot session:
 cranky chroot create-session noble:linux-gke
 ```
 
-This step uses APT to install various packages needed for the crank and takes about two minutes to complete.
+This step uses APT to install various packages needed for the crank and may take several minutes to complete.
 
 ### Update kteam-tools repository
 
 Update your local clone of `kteam-tools` to the latest commit on the `master` branch:
-For the scope of this tutorial, we will use a particular version of cranky. Run the following commands to get it:
-
-<!-- FEEDBACK: I think maybe stick to the `master` branch. I read through the discussion on Rake and i guess it makes sense for the `master` version to always work so it can be referenced. If it breaks then it's good for the tutorial to catch it also. -->
 
 ```{warning}
 If your kteam-tools tree isn't clean, be sure to save your work before running the commands. 
@@ -48,24 +45,11 @@ Git should warn you if any destructive actions might occur.
 
 ```bash
 cd ~/canonical/kteam-tools/
+git switch master
 git pull
-git checkout cranky-tutorial
 ```
-<!--TODO checkout a `cranky-tutorial` git tag instead to ensure it's the same-->
 
-After `checkout`, you should see output similar similar to this:
-
-:::{terminal}
-    :input: git checkout cranky-tutorial
-    :dir: ~/canonical/kteam-tools/
-    :user: user
-    :host: host
-Note: switching to 'cranky-tutorial'.
-
-...
-
-HEAD is now at de4674e4 mainline-build/cod-update-virgin: Split script and update freedesktop repos
-:::
+If the command completes successfully, you've got the latest version of cranky.
 
 ## Download current version of kernel
 
