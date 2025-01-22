@@ -17,7 +17,6 @@ We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate di
 <!-- FEEDBACK: it isn't obvious which part is specific to the "first time setup". Meaning if this is NOT the first time you're working on it, does it mean you skip this particular create-base step or skip the whole section? Maybe add "if not, skip create-base step", along those lines. -->
 Creating the chroot jail is done in two steps. First, create the chroot base:
 
-<!-- FEEDBACK: It seems like you MUST run this command from the ~ directory? If yes i guess it should be mentioned somewhere -->
 ```bash
 cranky chroot create-base noble:linux-gke
 ```
@@ -55,24 +54,16 @@ If the command completes successfully, you've got the latest version of cranky.
 
 You're now ready to clone the `linux-gke` kernel in its current state.
 
-<!-- TODO is the cd required? Or does cranky checkout default to this dir? -->
 <!-- TODO this probably needs SRU cycles specified so it's more reproducible. -->
 
 
-<!-- FEEDBACK: I think this is missing a step as the directory shows up out of nowhere. a mkdir is needed i think for ~/canonical/kernel/ubuntu/ -->
 ```bash
-cd ~/canonical/kernel/ubuntu/
 cranky checkout noble:linux-gke
 ```
 
-<!-- FEEDBACK: Could you restructure the sentences here similar to the previous paragraph? Which have command + expected output + expected completion time -->
+If the command completes successfully, you should see the following new directory: `~/canonical/kernel/ubuntu/noble/linux-gke/`. Inside, there should be git repositories cloned: `linux-main/`,  `linux-meta`, and `linux-signed`. This command can take several minutes to complete.
 
-Once this command is finished (It took ~20 minutes to complete), you should see the following directories inside the newly-created `./noble/linux-gke/` directory:
-- `linux-main`: The actual Linux kernel source.
-- `linux-meta`: Stores a set of meta-packages for the kernel. See {term}`linux-meta` for more information.
-- `linux-signed`: Kernel packages that are cryptographically signed to ensure their integrity and authenticity. See {term}`linux-signed` for more information.
-
-<!-- FEEDBACK: This is why we have glossary terms! We can link to it. -->
+For more information about these, see {term}`linux-meta`, {term}`linux-signed` in the glossary.
 
 ## Apply updates from upstream kernel
 
@@ -97,8 +88,6 @@ As `linux-gke` is a derivative kernel, we need to apply updates from its parent,
 cranky rebase
 ```
 
-<!-- FEEDBACK: is it likely for someone going through this step to encounter rebase failures? -->
-
 ```{tip}
 For non-derivative kernels (e.g., `noble:linux`), this step is not required.
 ```
@@ -117,9 +106,6 @@ cranky fix
 Now that we've pulled in all the upstream changes, we are ready to review and apply the commits to the `linux-gke` kernel.
 
 ### Add starting commit
-
-<!-- TODO this section doesn't really explain why we are doing these things. Learn what's going on and then document better. -->
-<!-- FEEDBACK: we need minimal explanation for a tutorial. But if anything more is needed it can be added into a 'reference' for cranky which would be more detailed. And would the --help output from cranky be useful to help document this step? -->
 
 Create a commit that signifies the start of a new release. This new commit will contain {term}`ABI` changes and any customization required by backport kernels.
 
@@ -194,22 +180,14 @@ Listing changes in "debian.master/" since 9f8080a647a9e2c8c9a52b3e471b3f22d4dc0c
 0861dae772cb UBUNTU: [Config] update configs for CONFIG_CRYPTO_AES_GCM_P10
 82fbe5ae5484 UBUNTU: Upstream stable to v6.6.53, v6.10.12
 ```
+<!-- TODO add a link to a reference on more info about when commits should be added -->
 
-<!-- FEEDBACK: In a tutorial these shouldn't be necessary. A more generic how-to should contain all these instead. For the tutorial, the author should be aware of what changes are outstanding and expected in this list. -->
-
-Usually these can be ignored, but there are a few instances where further investigation is necessary:
-
-- Commits with changes to `debian.master/rules.d/`
-    - Choose if these changes should be reflected in `debian.gke/rules.d/`
-- Commits with descriptions starting with "UBUNTU: \[Config\]: ..."
-    - These indicate a change in the parent kernel's configuration.
-    - You'll need to compare this change with what appears in the derivative config (`debian.gke/`) to decide if it should be applied to this crank.
+For the purposes of this tutorial, no additional commits need to be added.
 
 ### Link to Launchpad bug tracker
 
-Run the following command to link this kernel to its corresponding Launchpad bug tracker:
-<!-- TODO "what" are we linking? This kernel? This crank? This repo? What's the proper word to use? -->
-<!-- FEEDBACK: good point. some brief context would be helpful here. -->
+Run the following command to update the corresponding Launchpad tracking bug to this new kernel
+version being created.
 
 ```{warning}
 Use `--dry-run` unless you are actually cranking a kernel. Otherwise, this will overwrite Launchpad and might make destructive changes!
@@ -238,13 +216,9 @@ LP: #2093652 (noble/linux-gke: <version to be filled> -proposed tracker) 2025.01
 Dry Run -- no changes made
 ```
 
-<!-- TODO when is the earliest/latest this step can be done? Is this ordering the most sensible? -->
-<!-- FEEDBACK: I believe we should be skipping this step to run `git show` since no commit happens for a dry run. This can be kept in a how-to -->
-
 ### Update DKMS packages
 
-The `debian.master/dkms-versions` file specifies dkms modules to be packaged with its kernel. This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the <which> SRU cycle.
-<!-- FEEDBACK: which SRU cycle are we referring to here? -->
+The `debian.master/dkms-versions` file specifies dkms modules to be packaged with its kernel. This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the SRU cycle.
 
 ```bash
 cranky update-dkms-versions
@@ -278,10 +252,9 @@ cranky close
 
 This command is a shortcut that does the following:
 
-<!-- FEEDBACK: maybe indicate what you mean by parent kernel? e.g. specify the kernel in this case -->
 <!-- FEEDBACK: changelog? specifying the file path would help -->
 1. Verifies there are no changes left. <!-- TODO elaborate? -->
-2. Inserts changes from the parent kernel into the changelog.
+2. Inserts changes from the parent kernel (`noble:linux`) into the debian changelog.
 3. Inserts git changes into the changelog.
 4. Updates the release series, author and date on the changelog, thus closing the changelog.
 5. Creates a commit signifying the finished crank.
@@ -328,7 +301,7 @@ index ba1191ce3bc2..a9ccd0b375a6 100644
  linux-gke (6.8.0-1016.20) noble; urgency=medium
 ```
 
-## Verify the Kernel Builds Successfully
+## Verify the kernel builds successfully
 At this point, the kernel is built and packaged. We should test that it builds successfully.
 <!-- TODO verify above statement! -->
 ### Cloud Builder 
@@ -364,7 +337,7 @@ Once all the arches have `BUILD-OK`, we know the kernel built successfully.
 
 <!-- TODO ask others about alternatives to CBD/kathleen. Those are for canonicalers only. Is it possible/easy to test in a way that anyone can do? -->
 
-## Package the kernel for Release
+## Package the kernel for release
 Run the following command:
 <!--TODO add note that it's "dependents", not "dependent". -->
 ```bash
@@ -377,7 +350,7 @@ cranky tags
 ```
 <!-- TODO describe output -->
 
-### Verify Preparation
+### Verify preparation
 ```bash
 cranky verify-release-ready
 ```
@@ -393,7 +366,7 @@ cd ..
 cranky pull-sources noble:linux-gke --latest
 ```
 
-### Build Sources
+### Build sources
 ```bash
 cd linux-main/
 cranky build-sources
