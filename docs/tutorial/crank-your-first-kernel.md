@@ -344,7 +344,7 @@ index ba1191ce3bc2..a9ccd0b375a6 100644
  linux-gke (6.8.0-1016.20) noble; urgency=medium
 ```
 
-## 5. Verify the Kernel Builds Successfully
+## Verify the Kernel Builds Successfully
 At this point, the kernel is built and packaged. We should test that it builds successfully.
 <!-- TODO verify above statement! -->
 ### Cloud Builder 
@@ -380,27 +380,27 @@ Once all the arches have `BUILD-OK`, we know the kernel built successfully.
 
 <!-- TODO ask others about alternatives to CBD/kathleen. Those are for canonicalers only. Is it possible/easy to test in a way that anyone can do? -->
 
-## 6. Package the kernel for Release
+## Package the kernel for Release
 Run the following command:
 <!--TODO add note that it's "dependents", not "dependent". -->
 ```bash
 cranky update-dependents
 ```
 
-### 6.1. Tag commit
+### Tag commit
 ```bash
 cranky tags
 ```
 <!-- TODO describe output -->
 
-### 6.2. Verify Preparation
+### Verify Preparation
 ```bash
 cranky verify-release-ready
 ```
 
 The `tag pushed: warning` is an expected warning if you do not have commit rights.
 
-### 6.3. Pull sources
+### Pull sources
 
 ```bash
 cd ..
@@ -409,20 +409,20 @@ cd ..
 cranky pull-sources noble:linux-gke --latest
 ```
 
-### 6.4. Build Sources
+### Build Sources
 ```bash
 cd linux-main/
 cranky build-sources
 ```
 
-## 7. Review
+## Review
 ```bash
 cd ..
 # CWD == ~/canonical/kernel/noble/linux-gke/
 cranky review *.changes
 ```
 
-## 8. Upload
+## Upload
 
 <!-- TODO take note of SRU cycle earlier in the process -->
 
