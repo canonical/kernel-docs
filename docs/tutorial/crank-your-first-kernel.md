@@ -175,7 +175,7 @@ Date:   Mon Jan 20 16:55:52 2025 +0800
     UBUNTU: Start new release
     
     Ignore: yes
-    Signed-off-by: annecyh <anne.chew@canonical.com>
+    Signed-off-by: kernel-engineer <kernel.engineer@canonical.com>
 
 diff --git a/debian.gke/changelog b/debian.gke/changelog
 [...]
@@ -301,6 +301,9 @@ This command is a shortcut that does the following:
 3. Inserts git changes into the changelog.
 4. Updates the release series, author and date on the changelog, thus closing the changelog.
 5. Creates a commit signifying the finished crank.
+
+<!-- FEEDBACK: I think we need to add a step that says it is expected to fail since cranky review-master-changes has a bunch of commits related to config changes. So this step will fail initially until you commit the file. -->
+<!-- FEEDBACK: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/tutorial/cranky_tutorial.html#close-the-changelog-cranky-close it's mentioned here but it isn't obvious -->
 
 If successful, you should see a new commit when you run `git show`:
 ```diff
