@@ -281,6 +281,15 @@ This command is a shortcut that does the following:
 <!-- FEEDBACK: I think we need to add a step that says it is expected to fail since cranky review-master-changes has a bunch of commits related to config changes. So this step will fail initially until you commit the file. -->
 <!-- FEEDBACK: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/tutorial/cranky_tutorial.html#close-the-changelog-cranky-close it's mentioned here but it isn't obvious -->
 
+`cranky close` should fail, stating that there were changes in `debian.gke/config/annotations`. (If it didn't, move on to the next step.)
+In this particular crank, we need to manually review and commit these changes:
+```
+git add debian.gke/config/annotations
+git commit -m "UBUNTU [Config] gke: Update CONFIG_NVME_KEYRING"
+```
+The commit message is a simple description of the updated config.
+
+Finally, re-run `cranky close`.
 If successful, you should see a new commit when you run `git show`:
 
 ```diff
