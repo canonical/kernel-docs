@@ -395,6 +395,10 @@ cd ..
 cranky review *.changes
 ```
 
+This will generate several `.debdiff` files, which show the difference between this deb package and the last one.
+You should review these files in a text editor (using a command like `vim *.debdiff`) to ensure there are no unexpected changes.
+However, for the sake of this tutorial, we can assume the diffs are all correct.
+
 ## Upload
 
 <!-- TODO take note of SRU cycle earlier in the process -->
