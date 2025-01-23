@@ -328,20 +328,13 @@ At this point, the kernel is built and packaged. We should test that it builds s
 <!-- TODO verify above statement! -->
 
 ### Cloud Builder 
-<!-- TODO WARNING: cbd is internal only (?) What should we put here instead? -->
 
 Connect to the canonical VPN. Then, run:
-<!-- Add to prerequisites: VPN set up! -->
-
-<!-- TODO add git remote add cbd -->
-
 
 ```bash
+git remote add cbd cbd.kernel:noble.git
 git push cbd
 ```
-
-<!-- TODO describe output -->
-<!-- TODO describe ssh -->
 
 The output will initially look like this:
 ```
