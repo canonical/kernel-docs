@@ -198,7 +198,6 @@ Listing changes in "debian.master/" since 9f8080a647a9e2c8c9a52b3e471b3f22d4dc0c
 0861dae772cb UBUNTU: [Config] update configs for CONFIG_CRYPTO_AES_GCM_P10
 82fbe5ae5484 UBUNTU: Upstream stable to v6.6.53, v6.10.12
 ```
-
 <!-- TODO add a link to a reference on more info about when commits should be added -->
 
 For the purposes of this tutorial, no additional commits need to be added.
