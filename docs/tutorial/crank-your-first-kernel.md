@@ -22,7 +22,7 @@ You will need to complete the prerequisite setup below before proceeding with th
 
 First, we will prepare our build environment and tooling needed for cranking a kernel.
 
-### Update chroot environment
+### Update chroot environment - `cranky chroot`
 
 We use [chroot](https://en.wikipedia.org/wiki/Chroot) environments to isolate different sets of tools when doing kernel cranking.
 `cranky` helps us set up and manage these chroot jails.
@@ -61,7 +61,7 @@ git pull
 
 Once the command completes successfully, you've got the latest version of cranky.
 
-## Download current version of kernel
+## Download current version of kernel - `cranky checkout`
 
 You're now ready to clone the `linux-gke` kernel in its current state.
 
@@ -83,7 +83,7 @@ For more information, see {term}`linux-meta` and {term}`linux-signed` in the glo
 
 The upstream kernel will possibly have changes that should be propagated down to this kernel.
 
-### Fix helper scripts
+### Fix helper scripts - `cranky fix`
 
 Update the local (in-tree) helper scripts cranky uses to the latest version:
 
@@ -94,7 +94,7 @@ cranky fix
 
 You should see that cranky executed several scripts and go through the updating process for various scripts in the output terminal.
 
-### Rebase on top of updated parent
+### Rebase on top of updated parent - `cranky rebase`
 
 As `linux-gke` is a derivative kernel, we need to apply updates from its parent, the generic kernel:
 
@@ -106,7 +106,7 @@ cranky rebase
 For non-derivative kernels (e.g., `noble:linux`), this step is not required.
 ```
 
-### Fix helper scripts (again)
+### Fix helper scripts (again) - `cranky fix`
 
 Sometimes after a `cranky rebase`, the helper scripts get updated.
 It's good practice to always re-run:
@@ -119,7 +119,7 @@ cranky fix
 
 Now that we've pulled in all the upstream changes, we are ready to review and apply the commits to the `linux-gke` kernel.
 
-### Add starting commit
+### Add starting commit - `cranky open`
 
 Create a commit that signifies the start of a new release.
 This new commit will contain {term}`ABI` changes and any customization required by backport kernels.
@@ -166,7 +166,7 @@ diff --git a/debian.gke/changelog b/debian.gke/changelog
 [...]
 ```
 
-### Review rebased changes
+### Review rebased changes - `cranky review-master-changes`
 
 Sometimes the rebase doesn't get all the changes.
 So we need to run this command to manually review any outstanding changes:
@@ -200,9 +200,10 @@ Listing changes in "debian.master/" since 9f8080a647a9e2c8c9a52b3e471b3f22d4dc0c
 ```
 <!-- TODO add a link to a reference on more info about when commits should be added -->
 
-For the purposes of this tutorial, no additional commits need to be added.
+Since there are commits that have kernel config changes (e.g. commits with the "UBUNTU: [Config]" prefix), this will require an additional commit from our side.
+We will address this in the `cranky close` step a little later.
 
-### Link to Launchpad bug tracker
+### Link to Launchpad bug tracker - `cranky link-tb`
 
 Run the following command to update the corresponding Launchpad tracking bug to this new kernel version being created.
 
@@ -235,7 +236,7 @@ LP: #2093652 (noble/linux-gke: <version to be filled> -proposed tracker) 2025.01
 Dry Run -- no changes made
 ```
 
-### Update DKMS packages
+### Update DKMS packages - `cranky update-dkms-versions`
 
 The `debian.master/dkms-versions` file specifies dkms modules to be packaged with its kernel.
 This command updates the package versions in `debian.gke/dkms-versions` to match the ones expected for the SRU cycle.
@@ -281,25 +282,61 @@ This command is a shortcut that does the following:
 <!-- FEEDBACK: I think we need to add a step that says it is expected to fail since cranky review-master-changes has a bunch of commits related to config changes. So this step will fail initially until you commit the file. -->
 <!-- FEEDBACK: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/tutorial/cranky_tutorial.html#close-the-changelog-cranky-close it's mentioned here but it isn't obvious -->
 
-`cranky close` should fail, stating that there were changes in `debian.gke/config/annotations`. (If it didn't, move on to the next step.)
-In this particular crank, we need to manually review and commit these changes:
+Since there are config-related changes, `cranky close` is expected fail at this point.
+You should observe a similar error in the terminal output stating that there were changes in `debian.gke/config/annotations`.
+
+```{terminal}
+:input: cranky close
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+[...]
+
+check-config: loading annotations from debian.gke/config/annotations
+check-config: CONFIG_NVME_KEYRING changed from m to y: policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm', 's390x': 'm'}>)
+check-config: 1 config options have been changed, review them with `git diff`
+ERROR: 2 config-check failures detected
+
+Importing all configurations ...
+
+* Import configs for amd64-gke ...
+* Import configs for arm64-gke ...
+make: *** [debian/rules.d/1-maintainer.mk:31: updateconfigs] Error 1
+Script failed
+ERROR: Command failed: chroot (args=['run', '--', 'fakeroot', 'debian/rules', 'clean', 'updateconfigs'])
+ERROR: Command failed: fdr (args=['clean', 'updateconfigs'])
+ERROR: Command failed: close (args=[])
 ```
+
+```{note}
+If there were no unreviewed changes, skip ahead to the next section.
+```
+
+We will need to manually review and commit these changes with a descriptive
+message of the updated config:
+
+```bash
 git add debian.gke/config/annotations
-git commit -m "UBUNTU [Config] gke: Update CONFIG_NVME_KEYRING"
+git commit -m "UBUNTU [Config] gke: Update CONFIG_NVME_KEYRING" -s
 ```
-The commit message is a simple description of the updated config.
 
 Finally, re-run `cranky close`.
+
+```bash
+cranky close
+```
+
 If successful, you should see a new commit when you run `git show`:
 
 ```diff
 commit 6c9a5055b22f4c30aa3ba0c9df306762edb29197 (HEAD -> cranky/master-next)
-Author: Benjamin Wheeler <benjamin.wheeler@canonical.com>
+Author: Kernel Engineer <kernel.engineer@canonical.com>
 Date:   Wed Jan 15 12:42:31 2025 -0500
 
     UBUNTU: Ubuntu-gke-6.8.0-1017.21
     
-    Signed-off-by: Benjamin Wheeler <benjamin.wheeler@canonical.com>
+    Signed-off-by: Kernel Engineer <kernel.engineer@canonical.com>
 
 diff --git a/debian.gke/changelog b/debian.gke/changelog
 index ba1191ce3bc2..a9ccd0b375a6 100644
@@ -314,7 +351,7 @@ index ba1191ce3bc2..a9ccd0b375a6 100644
 -  CHANGELOG: Use the insertchanges target to create the final log.
 +  * noble/linux-gke: 6.8.0-1017.21 -proposed tracker (LP: #2093494)
  
-- -- Benjamin Wheeler <benjamin.wheeler@canonical.com>  Wed, 15 Jan 2025 12:04:33 -0500
+- -- Kernel Engineer <kernel.engineer@canonical.com>  Wed, 15 Jan 2025 12:04:33 -0500
 +  [ Ubuntu: 6.8.0-52.53 ]
 +
 +  * noble/linux: 6.8.0-52.53 -proposed tracker (LP: #2093521)
@@ -325,20 +362,17 @@ index ba1191ce3bc2..a9ccd0b375a6 100644
 +  * CVE-2024-53103
 +    - hv_sock: Initializing vsk->trans to NULL to prevent a dangling pointer
 +
-+ -- Benjamin Wheeler <benjamin.wheeler@canonical.com>  Wed, 15 Jan 2025 12:42:30 -0500
++ -- Kernel Engineer <kernel.engineer@canonical.com>  Wed, 15 Jan 2025 12:42:30 -0500
  
  linux-gke (6.8.0-1016.20) noble; urgency=medium
 ```
 
 ## Verify the kernel builds successfully
 
-At this point, the kernel is built and packaged. We should test that it builds successfully.
+Now that our local `linux-gke` kernel source tree has been updated, we should test that it builds successfully.
+We will be using our cloud builder system (CBD) for this purpose.
 
-<!-- TODO verify above statement! -->
-
-### Cloud Builder 
-
-Connect to the canonical VPN. Then, run:
+Connect to the Canonical VPN and run:
 
 ```bash
 git remote add cbd cbd.kernel:noble.git
@@ -346,41 +380,86 @@ git push cbd
 ```
 
 The output will initially look like this:
-```
+
+```{code-block}
+:emphasize-lines: 4
+
 Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
 remote: *** kernel-cbd *********************************************************
 remote: * Queueing builds (your 'cranky/master-next'); ok to interrupt
-remote: * For results:  ssh cbd ls benjaminwheeler-noble-6c9a5055b22f-szkb
+remote: * For results:  ssh cbd ls kernelengineer-noble-6c9a5055b22f-szkb
 ```
 
-At this point you can interrupt the command with Ctrl-C and periodically check the build status with the ssh command it printed.
+At this point you can interrupt the command with {kbd}`Ctrl-C` and periodically check the build status with the `ssh` command it printed. For example:
 
-When running it, you'll see a few files either called `BUILDING` or `BUILD-OK`.
+```bash
+ssh cbd ls kernelengineer-noble-6c9a5055b22f-szkb
+```
 
-Once all the arches have `BUILD-OK`, we know the kernel built successfully.
+You should see the build progress for each architecture with either `BUILDING` or `BUILD-OK` status.
 
+```{terminal}
+:input: ssh cbd ls kernelengineer-noble-6c9a5055b22f-szkb
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
 
-<!-- TODO ask others about alternatives to CBD/kathleen. Those are for canonicalers only. Is it possible/easy to test in a way that anyone can do? -->
+2025-01-24 04:38:50          0 amd64/BUILDING
+2025-01-24 04:38:51          0 arm64/BUILDING
+```
 
-## Package the kernel for release
-Run the following command:
-<!--TODO add note that it's "dependents", not "dependent". -->
+For the `linux-gke` kernel, this shows us the builds are still in progress for the amd64 and arm64 architectures.
+
+Once all the architectures return the `BUILD-OK` status, we know the kernel built successfully.
+
+<!-- TODO: If we want to encourage external users to use cranky, what is the alternative for testing the builds here? -->
+
+## Package the kernel for release - `cranky update-dependents`
+
+To update all dependent packages in this `linux-gke` tree set (e.g. `linux-meta`, `linux-signed`, `linux-lrm`), run:
+
 ```bash
 cranky update-dependents
 ```
 
-### Tag commit
+If successful, you should see the "SUCCESS: update complete" message in the output.
+
+### Tag commit - `cranky tags`
+
+The last step is to tag your commit with the appropriate version tag.
+
+```{caution}
+Once a tag is pushed to the repository it cannot be modified.
+So be sure to tag your commit only after verifying that your kernel source tree has been updated correctly and builds successfully.
+```
+
 ```bash
 cranky tags
 ```
-<!-- TODO describe output -->
 
-### Verify preparation
+You see should something similar returned in the terminal output:
+
+```{terminal}
+:input: cranky tags
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+
+Tagging with:
+ git tag -f -s -m Ubuntu-gke-6.8.0-1018.22 Ubuntu-gke-6.8.0-1018.22
+```
+
+### Verify preparation - `cranky verify-release-ready`
+
+Perform one last sanity check on the git trees to screen out any issues with the kernel preparation by running:
+
 ```bash
 cranky verify-release-ready
 ```
 
-The `tag pushed: warning` is an expected warning if you do not have commit rights.
+```{note}
+The "tag pushed: warning" is an expected warning if you do not have commit rights.
+```
 
 ### Pull sources
 

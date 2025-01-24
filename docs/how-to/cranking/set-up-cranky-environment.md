@@ -26,7 +26,9 @@ sudo apt install \
     kernel-wedge \
     libncurses5-dev \
     makedumpfile \
+    python3-git \
     python3-launchpadlib \
+    python3-requests \
     python3-ruamel.yaml \
     schroot \
     sharutils \
