@@ -80,9 +80,8 @@ SRU
   fixes for critical bugs, security vulnerabilities, and hardware enablement while ensuring the stability 
   of the system.
 
-Unstable kernel
-  The linux-unstable kernel – similar to an "edge kernel" – is used for the
-  latest Ubuntu kernel developments.
+unstable kernel
+  The linux-unstable kernel is used for the latest Ubuntu kernel developments.
   The unstable tree is primarily utilized by the development team and closely
   tracks the latest mainline kernel releases and {term}`SAUCE` patches.
 
