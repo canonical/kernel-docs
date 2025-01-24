@@ -270,17 +270,8 @@ We will now create one final commit before preparing a release by running:
 cranky close
 ```
 
-This command is a shortcut that does the following:
-
-<!-- FEEDBACK: changelog? specifying the file path would help -->
-1. Verifies there are no changes left. <!-- TODO elaborate? -->
-2. Inserts changes from the parent kernel (`noble:linux`) into the debian changelog.
-3. Inserts git changes into the changelog.
-4. Updates the release series, author and date on the changelog, thus closing the changelog.
-5. Creates a commit signifying the finished crank.
-
-<!-- FEEDBACK: I think we need to add a step that says it is expected to fail since cranky review-master-changes has a bunch of commits related to config changes. So this step will fail initially until you commit the file. -->
-<!-- FEEDBACK: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/tutorial/cranky_tutorial.html#close-the-changelog-cranky-close it's mentioned here but it isn't obvious -->
+This command, among several other things, closes the changelog, verifies changes are handled properly,
+and makes a new commit signifying the cranked kernel.
 
 Since there are config-related changes, `cranky close` is expected fail at this point.
 You should observe a similar error in the terminal output stating that there were changes in `debian.gke/config/annotations`.
