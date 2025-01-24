@@ -79,6 +79,15 @@ SRU
   updates to packages, including kernel packages, after the release of a stable version. SRUs deliver 
   fixes for critical bugs, security vulnerabilities, and hardware enablement while ensuring the stability 
   of the system.
+
+Unstable kernel
+  The linux-unstable kernel – similar to an "edge kernel" – is used for the
+  latest Ubuntu kernel developments.
+  The unstable tree is primarily utilized by the development team and closely
+  tracks the latest mainline kernel releases and {term}`SAUCE` patches.
+
+  Development is conducted in the [unstable Git repository] on Launchpad.
 ````
 
 [dkms manpages]: https://manpages.ubuntu.com/manpages/noble/en/man8/dkms.8.html
+[unstable Git repository]: https://code.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/unstable
