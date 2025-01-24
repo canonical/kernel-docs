@@ -1,7 +1,7 @@
 DKMS upload rights
 ##################
 
-Sometimes you want to be able to upload DKMS package without having get full
+Sometimes you want to be able to upload the DKMS package without having get full
 MOTU_ or `Ubuntu Core Developer`_ rights. The *kernel-dkms packageset* is a
 list of packages that can be uploaded by members of the
 ubuntu-kernel-dkms-uploaders_ Launchpad team.
