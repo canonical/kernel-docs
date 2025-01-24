@@ -262,7 +262,7 @@ debian.gke/dkms-versions: No changes from kernel-versions
 In most cases, no changes are expected as the up-to-date DKMS versions should have been committed on the generic kernel and picked up by the derivative or backport on rebase. 
 ```
 
-### Add closing commit
+### Add closing commit - `cranky close`
 
 We will now create one final commit before preparing a release by running:
 

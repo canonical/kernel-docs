@@ -201,6 +201,7 @@ linkcheck_anchors_ignore_for_url = [
     r"https://github\.com/.*",
     r"https://ubuntu.com/about/release-cycle",
     r"https://snapcraft.io/docs/",
+    r"https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/how-to/new_starter/newstarter.html",
     ]
 
 
