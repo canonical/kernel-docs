@@ -12,6 +12,7 @@ Source code access and management </how-to/source-code/index>
 Development and customization </how-to/develop-customize/index>
 Test kernels in -proposed </how-to/testing-verification/test-kernel-in-proposed>
 Contribute to kernel docs </how-to/contribute>
+Respin a kernel </how-to/respin>
 ```
 
 ## Source code access and management
