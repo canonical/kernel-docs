@@ -4,18 +4,18 @@ Sometimes regressions or last-minute changes are identified in kernels in #propo
 
 It is possible to make changes before the SRU cycle closes. This is a special version of a crank called a respin.
 
-These are the steps to respin a kernel, with examples from a previous respin of several Google kernels due to a late-cycle decision to revert a patchset.
+These are the steps to respin a kernel, with examples from a previous `2025.01.13` respin of the `noble:linux-gke` kernel due to a late-cycle decision to revert a patchset.
 
 ## 1. Create a respin Jira card
 
-```{note}
-Only one person peforms this step. If you already have a Jira card, skip this step.
+```{attention}
+Only one person peforms this step. If you already have a Jira card, note the respin number in the card (see Note at the end of this step) and skip this step.
 ```
 
-Use [kteam-tools/stable/create-respin-card](https://kernel.ubuntu.com/forgejo/kernel/kteam-tools/src/branch/master/stable/create-respin-card) script:
+Use [kteam-tools create-respin-card](https://kernel.ubuntu.com/forgejo/kernel/kteam-tools/src/branch/master/stable/create-respin-card) script:
 
 ```text
-create-respin-card [cycle-number]
+./create-respin-card <cycle-number>
 ```
 
 This will create a respin card on Jira. (For example, here's the one we created: [KSRU-15479 (Jira)](https://warthogs.atlassian.net/browse/KSRU-15479))
@@ -39,24 +39,23 @@ Each affected kernel needs a new Launchpad tracking bug.
 Use the [kteam-tools/stable/create-kernel-tasks] script:
 
 ```text
-create-kernel-tasks --handle <handle> --spin <spin-number> <cycle-number>
+./create-kernel-tasks --handle <handle> --spin <spin-number> <cycle-number>
 ```
 
 For example, we used:
 ```{terminal}
-:input: create-kernel-tasks --handle noble:linux-gke --spin 8 2025.01.13
+:input: ./create-kernel-tasks --handle noble:linux-gke --spin 8 2025.01.13
 :dir: kteam-tools/stable/
 ```
 
-The output states that a new tracking bug has been made, and also prints the bug number for the original tracking bug for this kernel's original crank.
+The output states that a new tracking bug has been made, prints its bug number, and also prints the bug number for the original tracking bug from this kernel's original crank.
 
-On Launchpad, mark the original tracking bug as a duplicate of the newly-created bug:
-
+On Launchpad, mark the original tracking bug as a duplicate of the newly-created bug.
 <!-- TODO screenshots of how to do this -->
 
 ## 3. Checkout the last cranked version of the kernel
 
-Use [cranky]() to checkout the kernel:
+Use cranky to checkout the kernel:
 
 ```text
 cranky checkout --cleanup --pristine <handle>
@@ -75,9 +74,28 @@ In `linux-main/`, ensure `HEAD` is on the tag of the kernel in #proposed (the ou
 
 ## 4. Add patchset
 
-The following step depends on whether the kernel you are respinning has a parent kernel which itself is a derivative.
+```{attention}
+This step only applies to kernels which don't have a parent with patches applied. If your kernel has a parent kernel where respin patches were applied, skip this step.
+```
 
-## 5. Continue cranking, with some modifications
+Usually patches will come from a mailing list, as `.patch` files. Use `git am` to apply them.
+
+You may also be asked to modify the commit message.
+<!--TODO elaborate?-->
+
+## 5. Rebase
+```{attention}
+This step only applies to kernels which are derivatives of kernels also being respun. Skip this step if your kernel has a parent that isn't being respun.
+```
+
+Your kernel's parent will have a new tag from its respin. Rebase off that tag:
+```text
+cranky rebase -b <parent-respin-tag>
+```
+
+For `noble:linux-gke`, the parent kernel, `noble:linux`, was not respun, so we skipped this step.
+
+## 6. Continue cranking, with some modifications
 
 Run the following commands as normal:
 ```text
@@ -107,7 +125,7 @@ cranky update-dependents
 cranky tags
 ```
 
-## 6. Pull sources
+## 7. Pull sources
 The primary difference with pulling the previous deb package sources is that we need to specify to pull the ones in #proposed. (By default, `cranky pull-sources` pulls TODO.)
 
 First, we need to know which versions are in #proposed. Run `cranky rmadison` to get this info:
@@ -184,7 +202,7 @@ So, we ran the following commands:
 :dir: noble/linux-gke/
 ```
 
-## 7. Build sources
+## 8. Build sources
 
 We need to pass the information about the packages in #proposed gathered in the previous step (`pull-source`) to build the sources this time. 
 <!--TODO why?-->
@@ -210,7 +228,7 @@ For example, we used the following command to build `noble:linux-gke`:
 :dir: noble/linux-gke/linux-main
 ```
 
-## 8. Review changes and upload
+## 9. Review changes and upload
 
 At this point, refer to the normal crank process to finish the respin.
 
