@@ -37,3 +37,6 @@ These guides relate to testing the kernel to ensure its stability and
 functionality before you push or release a patch.
 
 - [Test kernels in -proposed](/how-to/testing-verification/test-kernel-in-proposed)
+
+## Respins
+- [How to respin a kernel](/how-to/respin)
