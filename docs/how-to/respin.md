@@ -36,7 +36,7 @@ For example, "Re-spin (#8)" indicates the number is 8.
 ## 2. Create tracking bugs
 Each affected kernel needs a new Launchpad tracking bug.
 
-Use the [kteam-tools/stable/create-kernel-tasks] script:
+Use the kteam-tools `create-kernel-tasks` script:
 
 ```text
 ./create-kernel-tasks --handle <handle> --spin <spin-number> <cycle-number>
@@ -147,7 +147,7 @@ We use `cranky pull-source` on each package manually so that we can specify the 
 Then, use `cranky pull-source` with the following syntax:
 ```text
 cd ..
-cranky pull-source --no-verify <rmadison-package-name> <version-in-proposed> <series>
+cranky pull-source <rmadison-package-name> <version-in-proposed> <series>
 ```
 
 For example, the rmadison format looked like this (at time of our respin) for `noble:linux-gke`
