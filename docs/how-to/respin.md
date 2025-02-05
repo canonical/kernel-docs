@@ -92,22 +92,131 @@ Next, run `cranky link-tb` with a modified cycle number:
 cranky link-tb --sru-cycle <cycle-number>-<spin-number>
 ```
 
-<!-- TODO example -->
+In our crank, we used `cranky link-tb --sru-cycle 2025.01.13-8`, where 8 was the spin number.
 
-Next,
+Next, run:
 ```text
 cranky update-dkms-versions
 ```
 In theory, no changes should be detected by this step.
 
-Next,
+Next, finish the crank:
 ```text
 cranky close 
 cranky update-dependents
 cranky tags
 ```
 
-Pulling and building the deb sources is pretty different:
-TODO
+## 6. Pull sources
+The primary difference with pulling the previous deb package sources is that we need to specify to pull the ones in #proposed. (By default, `cranky pull-sources` pulls TODO.)
 
+First, we need to know which versions are in #proposed. Run `cranky rmadison` to get this info:
+```text
+cranky rmadison <handle>
+```
 
+You can `grep` the result for "proposed", too.
+
+Note both the package name `cranky rmadison` produces and the version numbers of each package this kernel has (main, meta, signed, etc.) that are in #proposed.
+
+For each package, we will run `cranky pull-source`.
+
+```{attention}
+Note that the command is `cranky pull-source`, _not_ `cranky pull-sources` (no 's').
+We use `cranky pull-source` on each package manually so that we can specify the correct version number for each one.
+```
+
+Then, use `cranky pull-source` with the following syntax:
+```text
+cd ..
+cranky pull-source --no-verify <rmadison-package-name> <version-in-proposed> <series>
+```
+
+For example, the rmadison format looked like this (at time of our respin) for `noble:linux-gke`
+
+```{terminal}
+:input: cranky rmadison noble:linux-gke
+:dir: noble/linux-gke/
+
+ linux-gke        | 6.8.0-1003.5  | noble            | source 
+ linux-gke        | 6.8.0-1017.21 | noble-security   | source 
+ linux-gke        | 6.8.0-1017.21 | noble-updates    | source 
+ linux-gke        | 6.8.0-1019.23 | noble-proposed   | source 
+ linux-gke        | 6.8.0-1017.21 | noble-proposed#2 | source 
+ linux-meta-gke   | 6.8.0-1003.5  | noble            | source 
+ linux-meta-gke   | 6.8.0-1017.21 | noble-security   | source 
+ linux-meta-gke   | 6.8.0-1017.21 | noble-updates    | source 
+ linux-meta-gke   | 6.8.0-1019.23 | noble-proposed   | source 
+ linux-meta-gke   | 6.8.0-1017.21 | noble-proposed#2 | source 
+ linux-signed-gke | 6.8.0-1003.5  | noble            | source 
+ linux-signed-gke | 6.8.0-1017.21 | noble-security   | source 
+ linux-signed-gke | 6.8.0-1017.21 | noble-updates    | source 
+ linux-signed-gke | 6.8.0-1019.23 | noble-proposed   | source 
+ linux-signed-gke | 6.8.0-1017.21 | noble-proposed#2 | source
+```
+
+`noble:linux-gke` has `main`, `meta`, and `signed` packages, so we noted those specific package names and versions from `cranky rmadison`:
+
+| package name | version in `noble-updates` |
+| - | - |
+| `linux-gke` | `6.8.0-1017.21` |
+| `linux-meta-gke` | `6.8.0-1017.21` |
+| `linux-signed-gke` | `6.8.0-1017.21` |
+
+```{note}
+In the example, the version numbers for each package are the same.
+This is not always the case, so it's still important to go through this step for each package.
+```
+
+So, we ran the following commands:
+```{terminal}
+:input: cranky pull-source linux-gke 6.8.0-1017.21 noble
+:dir: noble/linux-gke/
+```
+
+```{terminal}
+:input: cranky pull-source linux-meta-gke 6.8.0-1017.21 noble
+:dir: noble/linux-gke/
+```
+
+```{terminal}
+:input: cranky pull-source linux-signed-gke 6.8.0-1017.21 noble
+:dir: noble/linux-gke/
+```
+
+## 7. Build sources
+
+We need to pass the information about the packages in #proposed gathered in the previous step (`pull-source`) to build the sources this time. 
+<!--TODO why?-->
+
+`cranky build-sources` has a `--build-opts` flag we can use to specify the version to use. Pass this flag once for each package, like so:
+
+```bash
+cd linux-main/
+cranky build-sources --build-opts 'main:-v<version-in-updates>' --build-opts 'meta:-v<version-in-updates>' --build-opts 'signed:<version-in-updates>'
+```
+
+```{note}
+The syntax used for each `--build-opts` is `<package-dirname>:-v<version>`.
+The `package-dirname` is the name of the directory this package lives in (use `ls` to see them).
+They are usually `linux-main/`, `linux-meta/`, `linux-lrm`, `linux-signed/`, etc.
+Use these without the `linux-` prefix.
+```
+
+For example, we used the following command to build `noble:linux-gke`:
+
+```{terminal}
+:input: cranky build-sources --build-opts 'main:-v6.8.0-1017.21' --build-opts 'meta:-v6.8.0-1017.21' --build-opts 'signed:-v6.8.0-1017.21'
+:dir: noble/linux-gke/linux-main
+```
+
+## 8. Review changes and upload
+
+At this point, refer to the normal crank process to finish the respin.
+
+```bash
+cd ..
+cranky review *.changes
+```
+
+Lastly, upload the package or push it for a peer-review.
