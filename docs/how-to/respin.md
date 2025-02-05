@@ -104,7 +104,7 @@ Next,
 ```text
 cranky close 
 cranky update-dependents
-cranky tags --force
+cranky tags
 ```
 
 Pulling and building the deb sources is pretty different:
