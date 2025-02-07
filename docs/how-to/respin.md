@@ -2,7 +2,7 @@
 
 Sometimes regressions or last-minute changes are identified in kernels in -proposed (already cranked).
 
-It is possible to make changes before the SRU cycle closes. This is a special version of a crank called a respin.
+It is possible to make changes before the SRU cycle closes. This special version of a crank is called a respin.
 
 These are the steps to respin a kernel, with examples from a previous `2025.01.13` respin of the `noble:linux-gke` kernel due to a late-cycle decision to revert a patchset.
 
