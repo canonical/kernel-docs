@@ -7,6 +7,7 @@ It is possible to make changes before the SRU cycle closes. This special version
 These are the steps to respin a kernel, with examples from a previous `2025.01.13` respin of the `noble:linux-gke` kernel due to a late-cycle decision to revert a patchset.
 
 ## 1. Create a respin Jira card
+The Jira card is used to keep track of the kernels that are being respun.
 
 ```{attention}
 Only one person peforms this step. If you already have a Jira card, note the respin number in the card (see Note at the end of this step) and skip this step.
@@ -59,7 +60,7 @@ On Launchpad, mark the original tracking bug as a duplicate of the newly-created
 
 ## 3. Checkout the last cranked version of the kernel
 
-Use cranky to checkout the kernel:
+Use cranky to checkout the kernel you want to respin:
 
 ```text
 cranky checkout --cleanup --pristine <handle>
