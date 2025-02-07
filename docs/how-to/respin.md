@@ -1,6 +1,6 @@
 # How to respin a kernel
 
-Sometimes regressions or last-minute changes are identified in kernels in #proposed (already cranked).
+Sometimes regressions or last-minute changes are identified in kernels in -proposed (already cranked).
 
 It is possible to make changes before the SRU cycle closes. This is a special version of a crank called a respin.
 
@@ -61,12 +61,12 @@ Use cranky to checkout the kernel:
 cranky checkout --cleanup --pristine <handle>
 ```
 
-Then, use `cranky rmadison` to get the version number from the #proposed kernel:
+Then, use `cranky rmadison` to get the version number from the -proposed kernel:
 ```text
 cranky rmadison <handle>
 ```
 
-In `linux-main/`, ensure `HEAD` is on the tag of the kernel in #proposed (the output of `cranky rmadison`).
+In `linux-main/`, ensure `HEAD` is on the tag of the kernel in -proposed (the output of `cranky rmadison`).
 
 <!-- TODO what if it isn't (new commits were applied)? -->
 
@@ -126,16 +126,16 @@ cranky tags
 ```
 
 ## 7. Pull sources
-The primary difference with pulling the previous deb package sources is that we need to specify to pull the ones in #proposed. (By default, `cranky pull-sources` pulls TODO.)
+The primary difference with pulling the previous deb package sources is that we need to specify to pull the ones in -proposed. (By default, `cranky pull-sources` pulls TODO.)
 
-First, we need to know which versions are in #proposed. Run `cranky rmadison` to get this info:
+First, we need to know which versions are in -proposed. Run `cranky rmadison` to get this info:
 ```text
 cranky rmadison <handle>
 ```
 
 You can `grep` the result for "proposed", too.
 
-Note both the package name `cranky rmadison` produces and the version numbers of each package this kernel has (main, meta, signed, etc.) that are in #proposed.
+Note both the package name `cranky rmadison` produces and the version numbers of each package this kernel has (main, meta, signed, etc.) that are in -proposed.
 
 For each package, we will run `cranky pull-source`.
 
@@ -204,7 +204,7 @@ So, we ran the following commands:
 
 ## 8. Build sources
 
-We need to pass the information about the packages in #proposed gathered in the previous step (`pull-source`) to build the sources this time. 
+We need to pass the information about the packages in -proposed gathered in the previous step (`pull-source`) to build the sources this time. 
 <!--TODO why?-->
 
 `cranky build-sources` has a `--build-opts` flag we can use to specify the version to use. Pass this flag once for each package, like so:
