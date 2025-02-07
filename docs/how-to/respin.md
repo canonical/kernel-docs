@@ -103,7 +103,7 @@ cranky open
 cranky review-master-changes
 ```
 
-In theory, no changes should be detected by this step.
+Usually, no changes should be detected by this step.
 
 Next, run `cranky link-tb` with a modified cycle number:
 ```text
@@ -112,14 +112,9 @@ cranky link-tb --sru-cycle <cycle-number>-<spin-number>
 
 In our crank, we used `cranky link-tb --sru-cycle 2025.01.13-8`, where 8 was the spin number.
 
-Next, run:
-```text
-cranky update-dkms-versions
-```
-In theory, no changes should be detected by this step.
-
 Next, finish the crank:
 ```text
+cranky update-dkms-versions
 cranky close 
 cranky update-dependents
 cranky tags
