@@ -12,13 +12,17 @@ These are the steps to respin a kernel, with examples from a previous `2025.01.1
 Only one person peforms this step. If you already have a Jira card, note the respin number in the card (see Note at the end of this step) and skip this step.
 ```
 
-Use [kteam-tools create-respin-card](https://kernel.ubuntu.com/forgejo/kernel/kteam-tools/src/branch/master/stable/create-respin-card) script:
+Create a respin card on Jira using the [kteam-tools create-respin-card](https://kernel.ubuntu.com/forgejo/kernel/kteam-tools/src/branch/master/stable/create-respin-card) script. This Jira card will be <provide a bit of context here>.
 
 ```text
 ./create-respin-card <cycle-number>
 ```
 
-This will create a respin card on Jira. (For example, here's the one we created: [KSRU-15479 (Jira)](https://warthogs.atlassian.net/browse/KSRU-15479))
+For example, to respin a kernel for the "2025.01.13" SRU cycle:
+
+```text
+./create-respin-card 2025.01.13
+```
 
 Next, on Jira, fill in the details of the respin in the description. This can include:
 
