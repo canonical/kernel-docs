@@ -69,6 +69,7 @@ Then, use `cranky rmadison` to get the version number from the -proposed kernel:
 ```text
 cranky rmadison <handle>
 ```
+(If there are multiple entries for -proposed, use the one with the highest version number.)
 
 In `linux-main/`, ensure `HEAD` is on the tag of the kernel in -proposed (the output of `cranky rmadison`).
 
