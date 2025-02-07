@@ -120,6 +120,8 @@ cranky update-dependents
 cranky tags
 ```
 
+As always, be sure to double-check that the changes to the debian changelog in the closing commit look correct.
+
 ## 7. Pull sources
 The primary difference with pulling the previous deb package sources is that we need to specify to pull the ones in -proposed. (By default, `cranky pull-sources` pulls TODO.)
 
@@ -231,5 +233,7 @@ At this point, refer to the normal crank process to finish the respin.
 cd ..
 cranky review *.changes
 ```
+
+As always, double-check the generated `.debdiff` files look correct.
 
 Lastly, upload the package or push it for a peer-review.
