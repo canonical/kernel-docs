@@ -131,7 +131,7 @@ cranky open
 You should observe something similar in the output terminal:
 
 ```{terminal}
-:input: cranky chroot create-base noble:linux-gke
+:input: cranky open
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
