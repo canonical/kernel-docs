@@ -309,7 +309,7 @@ message of the updated config:
 
 ```bash
 git add debian.gke/config/annotations
-git commit -m "UBUNTU [Config] gke: Update CONFIG_NVME_KEYRING" -s
+git commit -m "UBUNTU [Config] gke: Update CONFIG_NVME_KEYRING" -m "Ignore: yes" -s
 ```
 
 Finally, re-run `cranky close`.
