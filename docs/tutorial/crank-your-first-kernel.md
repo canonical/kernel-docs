@@ -226,7 +226,7 @@ Otherwise, this will overwrite Launchpad and might make destructive changes!
 ```
 
 ```bash
-cranky link-tb --dry-run
+cranky link-tb --sru-cycle s2024.12.02 --dry-run
 ```
 
 ```{tip}
@@ -239,13 +239,13 @@ This step should update the Launchpad tracking bug -- which, among other things,
 But since we used the `--dry-run` option for this tutorial, no changes are made to the local tree and no commit is created.
 
 ```{terminal}
-:input: cranky link-tb --dry-run
+:input: cranky link-tb --sru-cycle s2024.12.02 --dry-run
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 (This is a dry-run)
-LP: #2097956 (noble/linux-gke: <version to be filled> -proposed tracker) s2025.01.13-1
+LP: #2097956 (noble/linux-gke: <version to be filled> -proposed tracker) s2024.12.02-1
 Dry Run -- no changes made
 ```
 
