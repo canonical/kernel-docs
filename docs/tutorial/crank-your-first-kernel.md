@@ -420,6 +420,12 @@ Once all the architectures return the `BUILD-OK` status, we know the kernel buil
 
 Since we have the chroot environment set up already, we can choose to build the kernel locally.
 
+First, install additional dependencies:
+
+```bash
+cranky chroot run -u root noble:linux-gke -- apt install -y fakeroot llvm libncurses-dev dwarves
+```
+
 Clean up any temporary build files and reset the source tree:
 
 ```bash
