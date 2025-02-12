@@ -3,11 +3,10 @@
 Cranking an Ubuntu kernel is the process of applying patches and updates to an existing Ubuntu kernel, packaging it, and preparing it for testing.
 All this is done using the [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) toolchain.
 
-<!-- TODO specify the SRU cycle -->
-In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`).
+In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`) from the "s2024.12.02" cycle.
 
 ```{tip}
- Keep these codenames handy for future commands.
+ Keep these codenames and cycle name handy for future commands.
 ```
 
 ## Prerequisites
@@ -21,6 +20,23 @@ You will need to complete the prerequisite setup below before proceeding with th
 ## Set up and update build environment
 
 First, we will prepare our build environment and tooling needed for cranking a kernel.
+
+### Update kteam-tools repository
+
+Update your local clone of `kteam-tools` to the latest commit on the `master` branch:
+
+```{warning}
+If your `kteam-tools` tree isn't clean, be sure to save your work before running the commands as this step will modify the repository.
+Git should warn you if any destructive actions might occur.
+```
+
+```bash
+cd ~/canonical/kteam-tools/
+git switch master
+git pull
+```
+
+Once the command completes successfully, you've got the latest version of cranky.
 
 ### Update chroot environment - `cranky chroot`
 
@@ -44,38 +60,19 @@ cranky chroot create-session noble:linux-gke
 
 This step uses APT to install various packages needed for the crank and may take several minutes to complete.
 
-### Update kteam-tools repository
+## Download kernel sources - `cranky checkout`
 
-Update your local clone of `kteam-tools` to the latest commit on the `master` branch:
-
-```{warning}
-If your `kteam-tools` tree isn't clean, be sure to save your work before running the commands as this step will modify the repository.
-Git should warn you if any destructive actions might occur.
-```
+You're now ready to clone the `linux-gke` kernel for the given cycle (e.g. "s2024.12.02").
 
 ```bash
-cd ~/canonical/kteam-tools/
-git switch master
-git pull
-```
-
-Once the command completes successfully, you've got the latest version of cranky.
-
-## Download current version of kernel - `cranky checkout`
-
-You're now ready to clone the `linux-gke` kernel in its current state.
-
-<!-- TODO this probably needs SRU cycles specified so it's more reproducible. -->
-
-```bash
-cranky checkout noble:linux-gke
+cranky checkout noble:linux-gke --cycle s2024.12.02
 ```
 
 This command can take several minutes to complete.
 
 If the command completes successfully, you should see the following new directory: `~/canonical/kernel/ubuntu/noble/linux-gke/`.
 
-Inside, there should be three git repositories cloned: `linux-main/`,  `linux-meta`, and `linux-signed`.
+Inside, there should be three git repositories cloned: `linux-main`,  `linux-meta`, and `linux-signed`.
 
 For more information, see {term}`linux-meta` and {term}`linux-signed` in the glossary.
 
@@ -94,16 +91,43 @@ cranky fix
 
 You should see that cranky executed several scripts and go through the updating process for various scripts in the output terminal.
 
-### Rebase on top of updated parent - `cranky rebase`
+### Rebase on top of parent kernel - `cranky rebase`
 
-As `linux-gke` is a derivative kernel, we need to apply updates from its parent, the generic kernel:
+As `linux-gke` is a derivative kernel, we need to apply updates from its parent, the generic kernel in Noble.
+
+First, add the parent repository as a remote:
 
 ```bash
-cranky rebase
+git remote add parent "git://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/noble"
+```
+
+Pull the tag for the kernel version we want to rebase on:
+
+```bash
+git fetch parent --no-tags tag Ubuntu-6.8.0-53.55
+```
+
+Then rebase to inherit the changes from a specific version of the parent kernel:
+
+```bash
+cranky rebase -l Ubuntu-6.8.0-53.55
 ```
 
 ```{tip}
 For non-derivative kernels (e.g., `noble:linux`), this step is not required.
+```
+
+You should observe something similar in the output terminal:
+
+```{terminal}
+:input: cranky rebase -l Ubuntu-6.8.0-53.55
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+
+Rebase still needed between Ubuntu-6.8.0-52.53 and Ubuntu-6.8.0-53.55.
+II: record=/home/annecyh/canonical/kernel/ubuntu/noble/linux-gke/linux-main/.git/REBASE-SELECTOR
+Successfully rebased and updated refs/heads/cranky/master-next-s2024.12.02.
 ```
 
 ### Fix helper scripts (again) - `cranky fix`
@@ -134,12 +158,12 @@ You should observe something similar in the output terminal:
 :input: cranky open
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 [...]
 /home/kernel-engineer/canonical/kteam-tools/cranky/cranky startnewrelease --commit
 Creating new changelog set for 6.8.0-1018.22...
-[cranky/master-next 7c8a6e1e1f8b] UBUNTU: Start new release
+[cranky/master-next-s2024.12.02 911b0ad106e9] UBUNTU: Start new release
  1 file changed, 8 insertions(+)
 
 
@@ -152,7 +176,7 @@ Run `git show` to verify that this new commit starts with "UBUNTU: Start new rel
 :input: git show
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 Author: kernel-engineer <kernel.engineer@canonical.com>
 Date:   Mon Jan 20 16:55:52 2025 +0800
@@ -182,21 +206,22 @@ Use `git show <commit-hash>` to view the changes.
 :input: cranky review-master-changes
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 Listing changes in "debian.master/" since 9f8080a647a9e2c8c9a52b3e471b3f22d4dc0c67...
 
-851f47333771 UBUNTU: [Packaging] debian.master/dkms-versions -- update from kernel-versions (main/2025.01.13)
-41b4e628ce36 UBUNTU: Upstream stable to v6.6.55, v6.10.14
-1de0f53d2545 UBUNTU: [Config] updateconfigs for MICROSOFT_MANA
-547230d18843 UBUNTU: [Config] updateconfigs for deprecated CONFIG_Z3FOLD
-1b64b00b69b7 UBUNTU: [Config] updateconfigs to set ILLEGAL_POINTER_VALUE for riscv64
-14549d19d4b5 UBUNTU: [Config] updateconfigs to select PROC_MEM_ALWAYS_FORCE
-3eb67a5e5da8 UBUNTU: [Packaging] Add list of used source files to buildinfo package
-3b9e978a6cb4 UBUNTU: [Packaging] Sort build dependencies alphabetically
-18d768dbc001 UBUNTU: Upstream stable to v6.6.54, v6.10.13
-0861dae772cb UBUNTU: [Config] update configs for CONFIG_CRYPTO_AES_GCM_P10
-82fbe5ae5484 UBUNTU: Upstream stable to v6.6.53, v6.10.12
+f31315007228 UBUNTU: [Packaging] debian.master/dkms-versions -- update from kernel-versions (main/2025.01.13)
+3a8a3b4039e7 UBUNTU: [Packaging] do not attempt to generate BTF header on armhf
+59e4c08ecd84 UBUNTU: Upstream stable to v6.6.55, v6.10.14
+fadfbbcc2798 UBUNTU: [Config] updateconfigs for MICROSOFT_MANA
+b5bd2549a589 UBUNTU: [Config] updateconfigs for deprecated CONFIG_Z3FOLD
+1878fd662392 UBUNTU: [Config] updateconfigs to set ILLEGAL_POINTER_VALUE for riscv64
+267522e21042 UBUNTU: [Config] updateconfigs to select PROC_MEM_ALWAYS_FORCE
+366c11c3240e UBUNTU: [Packaging] Add list of used source files to buildinfo package
+6b86533cc3d1 UBUNTU: [Packaging] Sort build dependencies alphabetically
+52051394e234 UBUNTU: Upstream stable to v6.6.54, v6.10.13
+763dd57e5520 UBUNTU: [Config] update configs for CONFIG_CRYPTO_AES_GCM_P10
+db4045cf4e9a UBUNTU: Upstream stable to v6.6.53, v6.10.12
 ```
 <!-- TODO add a link to a reference on more info about when commits should be added -->
 
@@ -229,10 +254,10 @@ But since we used the `--dry-run` option for this tutorial, no changes are made 
 :input: cranky link-tb --dry-run
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 (This is a dry-run)
-LP: #2093652 (noble/linux-gke: <version to be filled> -proposed tracker) 2025.01.13-1
+LP: #2097956 (noble/linux-gke: <version to be filled> -proposed tracker) s2025.01.13-1
 Dry Run -- no changes made
 ```
 
@@ -251,7 +276,7 @@ Since no changes are needed at this time, you should observe the following outpu
 :input: cranky update-dkms-versions
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 [...]
 
@@ -277,13 +302,14 @@ Since there are config-related changes, `cranky close` is expected fail at this 
 You should observe a similar error in the terminal output stating that there were changes in `debian.gke/config/annotations`.
 
 ```{terminal}
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :input: cranky close
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
 
 [...]
 
+* Run config-check for arm64-gke ...
 check-config: loading annotations from debian.gke/config/annotations
 check-config: CONFIG_NVME_KEYRING changed from m to y: policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm', 's390x': 'm'}>)
 check-config: 1 config options have been changed, review them with `git diff`
@@ -309,7 +335,7 @@ message of the updated config:
 
 ```bash
 git add debian.gke/config/annotations
-git commit -m "UBUNTU [Config] gke: Update CONFIG_NVME_KEYRING" -m "Ignore: yes" -s
+git commit -m "UBUNTU [Config] gke: Update configs from 6.8.0-53.55" -m "Ignore: yes" -s
 ```
 
 Finally, re-run `cranky close`.
@@ -321,47 +347,46 @@ cranky close
 If successful, you should see a new commit when you run `git show`:
 
 ```diff
-commit 6c9a5055b22f4c30aa3ba0c9df306762edb29197 (HEAD -> cranky/master-next)
+commit 6c9a5055b22f4c30aa3ba0c9df306762edb29197 (HEAD -> cranky/master-next-s2024.12.02)
 Author: Kernel Engineer <kernel.engineer@canonical.com>
-Date:   Wed Jan 15 12:42:31 2025 -0500
+Date:   Wed Feb 12 13:49:40 2025 +0800
 
-    UBUNTU: Ubuntu-gke-6.8.0-1017.21
+    UBUNTU: Ubuntu-gke-6.8.0-1018.22
     
     Signed-off-by: Kernel Engineer <kernel.engineer@canonical.com>
 
 diff --git a/debian.gke/changelog b/debian.gke/changelog
-index ba1191ce3bc2..a9ccd0b375a6 100644
+index fd056a9e15cc..fd8c8d9cd8fb 100644
 --- a/debian.gke/changelog
 +++ b/debian.gke/changelog
-@@ -1,10 +1,18 @@
--linux-gke (6.8.0-1017.21) UNRELEASED; urgency=medium
-+linux-gke (6.8.0-1017.21) noble; urgency=medium
+@@ -1,10 +1,1229 @@
+-linux-gke (6.8.0-1018.22) UNRELEASED; urgency=medium
++linux-gke (6.8.0-1018.22) noble; urgency=medium
  
 -  CHANGELOG: Do not edit directly. Autogenerated at release.
 -  CHANGELOG: Use the printchanges target to see the curent changes.
 -  CHANGELOG: Use the insertchanges target to create the final log.
-+  * noble/linux-gke: 6.8.0-1017.21 -proposed tracker (LP: #2093494)
++  [ Ubuntu: 6.8.0-53.55 ]
  
-- -- Kernel Engineer <kernel.engineer@canonical.com>  Wed, 15 Jan 2025 12:04:33 -0500
-+  [ Ubuntu: 6.8.0-52.53 ]
-+
-+  * noble/linux: 6.8.0-52.53 -proposed tracker (LP: #2093521)
-+  * CVE-2024-53164
-+    - net: sched: fix ordering of qlen adjustment
-+  * CVE-2024-53141
-+    - netfilter: ipset: add missing range check in bitmap_ip_uadt
-+  * CVE-2024-53103
-+    - hv_sock: Initializing vsk->trans to NULL to prevent a dangling pointer
-+
-+ -- Kernel Engineer <kernel.engineer@canonical.com>  Wed, 15 Jan 2025 12:42:30 -0500
+- -- Kernel Engineer <kernel.engineer@canonical.com>  Wed, 12 Feb 2025 12:43:08 +0800
++  * noble/linux: 6.8.0-53.55 -proposed tracker (LP: #2093677)
++  * Packaging resync (LP: #1786013)
++    - [Packaging] debian.master/dkms-versions -- update from kernel-versions
++      (main/2025.01.13)
+[...]
+
++ -- Kernel Engineer <kernel.engineer@canonical.com>  Wed, 12 Feb 2025 13:49:40 +0800
  
- linux-gke (6.8.0-1016.20) noble; urgency=medium
+ linux-gke (6.8.0-1017.21) noble; urgency=medium
 ```
 
 ## Verify the kernel builds successfully
 
 Now that our local `linux-gke` kernel source tree has been updated, we should test that it builds successfully.
-We will be using our cloud builder system (CBD) for this purpose.
+
+### Build kernel in CBD
+
+For Canonical users, we can use the cloud builder system (CBD) for this purpose.
 
 Connect to the Canonical VPN and run:
 
@@ -393,7 +418,7 @@ You should see the build progress for each architecture with either `BUILDING` o
 :input: ssh cbd ls kernelengineer-noble-6c9a5055b22f-szkb
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 2025-01-24 04:38:50          0 amd64/BUILDING
 2025-01-24 04:38:51          0 arm64/BUILDING
@@ -403,7 +428,32 @@ For the `linux-gke` kernel, this shows us the builds are still in progress for t
 
 Once all the architectures return the `BUILD-OK` status, we know the kernel built successfully.
 
-<!-- TODO: If we want to encourage external users to use cranky, what is the alternative for testing the builds here? -->
+### Build kernel locally
+
+Since we have the chroot environment set up already, we can choose to build the kernel locally.
+
+Clean up any temporary build files and reset the source tree:
+
+```bash
+cranky chroot run noble:linux-gke -- fakeroot debian/rules clean
+```
+
+Then build and compile the different kernel packages:
+
+```bash
+cranky chroot run noble:linux-gke -- fakeroot debian/rules binary-headers binary-generic binary-perarch
+```
+
+If the build is successful, you should find several .deb binary package files in the directory above the build root directory.
+
+```{terminal}
+:input: ls ../
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+
+TBD
+```
 
 ## Package the kernel for release - `cranky update-dependents`
 
@@ -434,7 +484,7 @@ You see should something similar returned in the terminal output:
 :input: cranky tags
 :user: kernel-engineer
 :host: ubuntu-machine
-:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
 Tagging with:
  git tag -f -s -m Ubuntu-gke-6.8.0-1018.22 Ubuntu-gke-6.8.0-1018.22
@@ -501,3 +551,4 @@ Learn more about Ubuntu releases and derivative kernels [here].
 
 [VPN connection]: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/how-to/new_starter/newstarter.html#setup-vpn
 [Kernel team build resources]: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/how-to/new_starter/newstarter.html#build-resources
+[Kernel SRU dashboard]: https://kernel.ubuntu.com/reports/kernel-stable-board/
