@@ -93,24 +93,12 @@ You should see that cranky executed several scripts and go through the updating 
 
 ### Rebase on top of parent kernel - `cranky rebase`
 
-As `linux-gke` is a derivative kernel, we need to apply updates from its parent, the generic kernel in Noble.
+As `noble:linux-gke` is a derivative kernel, we need to apply updates from its parent, `noble:linux`.
 
-First, add the parent repository as a remote:
-
-```bash
-git remote add parent "git://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/noble"
-```
-
-Pull the tag for the kernel version we want to rebase on:
+Choose a tag from the parent kernel to rebase onto, and run:
 
 ```bash
-git fetch parent --no-tags tag Ubuntu-6.8.0-53.55
-```
-
-Then rebase to inherit the changes from a specific version of the parent kernel:
-
-```bash
-cranky rebase -l Ubuntu-6.8.0-53.55
+cranky rebase -b Ubuntu-6.8.0-53.55
 ```
 
 ```{tip}
@@ -120,7 +108,7 @@ For non-derivative kernels (e.g., `noble:linux`), this step is not required.
 You should observe something similar in the output terminal:
 
 ```{terminal}
-:input: cranky rebase -l Ubuntu-6.8.0-53.55
+:input: cranky rebase -b Ubuntu-6.8.0-53.55
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
