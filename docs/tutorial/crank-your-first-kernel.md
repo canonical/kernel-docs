@@ -4,6 +4,7 @@ Cranking an Ubuntu kernel is the process of applying patches and updates to an e
 All this is done using the [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) toolchain.
 
 In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`) from the "s2024.12.02" cycle.
+This starts our kernel at version "6.8.0-1017.21", from which we will create a new version "6.8.0-1018.22".
 
 ```{tip}
  Keep these codenames and cycle name handy for future commands.
@@ -368,12 +369,13 @@ index fd056a9e15cc..fd8c8d9cd8fb 100644
  linux-gke (6.8.0-1017.21) noble; urgency=medium
 ```
 
-## Verify the kernel builds successfully
+### Verify the kernel builds successfully
 
 Now that our local `linux-gke` kernel source tree has been updated, we should test that it builds successfully.
 
+<!--
 ### Build kernel in CBD
-
+-->
 For Canonical users, we can use the cloud builder system (CBD) for this purpose.
 
 Connect to the Canonical VPN and run:
@@ -416,6 +418,7 @@ For the `linux-gke` kernel, this shows us the builds are still in progress for t
 
 Once all the architectures return the `BUILD-OK` status, we know the kernel built successfully.
 
+<!--
 ### Build kernel locally
 
 Since we have the chroot environment set up already, we can choose to build the kernel locally.
@@ -458,30 +461,48 @@ cranky update-dependents
 ```
 
 If successful, you should see the "SUCCESS: update complete" message in the output.
+-->
+
+## Final stages of kernel preparation
+
+We are now in the final stages of preparing the kernel source before it can be uploaded.
 
 ### Tag commit - `cranky tags`
 
-The last step is to tag your commit with the appropriate version tag.
+Tag your commit with the appropriate version tag.
 
 ```{caution}
+Only tag your commit after verifying that your kernel source tree has been updated correctly and builds successfully.
 Once a tag is pushed to the repository it cannot be modified.
-So be sure to tag your commit only after verifying that your kernel source tree has been updated correctly and builds successfully.
 ```
 
 ```bash
-cranky tags
+cranky tags -f
 ```
 
-You see should something similar returned in the terminal output:
+You see should something similar returned in the terminal output since we are overriding existing tags with the `-f` option:
 
 ```{terminal}
-:input: cranky tags
+:input: cranky tags -f
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 
+error: Tag 'Ubuntu-gke-6.8.0-1018.22' exists already
+(--force specified - continuing anyway)
 Tagging with:
  git tag -f -s -m Ubuntu-gke-6.8.0-1018.22 Ubuntu-gke-6.8.0-1018.22
+Updated tag 'Ubuntu-gke-6.8.0-1018.22' (was eab9e1e8fc09)
+error: Tag 'Ubuntu-gke-6.8.0-1018.22' exists already
+(--force specified - continuing anyway)
+Tagging with:
+ git tag -f -s -m Ubuntu-gke-6.8.0-1018.22 Ubuntu-gke-6.8.0-1018.22
+Updated tag 'Ubuntu-gke-6.8.0-1018.22' (was 961465c)
+error: Tag 'Ubuntu-gke-6.8.0-1018.22' exists already
+(--force specified - continuing anyway)
+Tagging with:
+ git tag -f -s -m Ubuntu-gke-6.8.0-1018.22 Ubuntu-gke-6.8.0-1018.22
+Updated tag 'Ubuntu-gke-6.8.0-1018.22' (was 49ebbe9)
 ```
 
 ### Verify preparation - `cranky verify-release-ready`
@@ -492,57 +513,148 @@ Perform one last sanity check on the git trees to screen out any issues with the
 cranky verify-release-ready
 ```
 
-```{note}
-The "tag pushed: warning" is an expected warning if you do not have commit rights.
+The results for the sanity check should look similar to the output below:
+
+```{terminal}
+:input: cranky verify-release-ready
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+
+linux-main:
+                                           is valid git repo: pass
+                                             release (noble): pass
+                                         package (linux-gke): pass
+                                     version (6.8.0-1018.22): pass
+                                             ABI bump (1018): pass
+                                           build number (22): pass
+                                      closing release commit: pass
+                      correct tag (Ubuntu-gke-6.8.0-1018.22): pass
+                                                  tag pushed: pass
+                                                  tag signed: warning
+                        conformant release tracking bug line: pass
+                                        release tracking bug: pass
+                                 unique release tracking bug: fail
+                                  no "Miscellaneous" entries: pass
+                                        No tracker bug found: warning
+                                   changelog commits subject: pass
+                                        final commit content: pass
+linux-meta:
+                                           is valid git repo: pass
+                                           build number (22): pass
+                                      closing release commit: pass
+                      correct tag (Ubuntu-gke-6.8.0-1018.22): pass
+                                                  tag pushed: pass
+                                                  tag signed: warning
+                                        final commit content: pass
+linux-signed:
+                                           is valid git repo: pass
+                                           build number (22): pass
+                                      closing release commit: pass
+                      correct tag (Ubuntu-gke-6.8.0-1018.22): pass
+                                                  tag pushed: pass
+                                                  tag signed: warning
+                                        final commit content: pass
 ```
 
-### Pull sources
+The "tag pushed: pass" status is based on the tag for this version that was previously pushed when it was cranked.
+The "unique release tracking bug: fail" status is expected since we did not link a new tracking bug in this tutorial.
+
+### Pull sources - `cranky pull-source`
+
+The final step of preparing the package update is building the source packages that need to be uploaded.
+
+First, we will need to pull in the changes of the previous kernel version (`6.8.0-1017.21`) that we want to base our current kernel version off of.
+This is required for the main and dependent packages.
 
 ```bash
-cd ..
-# CWD == ~/canonical/kernel/noble/linux-gke/
-
-cranky pull-sources noble:linux-gke --latest
+cd ~/canonical/kernel/noble/linux-gke/
+cranky pull-source linux-gke 6.8.0-1017.21
+cranky pull-source linux-signed-gke 6.8.0-1017.21
+cranky pull-source linux-meta-gke 6.8.0-1017.21
 ```
 
-### Build sources
+If successful, you should have these files in the {file}`linux-gke` directory.
+
+```{terminal}
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke
+:input: ls *6.8.0-1017.21*
+
+linux-gke_6.8.0-1017.21.diff.gz
+linux-gke_6.8.0-1017.21.dsc
+linux-meta-gke_6.8.0-1017.21.dsc
+linux-meta-gke_6.8.0-1017.21.tar.xz
+linux-signed-gke_6.8.0-1017.21.dsc
+linux-signed-gke_6.8.0-1017.21.tar.xz
+```
+
+### Build sources - `cranky build-sources`
+
+Build the source packages for your updated `linux-gke` source tree.
+
 ```bash
 cd linux-main/
 cranky build-sources
 ```
 
-## Review
+Check that you have the following artefacts in the {file}`linux-gke` directory:
+
+```{terminal}
+:user: kernel-engineer
+:host: ubuntu-machine
+:dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:input: cd ../ && ls *6.8.0-1018.22*
+
+
+linux-gke_6.8.0-1018.22.diff.gz
+linux-gke_6.8.0-1018.22.dsc
+linux-gke_6.8.0-1018.22_source.buildinfo
+linux-gke_6.8.0-1018.22_source.changes
+linux-meta-gke_6.8.0-1018.22.dsc
+linux-meta-gke_6.8.0-1018.22.tar.xz
+linux-meta-gke_6.8.0-1018.22_source.buildinfo
+linux-meta-gke_6.8.0-1018.22_source.changes
+linux-signed-gke_6.8.0-1018.22.dsc
+linux-signed-gke_6.8.0-1018.22.tar.xz
+linux-signed-gke_6.8.0-1018.22_source.buildinfo
+linux-signed-gke_6.8.0-1018.22_source.changes
+```
+
+## Review changelog - `cranky review`
+
+We are now ready to review all the changes and updates that have been made for your `linux-gke` kernel.
+
 ```bash
-cd ..
-# CWD == ~/canonical/kernel/noble/linux-gke/
+cd ~/canonical/kernel/ubuntu/noble/linux-gke/
 cranky review *.changes
 ```
 
-This will generate several `.debdiff` files, which show the difference between this deb package and the last one.
-You should review these files in a text editor (using a command like `vim *.debdiff`) to ensure there are no unexpected changes.
-However, for the sake of this tutorial, we can assume the diffs are all correct.
+This will generate 3 {file}`*.debdiff` files, each showing the difference between the latest deb package and the previous one.
+These source changes should be reviewed in a text editor (e.g. using a command like `vim *.debdiff`) to ensure there are no unexpected changes.
 
 ## Upload
-
-<!-- TODO take note of SRU cycle earlier in the process -->
 
 Normally, at this point a cranker with upload rights would publish the newly-cranked kernel to its PPA, which automatically kicks off boot testing.
 However, without upload rights, we can request someone with rights to review our work, and publish the kernel on our behalf.
 
-We can push the created files to a server that is accessible to the reviewer, like `kathleen`.
-<!-- TODO is this canonical-only? -->
+To push the created files to a server that is accessible to the reviewer (e.g. like `kathleen`):
 
 ```bash
 cd linux-main/
-cranky push-review -s 2024.10.08 kathleen
+cranky push-review -s s2024.12.02 kathleen
 ```
 
 ## Related topics
 
-Learn more about Ubuntu releases and derivative kernels [here].
+- [Ubuntu kernel variants]
+- {doc}`/explanation/stable-release-updates`
+
 
 <!-- LINKS -->
 
 [VPN connection]: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/how-to/new_starter/newstarter.html#setup-vpn
 [Kernel team build resources]: https://canonical-kteam-docs.readthedocs-hosted.com/en/latest/how-to/new_starter/newstarter.html#build-resources
 [Kernel SRU dashboard]: https://kernel.ubuntu.com/reports/kernel-stable-board/
+[Ubuntu kernel variants]: https://ubuntu.com/kernel/variants
