@@ -569,9 +569,9 @@ This is required for the main and dependent packages.
 
 ```bash
 cd ~/canonical/kernel/noble/linux-gke/
-cranky pull-source linux-gke 6.8.0-1017.21
-cranky pull-source linux-signed-gke 6.8.0-1017.21
-cranky pull-source linux-meta-gke 6.8.0-1017.21
+cranky pull-source linux-gke '6.8.0-1017.21'
+cranky pull-source linux-signed-gke '6.8.0-1017.21'
+cranky pull-source linux-meta-gke '6.8.0-1017.21'
 ```
 
 If successful, you should have these files in the {file}`linux-gke` directory.
