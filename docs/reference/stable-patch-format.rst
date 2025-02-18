@@ -219,32 +219,24 @@ Comment body
       Signed-off-by: Manoj Iyer <manoj.iyer@canonical.com>
 
    .. _comment-body-cve:
-#. Every **CVE** patch **must** contain a line at the beginning of the commit
-   message that specifies the CVE number(s) related to the patch. This must be
-   the first part of the body of the comment.
+#. Every **CVE** patch must contain a line just before your sign-off that
+   specifies the CVE number(s) related to the patch.
 
-   There is the comment subject line, a blank line, the CVE number, a blank
-   line, and then the rest of the comment body.
    A "BugLink" is optional for CVE patches.
 
    Example:
 
    .. code-block:: none
-      :emphasize-lines: 5-11
+      :emphasize-lines: 7
 
-      Subject: [SRU][B/D] UBUNTU: SAUCE: nbd_genl_status: null check for nla_nest_start
+      [... commit message body ...]
 
-      From: Navid Emamdoost <navid.emamdoost@gmail.com>
-
-      CVE-2019-16089
-
-      nla_nest_start may fail and return NULL. The check is inserted, and
-      errno is selected based on other call sites within the same source code.
-      Update: removed extra new line.
-      v3 Update: added release reply, thanks to Michal Kubecek for pointing
-      out.
-      [...]
-
+      Signed-off-by: Lion Ackermann <nnamrec@gmail.com>
+      Acked-by: Toke Høiland-Jørgensen <toke@toke.dk>
+      Signed-off-by: David S. Miller <davem@davemloft.net>
+      (cherry picked from commit 5eb7de8cd58e73851cd37ff8d0666517d9926948)
+      CVE-2024-53164
+      Signed-off-by: Ian Whitfield <ian.whitfield@canonical.com>
 
 Preparing to submit patches
 ---------------------------
@@ -259,8 +251,10 @@ Sending as a patch series
 #. Every patch submitted to a stable kernel **must** be sent in a patch series
    with a cover letter, even if the patch series contains a single patch.
 
-#. The cover letter **must** contain the "BugLink" or the CVE number like the
-   patch(es) itself.
+#. The cover letter **must** contain the same "BugLink" line as in the patches
+   themselves, when one is present.
+
+#. CVE cover letters should have the CVE number as the subject.
 
 #. The cover letter **must** contain the SRU justification from the launchpad
    bug or the CVE fix.
@@ -282,8 +276,10 @@ Sending as a pull request
 
 #. Include the git pull request information in the cover letter email.
 
-#. The cover letter **must** contain the "BugLink" or the CVE number like the
-   patch(es) itself.
+#. The cover letter **must** contain the same "BugLink" line as in the patches
+   themselves, when one is present.
+
+#. CVE cover letters should have the CVE number as the subject.
 
 #. The cover letter **must** contain the SRU justification from the launchpad
    bug or the CVE fix.
