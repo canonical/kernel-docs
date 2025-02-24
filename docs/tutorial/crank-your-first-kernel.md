@@ -451,6 +451,7 @@ If the build is successful, you should find several .deb binary package files in
 
 TBD
 ```
+-->
 
 ## Package the kernel for release - `cranky update-dependents`
 
@@ -461,7 +462,6 @@ cranky update-dependents
 ```
 
 If successful, you should see the "SUCCESS: update complete" message in the output.
--->
 
 ## Final stages of kernel preparation
 
