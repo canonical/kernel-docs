@@ -7,8 +7,7 @@ from -proposed as they are not enabled by default.
 
 ## Enable the -proposed pocket to software sources
 
-To install packages from -proposed, you need to enable the relevant source
-repositories.
+To install packages from -proposed, you need to enable the relevant source repositories on your Ubuntu machine.
 
 ### Enable the -proposed pocket via GUI
 
