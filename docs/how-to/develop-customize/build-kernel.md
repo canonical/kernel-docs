@@ -33,7 +33,7 @@ Otherwise, skip ahead to {ref}`how-to-build-kernel-obtain-source`.
 To build an Ubuntu kernel, you will need to enable the necessary source
 repositories in the `sources.list` or `ubuntu.sources` file.
 
-See {file}`/how-to/source-code/enable-source-repositories` for details.
+See {file}`</how-to/source-code/enable-source-repositories>` for details.
 
 (how-to-build-kernel-install-packages)=
 ### Install required packages
