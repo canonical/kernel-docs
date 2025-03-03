@@ -4,10 +4,10 @@ If you want to build or modify an Ubuntu kernel package from source, you will fi
 This is provided via `deb-src` - a line in the {file}`sources.list` or {file}`ubuntu.sources` file that points to repositories containing source packages instead of pre-built binaries.
 `deb-src` will need to be enabled on your build machine.
 
-## Enable `deb-src` for Noble Numbat 24.04 (and newer)
+## Enable `deb-src`
 
-Add "deb-src" to the `Types:` line in the {file}`/etc/apt/sources.list.d/ubuntu.sources` file.
-
+`````{tab-set}
+````{tab-item} Noble Numbat 24.04 (and newer)
 ```{code-block} text
 :emphasize-lines: 1
 
@@ -17,9 +17,8 @@ Suites: noble noble-updates noble-backports
 Components: main universe restricted multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 ```
-
-## Enable `deb-src` for Mantic Minotaur 23.10 (and older)
-
+````
+````{tab-item} Mantic Minotaur 23.10 (and older)
 Check that you have the following entries in the {file}`/etc/apt/sources.list` file.
 If not, add or uncomment these lines for your Ubuntu release.
 For example, for Jammy:
@@ -28,3 +27,15 @@ For example, for Jammy:
 deb-src http://archive.ubuntu.com/ubuntu jammy main
 deb-src http://archive.ubuntu.com/ubuntu jammy-updates main
 ```
+````
+`````
+Add "deb-src" to the `Types:` line in the {file}`/etc/apt/sources.list.d/ubuntu.sources` file.
+
+## Update package list
+
+Once you have updated {file}`sources.list` or {file}`ubuntu.sources`, update the package list for the changes to take effect:
+
+```{code-block} shell
+sudo apt update
+```
+
