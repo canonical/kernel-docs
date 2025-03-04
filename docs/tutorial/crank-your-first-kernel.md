@@ -113,6 +113,7 @@ You should observe something similar in the output terminal:
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 Rebase still needed between Ubuntu-6.8.0-52.53 and Ubuntu-6.8.0-53.55.
 II: record=/home/annecyh/canonical/kernel/ubuntu/noble/linux-gke/linux-main/.git/REBASE-SELECTOR
@@ -148,6 +149,7 @@ You should observe something similar in the output terminal:
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 [...]
 /home/kernel-engineer/canonical/kteam-tools/cranky/cranky startnewrelease --commit
@@ -166,6 +168,7 @@ Run `git show` to verify that this new commit starts with "UBUNTU: Start new rel
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 Author: kernel-engineer <kernel.engineer@canonical.com>
 Date:   Mon Jan 20 16:55:52 2025 +0800
@@ -196,6 +199,7 @@ Use `git show <commit-hash>` to view the changes.
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 Listing changes in "debian.master/" since 9f8080a647a9e2c8c9a52b3e471b3f22d4dc0c67...
 
@@ -244,6 +248,7 @@ But since we used the `--dry-run` option for this tutorial, no changes are made 
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 (This is a dry-run)
 LP: #2097956 (noble/linux-gke: <version to be filled> -proposed tracker) s2024.12.02-1
@@ -266,6 +271,7 @@ Since no changes are needed at this time, you should observe the following outpu
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 [...]
 
@@ -295,6 +301,7 @@ You should observe a similar error in the terminal output stating that there wer
 :input: cranky close
 :user: kernel-engineer
 :host: ubuntu-machine
+:scroll:
 
 [...]
 
@@ -409,6 +416,7 @@ You should see the build progress for each architecture with either `BUILDING` o
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 2025-01-24 04:38:50          0 amd64/BUILDING
 2025-01-24 04:38:51          0 arm64/BUILDING
@@ -448,6 +456,7 @@ If the build is successful, you should find several .deb binary package files in
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 TBD
 ```
@@ -487,6 +496,7 @@ You see should something similar returned in the terminal output since we are ov
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 error: Tag 'Ubuntu-gke-6.8.0-1018.22' exists already
 (--force specified - continuing anyway)
@@ -520,6 +530,7 @@ The results for the sanity check should look similar to the output below:
 :user: kernel-engineer
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
+:scroll:
 
 linux-main:
                                            is valid git repo: pass
@@ -581,6 +592,7 @@ If successful, you should have these files in the {file}`linux-gke` directory.
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke
 :input: ls *6.8.0-1017.21*
+:scroll:
 
 linux-gke_6.8.0-1017.21.diff.gz
 linux-gke_6.8.0-1017.21.dsc
@@ -606,7 +618,7 @@ Check that you have the following artefacts in the {file}`linux-gke` directory:
 :host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :input: cd ../ && ls *6.8.0-1018.22*
-
+:scroll:
 
 linux-gke_6.8.0-1018.22.diff.gz
 linux-gke_6.8.0-1018.22.dsc
