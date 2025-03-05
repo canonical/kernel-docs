@@ -25,10 +25,10 @@ processes for customization and maintenance.
 
 ````{grid} 1 1 2 2
 
-```{grid-item-card} [Tutorials](index)
+```{grid-item-card} [Tutorials](/tutorial/index)
 
 **Start here**: a hands-on introduction to Ubuntu Linux kernel development for
-new users
+new users.
 ```
 
 ```{grid-item-card} [How-to guides](/how-to/index)
@@ -73,6 +73,7 @@ fixes and constructive feedback.
 :hidden:
 :maxdepth: 2
 
+/tutorial/index
 /how-to/index
 /reference/index
 /explanation/index
