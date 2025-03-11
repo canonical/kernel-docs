@@ -70,7 +70,7 @@ copyright = "%s CC-BY-SA, %s" % (datetime.date.today().year, author)
 # NOTE: The Open Graph Protocol (OGP) enhances page display in a social graph
 #       and is used by social media platforms; see https://ogp.me/
 
-ogp_site_url = "https://canonical-starter-pack.readthedocs-hosted.com/"
+ogp_site_url = "https://canonical-kernel-docs.readthedocs-hosted.com/"
 
 
 # Preview name of the documentation website
@@ -84,8 +84,7 @@ ogp_site_name = project
 #
 # TODO: To customise the preview image, update as needed.
 
-ogp_image = \
-    "https://assets.ubuntu.com/v1/253da317-image-document-ubuntudocs.svg"
+ogp_image = "https://assets.ubuntu.com/v1/253da317-image-document-ubuntudocs.svg"
 
 
 # Product favicon; shown in bookmarks, browser tabs, etc.
@@ -107,7 +106,7 @@ html_context = {
     # TODO: If there's no such website,
     #       remove the {{ product_page }} link from the page header template
     #       (usually .sphinx/_templates/header.html; also, see README.rst).
-    "product_page": "documentation.ubuntu.com",
+    "product_page": "kernel.ubuntu.com",
     # Product tag image; the orange part of your logo, shown in the page header
     #
     # TODO: To add a tag image, uncomment and update as needed.
@@ -122,8 +121,7 @@ html_context = {
     # Your Mattermost channel URL
     #
     # TODO: Change to your Mattermost channel URL or leave empty.
-    "mattermost":
-    "",
+    "mattermost": "https://chat.canonical.com/canonical/channels/kernel",
     # Your Matrix channel URL
     #
     # TODO: Change to your Matrix channel URL or leave empty.
@@ -138,15 +136,21 @@ html_context = {
     # Docs branch in the repo; used in links for viewing the source files
     #
     # TODO: To customise the branch, uncomment and update as needed.
-    # 'github_version': 'main',
+    'repo_default_branch': 'main',
     # Docs location in the repo; used in links for viewing the source files
     #
-    # TODO: To customise the directory, uncomment and update as needed.
-    "github_folder": "/docs/",
 
+
+    # TODO: To customise the directory, uncomment and update as needed.
+    "repo_folder": "/docs/",
     # TODO: To enable or disable the Previous / Next buttons at the bottom of pages
     # Valid options: none, prev, next, both
-    "sequential_nav": "both"
+    # "sequential_nav": "both",
+    # TODO: To enable listing contributors on individual pages, set to True
+    "display_contributors": False,
+
+    # Required for feedback button    
+    'github_issues': 'enabled',
 }
 
 # Project slug; see https://meta.discourse.org/t/what-is-category-slug/87897
@@ -178,6 +182,9 @@ templates_path = [".sphinx/_templates"]
 
 redirects = {
     "reference/patch_acceptance_criteria/index.html": "../patch-acceptance-criteria/",
+    "how-to/develop-customize/": "how-to/develop-customise/",
+    "how-to/develop-customize/build-kernel/": "how-to/develop-customise/build-kernel/",
+    "how-to/develop-customize/build-kernel-snap/": "how-to/develop-customise/build-kernel-snap/",
 }
 
 
@@ -192,7 +199,7 @@ redirects = {
 linkcheck_ignore = [
     "http://127.0.0.1:8000",
     "https://github.com/canonical/ACME/*"
-]
+    ]
 
 
 # A regex list of URLs where anchors are ignored by 'make linkcheck'
@@ -203,6 +210,9 @@ linkcheck_anchors_ignore_for_url = [
     r"https://snapcraft.io/docs/",
     ]
 
+# give linkcheck multiple tries on failure
+# linkcheck_timeout = 30
+linkcheck_retries = 3
 
 ########################
 # Configuration extras #
@@ -215,6 +225,7 @@ linkcheck_anchors_ignore_for_url = [
 #       substitution, deflist, linkify
 
 # myst_enable_extensions = set()
+
 
 # Custom Sphinx extensions; see
 # https://www.sphinx-doc.org/en/master/usage/extensions/index.html
@@ -238,7 +249,6 @@ extensions = [
     "canonical_sphinx",
     "sphinxcontrib.cairosvgconverter",
 ]
-
 
 # Excludes files or directories from processing
 
@@ -292,37 +302,16 @@ rst_prolog = """
    :class: align-center
 .. role:: h2
     :class: hclass2
+.. role:: woke-ignore
+    :class: woke-ignore
+.. role:: vale-ignore
+    :class: vale-ignore
 """
 
 # Workaround for https://github.com/canonical/canonical-sphinx/issues/34
 
 if "discourse_prefix" not in html_context and "discourse" in html_context:
     html_context["discourse_prefix"] = html_context["discourse"] + "/t/"
-
-#####################
-# PDF configuration #
-#####################
-
-latex_additional_files = [
-    "./.sphinx/fonts/Ubuntu-B.ttf",
-    "./.sphinx/fonts/Ubuntu-R.ttf",
-    "./.sphinx/fonts/Ubuntu-RI.ttf",
-    "./.sphinx/fonts/UbuntuMono-R.ttf",
-    "./.sphinx/fonts/UbuntuMono-RI.ttf",
-    "./.sphinx/fonts/UbuntuMono-B.ttf",
-    "./.sphinx/images/Canonical-logo-4x.png",
-    "./.sphinx/images/front-page-light.pdf",
-    "./.sphinx/images/normal-page-footer.pdf",
-]
-
-latex_engine = "xelatex"
-latex_show_pagerefs = True
-latex_show_urls = "footnote"
-
-with open(".sphinx/latex_elements_template.txt", "rt") as file:
-    latex_config = file.read()
-
-latex_elements = ast.literal_eval(latex_config.replace("$PROJECT", project))
 
 ######################
 # DOCX configuration #
