@@ -1,7 +1,7 @@
 # Tutorial: Crank your first kernel
 
 Cranking an Ubuntu kernel is the process of applying patches and updates to an existing Ubuntu kernel, packaging it, and preparing it for testing.
-All this is done using the [cranky](https://kernel.ubuntu.com/gitea/kernel/kteam-tools/src/branch/master/cranky) toolchain.
+All this is done using the [cranky](https://kernel.ubuntu.com/forgejo/kernel/kteam-tools/src/branch/master/cranky) toolchain.
 
 In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Google cloud kernel (codename `linux-gke`) from the "s2024.12.02" cycle.
 This starts our kernel at version "6.8.0-1017.21", from which we will create a new version "6.8.0-1018.22".
