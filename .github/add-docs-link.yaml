@@ -6,7 +6,7 @@ on:
       - opened
 
 jobs:
-  comment:
+  rtd_build_link:
     runs-on: ubuntu-latest
     steps:
       - name: Add PR comment with doc link
