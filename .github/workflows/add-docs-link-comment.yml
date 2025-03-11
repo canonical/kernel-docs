@@ -15,7 +15,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.payload.pull_request.number;
-            const commentBody = `Link to docs build: https://canonical-kteam-docs--${prNumber}.com.readthedocs.build/en/${prNumber}/`;
+            const commentBody = `Link to docs build: https://canonical-kernel-docs--${prNumber}.com.readthedocs.build/en/${prNumber}/`;
             
             github.rest.issues.createComment({
               owner: context.repo.owner,
