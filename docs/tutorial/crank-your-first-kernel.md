@@ -7,7 +7,7 @@ In this tutorial, we will crank a 24.04 LTS (Noble Numbat) (codename `noble`) Go
 This starts our kernel at version "6.8.0-1017.21", from which we will create a new version "6.8.0-1018.22".
 
 ```{tip}
- Keep these codenames and cycle name handy for future commands.
+Take note of the codenames and cycle name; we will need them for other commands in this tutorial.
 ```
 
 ## Prerequisites
