@@ -28,5 +28,3 @@ matrix:
             - img
             - a.p-navigation__link
             - a.contributor
-      - pyspelling.filters.context:
-          escapes: '\\bhttps?://[^\\s]+\\b'

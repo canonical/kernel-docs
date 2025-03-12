@@ -9,7 +9,7 @@ kernel packages and components.
 :hidden:
 
 Source code access and management </how-to/source-code/index>
-Development and customization </how-to/develop-customize/index>
+Development and customization </how-to/develop-customise/index>
 Test kernels in -proposed </how-to/testing-verification/test-kernel-in-proposed>
 Contribute to kernel docs </how-to/contribute>
 ```
@@ -27,8 +27,8 @@ tree to build custom kernel modules, and more.
 The steps to build a kernel is similar but may have slightly difference
 configuration requirements on different platforms and/or architectures.
 
-- [Build an Ubuntu Linux kernel](/how-to/develop-customize/build-kernel)
-- [Build an Ubuntu Linux kernel snap](/how-to/develop-customize/build-kernel-snap)
+- [Build an Ubuntu Linux kernel](/how-to/develop-customise/build-kernel)
+- [Build an Ubuntu Linux kernel snap](/how-to/develop-customise/build-kernel-snap)
 
 ## Testing and verification
 
