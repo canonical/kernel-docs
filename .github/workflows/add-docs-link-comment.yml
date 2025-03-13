@@ -1,4 +1,4 @@
-name: Add PR comment
+name: Comment link to ReadTheDocs build
 
 on:
   pull_request:
