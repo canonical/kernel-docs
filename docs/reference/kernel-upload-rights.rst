@@ -104,9 +104,11 @@ Once your application has been prepared and you are ready to be screened,
 send an email to the `Ubuntu kernel-team mailing list`_ requesting your
 application be reviewed.
 
-You will then get a notification from the team about the scheduled IRC meeting
-(#ubuntu-kernel channel at irc.libera.chat) where you will be interviewed and a
-vote regarding your membership will be taken. 
+You will then get a notification from the team about the scheduled Matrix
+meeting (`Ubuntu Kernel room`_ at matrix:ubuntu.com) where you will be
+interviewed and a vote regarding your membership will be taken.
+
+.. _Ubuntu Kernel room: https://matrix.to/#/#kernel:ubuntu.com
 
 As part of the interview you will be asked to briefly introduce yourself, so
 prepare a 2-3 line introduction beforehand to speed up the process. Only
