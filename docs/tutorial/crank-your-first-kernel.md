@@ -110,8 +110,6 @@ You should observe something similar in the output terminal:
 
 ```{terminal}
 :input: cranky rebase -b Ubuntu-6.8.0-53.55
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -146,8 +144,6 @@ You should observe something similar in the output terminal:
 
 ```{terminal}
 :input: cranky open
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -165,8 +161,6 @@ Run `git show` to verify that this new commit starts with "UBUNTU: Start new rel
 
 ```{terminal}
 :input: git show
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -196,8 +190,6 @@ Use `git show <commit-hash>` to view the changes.
 
 ```{terminal}
 :input: cranky review-master-changes
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -245,8 +237,6 @@ But since we used the `--dry-run` option for this tutorial, no changes are made 
 
 ```{terminal}
 :input: cranky link-tb --sru-cycle s2024.12.02 --dry-run
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -268,8 +258,6 @@ Since no changes are needed at this time, you should observe the following outpu
 
 ```{terminal}
 :input: cranky update-dkms-versions
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -299,8 +287,6 @@ You should observe a similar error in the terminal output stating that there wer
 ```{terminal}
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :input: cranky close
-:user: kernel-engineer
-:host: ubuntu-machine
 :scroll:
 
 [...]
@@ -413,8 +399,6 @@ You should see the build progress for each architecture with either `BUILDING` o
 
 ```{terminal}
 :input: ssh cbd ls kernelengineer-noble-6c9a5055b22f-szkb
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -453,8 +437,6 @@ If the build is successful, you should find several .deb binary package files in
 
 ```{terminal}
 :input: ls ../
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -493,8 +475,6 @@ You see should something similar returned in the terminal output since we are ov
 
 ```{terminal}
 :input: cranky tags -f
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -527,8 +507,6 @@ The results for the sanity check should look similar to the output below:
 
 ```{terminal}
 :input: cranky verify-release-ready
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :scroll:
 
@@ -588,8 +566,6 @@ cranky pull-source linux-meta-gke '6.8.0-1017.21'
 If successful, you should have these files in the {file}`linux-gke` directory.
 
 ```{terminal}
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke
 :input: ls *6.8.0-1017.21*
 :scroll:
@@ -614,8 +590,6 @@ cranky build-sources
 Check that you have the following artefacts in the {file}`linux-gke` directory:
 
 ```{terminal}
-:user: kernel-engineer
-:host: ubuntu-machine
 :dir: ~/canonical/kernel/ubuntu/noble/linux-gke/linux-main (cranky/master-next-s2024.12.02)
 :input: cd ../ && ls *6.8.0-1018.22*
 :scroll:
