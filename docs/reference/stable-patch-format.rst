@@ -306,6 +306,9 @@ Stable patches must be sent to kernel-team@lists.ubuntu.com.
 Once the patch receives two "Acked-by" replies from members of the Ubuntu
 Kernel Team, it will be merged.
 
+
+.. _ref-stable-patch-format-series-example:
+
 Patch series example
 --------------------
 
