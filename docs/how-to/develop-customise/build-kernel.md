@@ -127,6 +127,13 @@ configuration files related to the Ubuntu kernel package.
 You will need to explicitly respond with {kbd}`Y` or {kbd}`N` when making any
 config changes to avoid getting errors later in the build process.
 
+```{note}
+If you do not have the compiler toolchain installed for each architecture
+supported by the kernel being configured, you'll see errors that the configs
+for these uninstalled architectures are missing. These can be ignored as long
+as you don't intend to build binaries for those architectures.
+```
+
 ## Customize the kernel
 
 (Optional) Add any firmware, binary blobs, or patches as needed.
