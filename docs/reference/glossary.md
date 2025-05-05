@@ -60,6 +60,10 @@ linux-signed
   deployment process. This package works in tandem with the linux-meta package
   to deliver signed kernel updates.
 
+respin
+  A kernel respin is a rebuild of a kernel package in the same kernel SRU cycle
+  to incorporate fixes or important updates.
+
 OEM kernel
   ```{include} /reuse/oem-kernels.txt
   :start-after: overview-oem-kernel-start
