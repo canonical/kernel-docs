@@ -26,8 +26,8 @@ The tags used in this example show that this patch set is targeting the
 following kernels for an SRU update: *oracular*, *noble*, and
 *jammy:linux-azure*.
 
-Sending a new version of a patchset
-===================================
+Send a new version of a patchset
+================================
 
 Mistakes happens, we are all humans. If you want to send a new version of your
 patchset that fixes some issues, you can use the ``-v,--reroll-count`` option:
