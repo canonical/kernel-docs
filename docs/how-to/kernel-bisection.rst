@@ -143,8 +143,8 @@ What do I need to build and commit bisect Ubuntu kernels?
 
 The rest of this page assumes that you know how to fetch a kernel from
 the Ubuntu git repository, build it, and bisect it. If you can't do that
-yet, try starting with `this wiki
-page <https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel>`__. As well,
+yet, try starting with :doc:`this wiki
+page <develop-customise/build-kernel>`. As well,
 one may want to familiarize themselves with git bisect via a terminal:
 
 .. code:: shell
@@ -308,8 +308,8 @@ Do not commit the change you just made to the changelog into your local
 git repo. There's no need and it makes it harder to build subsequent
 tests.
 
-Now `build the
-kernel <https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel>`__. You can
+Now :doc:`build the
+kernel <develop-customise/build-kernel>`. You can
 use a PPA, but it will probably take a lot longer to build.
 
 Getting test results
@@ -662,6 +662,8 @@ Proposed repository following the instructions from
 However, if the linux kernel from the Proposed repository doesn't fix
 your issue, the next step is reverse bisecting upstream kernel versions.
 
+.. _commit_bisecting_upstream_kernel_versions:
+
 Reverse bisecting upstream kernel versions
 ------------------------------------------
 
@@ -728,7 +730,7 @@ Reverse commit bisecting upstream kernel versions
 -------------------------------------------------
 
 Now one will utilize the git skills learned
-`above <https://wiki.ubuntu.com/Kernel/KernelBisection#Commit_bisecting_upstream_kernel_versions>`__
+above (:ref:`commit_bisecting_upstream_kernel_versions`)
 in a slightly different way. This is due to how git was designed with
 forward bisections in mind. However, one may utilize git to accomplish a
 reverse bisect. So, once Linus's development tree has been cloned:
