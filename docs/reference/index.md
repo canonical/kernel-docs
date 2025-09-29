@@ -36,6 +36,13 @@ dkms-upload-rights
 ```
 
 ```{toctree}
+:maxdepth: 2
+:caption: Snap Lifecycle
+
+snap-lifecycle
+```
+
+```{toctree}
 :maxdepth: 1
 :caption: General
 
