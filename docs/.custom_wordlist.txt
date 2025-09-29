@@ -4,8 +4,10 @@ ACKs
 AppArmor
 backport
 backported
+bootable
 enablement
 gitea
+initramfs
 kconfig
 LEDs
 master
@@ -20,7 +22,9 @@ rebases
 respin
 respins
 selftests
+signoff
 subtree
 unported
+UKIs
 UKN
 ZFS
