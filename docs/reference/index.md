@@ -19,11 +19,12 @@ more.
 
 ```{toctree}
 :maxdepth: 1
-:caption: Kernel variants
+:caption: Kernel variants and snaps
 
 ubuntu-kernels
 hwe-kernels
 oem-kernels
+snap-lifecycle
 ```
 
 ```{toctree}
