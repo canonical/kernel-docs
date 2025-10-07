@@ -20,7 +20,7 @@ Specify the targeted series with the ``--subject-prefix`` option:
 
 .. code-block:: shell
 
-    $ git send-email --subject-prefix="SRU][o/n/j:linux-azure][PATCH" ...
+    git send-email --subject-prefix="SRU][o/n/j:linux-azure][PATCH" ...
 
 The tags used in this example show that this patch set is targeting the
 following kernels for an SRU update: *oracular*, *noble*, and
@@ -34,7 +34,7 @@ patchset that fixes some issues, you can use the ``-v,--reroll-count`` option:
 
 .. code-block:: shell
 
-    $ git send-email --subject-prefix=... -v 2
+    git send-email --subject-prefix=... -v 2
 
 This will generate ``[PATCH v2]`` instead of just ``[PATCH]`` to indicate that
 this is a new revision of a patchset.
