@@ -12,6 +12,18 @@ send-email`` command.
     ``git-send-email`` but ``git-format-patch`` instead. They however work the
     same.
 
+One may want to create a specific identity for keeping common settings when
+sending kernel patches. The commonly used settings are:
+
+.. code-block:: shell
+
+    git config set sendemail.ubuntu-kernel.chainReplyTo false
+    git config set sendemail.ubuntu-kernel.suppresscc true
+    git config set sendemail.ubuntu-kernel.thread true
+
+    # And then include these settings with `--identity=ubuntu-kernel`
+    git send-email --identity=ubuntu-kernel ...
+
 Specify series
 ==============
 
