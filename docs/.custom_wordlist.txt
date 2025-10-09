@@ -3,6 +3,7 @@ abi
 ack'd
 Ack'd
 Ack's
+ACK's
 Acked
 amd
 backport
@@ -56,14 +57,18 @@ Mantic
 metapackage
 mofed
 motu
+NACK
 Nack'd
+NAK
 oem
+OOPs
 otf
 packageset
 PaoloPisati
 patchset
 PerPackageUploaderApplication
 plantuml
+PPA
 PPAs
 PPUApplicationTemplate
 repo
@@ -81,6 +86,7 @@ Tahr
 tex
 texlive
 TOC
+toolchain
 txt
 ubuntu
 UC
