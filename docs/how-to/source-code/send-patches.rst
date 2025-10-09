@@ -12,6 +12,18 @@ send-email`` command.
     ``git-send-email`` but ``git-format-patch`` instead. They however work the
     same.
 
+You may want to create a specific identity for keeping common settings when
+sending kernel patches. The commonly used settings are:
+
+.. code-block:: shell
+
+    git config set sendemail.ubuntu-kernel.chainReplyTo false
+    git config set sendemail.ubuntu-kernel.suppresscc true
+    git config set sendemail.ubuntu-kernel.thread true
+
+    # And then include these settings with `--identity=ubuntu-kernel`
+    git send-email --identity=ubuntu-kernel ...
+
 Specify series
 ==============
 
@@ -20,34 +32,35 @@ Specify the targeted series with the ``--subject-prefix`` option:
 
 .. code-block:: shell
 
-    $ git send-email --subject-prefix="SRU][o/n/j:linux-azure][PATCH" ...
+    git send-email --subject-prefix="SRU][O/N/J:linux-azure][PATCH" ...
 
-The tags used in this example show that this patch set is targeting the
+The tags used in this example show that this patchset is targeting the
 following kernels for an SRU update: *oracular*, *noble*, and
 *jammy:linux-azure*.
 
 Send a new version of a patchset
 ================================
 
-Mistakes happens, we are all humans. If you want to send a new version of your
-patchset that fixes some issues, you can use the ``-v,--reroll-count`` option:
+Mistakes happen; we are all human. If you want to send a new version of your
+patchset that fixes some issues, you can use the ``-v, --reroll-count`` option:
 
 .. code-block:: shell
 
-    $ git send-email --subject-prefix=... -v 2
+    git send-email --subject-prefix=... -v 2
 
 This will generate ``[PATCH v2]`` instead of just ``[PATCH]`` to indicate that
 this is a new revision of a patchset.
 
 You should first make sure that your original patchset was rejected by having a
-NAK/NACK in its thread. You can reply to this email saying that you will send a
-new version of the patchset. If you found out a mistake you made, you can NAK
-and say that you will send a new version in the same email.
+NAK/NACK in its thread. You can reply to the email saying that you will send a
+new version of the patchset.
 
-In the cover letter of the new patchset, you should describe what was changed
-compared to the previous submitted version.
+If you found a mistake you made, you can NAK and say that you will send a new
+version in the same email.
 
-See also
-========
+In the cover letter of the new patchset, describe what was changed compared
+to the previous submitted version.
 
-- (Reference) :ref:`ubuntu-patches-acceptance-criteria`
+.. seealso::
+
+   - (Reference) :ref:`ubuntu-patches-acceptance-criteria`
