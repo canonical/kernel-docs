@@ -59,7 +59,7 @@ targeted to the kernels and series that the patch is aiming to lend.
 
 The bug description must follow the `SRU template`_.
 
-.. _SRU template: https://canonical-sru-docs.readthedocs-hosted.com/en/latest/reference/bug-template/
+.. _SRU template: https://documentation.ubuntu.com/sru/en/latest/reference/bug-template/
 
 See `this example Launchpad bug`_.
 
@@ -98,7 +98,7 @@ SRU cover letter
 
 The patch should come with a *cover letter* that has both a short link to the
 SRU bug and a copy of the *SRU Justification* from the bug. It can be generated
-using the ``--cover-letter`` option of the git-send-email_ command.
+using the ``--cover-letter`` option of the :manpage:`git-send-email(1)` command.
 
 Example cover letter::
 
@@ -159,18 +159,22 @@ Source
 
 The patches should have a *cherry picked from* or *backported from* line with
 the appropriate sha from the upstream. It can be generated using the
-``-x`` option of the git-cherry-pick_ command. This line should appear just
-before your *Signed-off-by*::
+``-x`` option of the :manpage:`git-cherry-pick(1)` command.
+This line should appear just before your *Signed-off-by* line.
 
-    (cherry picked from commit 622f21994506e1dac7b8e4e362c8951426e032c5)
+.. code-block:: text
 
-::
+   (cherry picked from commit 622f21994506e1dac7b8e4e362c8951426e032c5)
 
-    (backported from commit 622f21994506e1dac7b8e4e362c8951426e032c5)
+.. code-block:: text
 
-In case the upstream source is linux-next, you should explicit it::
+   (backported from commit 622f21994506e1dac7b8e4e362c8951426e032c5)
 
-    (cherry picked from commit 622f21994506e1dac7b8e4e362c8951426e032c5 linux-next)
+In case the upstream source is linux-next, you should explicit state it.
+
+.. code-block:: text
+
+   (cherry picked from commit 622f21994506e1dac7b8e4e362c8951426e032c5 linux-next)
 
 In case the upstream source is one of the stable trees, you should indicate
 which one the commit belongs to::
@@ -194,7 +198,7 @@ Signed-off-by
 
 The patches must have your Signed-off-by (SoB) as the last line, after the
 upstream cherry-picked line. It can be generated using the ``-s`` option of the
-git-cherry-pick_ command.
+:manpage:`git-cherry-pick(1)` command.
 
 If the patch is from yourself and already has your SoB, a new SoB must be
 added.
@@ -309,6 +313,3 @@ Lack of time
 Maintaining these patches, with all the arguments from above, will be
 time-consuming on our side, and we don’t have the resources to both do this
 and deliver a stable Linux OS
-
-.. _git-cherry-pick: https://manpages.ubuntu.com/manpages/trusty/en/man1/git-cherry-pick.1.html
-.. _git-send-email: https://manpages.ubuntu.com/manpages/trusty/en/man1/git-send-email.1.html

@@ -52,7 +52,7 @@ repository.
 
 For general guidance, refer to the [starter pack guide](https://canonical-starter-pack.readthedocs-hosted.com/latest/).
 
-For syntax help and guidelines, refer to the [Canonical style guides](https://canonical-documentation-with-sphinx-and-readthedocscom.readthedocs-hosted.com/).
+For syntax help and guidelines, refer to the [Canonical documentation style guides](https://docs.ubuntu.com/styleguide/en/).
 
 In structuring, the documentation employs the [Diátaxis](https://diataxis.fr/) approach.
 
@@ -236,8 +236,8 @@ Thank you, and looking forward to your contributions!
 
 <!-- LINKS -->
 
-[Ubuntu Code of Conduct]: https://ubuntu.com/community/ethos/code-of-conduct
-[Canonical contributor license agreement]: https://ubuntu.com/legal/contributors
+[Ubuntu Code of Conduct]: https://ubuntu.com/community/docs/ethos/code-of-conduct
+[Canonical contributor license agreement]: https://canonical.com/legal/contributors
 [Canonical's Sphinx starter pack]: https://github.com/canonical/sphinx-docs-starter-pack
 [Read the Docs]: https://about.readthedocs.com/
 [Kernel documentation GitHub repository]: https://github.com/canonical/kernel-docs

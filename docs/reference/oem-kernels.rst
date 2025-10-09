@@ -131,9 +131,9 @@ Related topics
 
 .. LINKS
 
-.. _linux-oem-6.5: https://kernel.ubuntu.com/gitea/kernel/jammy-linux-oem/src/branch/oem-6.5-next
-.. _linux-oem-6.8: https://kernel.ubuntu.com/gitea/kernel/noble-linux-oem/src/branch/oem-6.8-next
-.. _linux-oem-6.11: https://kernel.ubuntu.com/gitea/kernel/noble-linux-oem/src/branch/oem-6.11-next
+.. _linux-oem-6.5: https://kernel.ubuntu.com/forgejo/kernel/jammy-linux-oem/src/branch/oem-6.5-next
+.. _linux-oem-6.8: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/src/branch/oem-6.8-next
+.. _linux-oem-6.11: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/src/branch/oem-6.11-next
 .. _Stable Updates Cycles: https://kernel.ubuntu.com/
-.. _jammy-linux-oem: https://kernel.ubuntu.com/gitea/kernel/jammy-linux-oem/pulls
-.. _noble-linux-oem: https://kernel.ubuntu.com/gitea/kernel/noble-linux-oem/pulls
+.. _jammy-linux-oem: https://kernel.ubuntu.com/forgejo/kernel/jammy-linux-oem/pulls
+.. _noble-linux-oem: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/pulls

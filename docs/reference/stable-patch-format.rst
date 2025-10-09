@@ -392,4 +392,4 @@ Related topics
 .. _The Ubuntu lifecycle and release cadence: https://ubuntu.com/about/release-cycle
 .. _Discourse - Kernel configuration in Ubuntu: https://discourse.ubuntu.com/t/kernel-configuration-in-ubuntu/35857
 .. _KernelTeam/KernelUpdates: https://wiki.ubuntu.com/KernelTeam/KernelUpdates
-.. _ubuntu-check-commit: https://kernel.ubuntu.com/gitea/actions/ubuntu-check-commit/src/branch/main/ubuntu-check-commit
+.. _ubuntu-check-commit: https://kernel.ubuntu.com/forgejo/actions/ubuntu-check-commit/src/branch/main/ubuntu-check-commit

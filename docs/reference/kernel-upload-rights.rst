@@ -105,10 +105,10 @@ send an email to the `Ubuntu kernel-team mailing list`_ requesting your
 application be reviewed.
 
 You will then get a notification from the team about the scheduled Matrix
-meeting (`Ubuntu Kernel room`_ at matrix:ubuntu.com) where you will be
-interviewed and a vote regarding your membership will be taken.
-
-.. _Ubuntu Kernel room: https://matrix.to/#/#kernel:ubuntu.com
+meeting -- in the Ubuntu Kernel room
+(:spellexception:`https://matrix.to/#/#kernel:ubuntu.com` at matrix:ubuntu.com
+-- where you will be interviewed and a vote regarding your membership will be
+taken.
 
 As part of the interview you will be asked to briefly introduce yourself, so
 prepare a 2-3 line introduction beforehand to speed up the process. Only
@@ -122,5 +122,5 @@ ubuntu-kernel-uploaders team by an administrator.
 
 .. _devel-permissions mailing lists: https://lists.ubuntu.com/mailman/listinfo/devel-permissions
 .. _ubuntu-kernel-uploaders: https://launchpad.net/~ubuntu-kernel-uploaders
-.. _Ubuntu kernel git repositories: http://kernel.ubuntu.com/git
+.. _Ubuntu kernel git repositories: https://kernel.ubuntu.com/git
 .. _Ubuntu kernel-team mailing list: https://lists.ubuntu.com/mailman/listinfo/kernel-team
