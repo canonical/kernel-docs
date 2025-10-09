@@ -43,7 +43,8 @@ new users
 
 ```{grid-item-card} [Reference](/reference/index)
 
-**Technical information** - specifications, APIs, architecture
+**Reference information** about submitting patches and their criteria, and
+other processes related to Ubuntu kernels.
 ```
 
 ```{grid-item-card} [Explanation](/explanation/index)
@@ -62,12 +63,8 @@ Kernel documentation is a member of the Ubuntu family. It’s an open source
 documentation project that warmly welcomes community contributions, suggestions,
 fixes and constructive feedback.
 
-* [Code of conduct](https://ubuntu.com/community/ethos/code-of-conduct)
-* Get support
-* Join our online chat
+* [Code of conduct](https://ubuntu.com/community/docs/ethos/code-of-conduct)
 * [Contribute to kernel docs](/how-to/contribute)
-* Roadmap
-* Thinking about using Example Product for your next project? Get in touch!
 
 ```{toctree}
 :hidden:
