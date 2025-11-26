@@ -15,6 +15,7 @@ more.
 :maxdepth: 1
 :caption: Kernel variants
 
+ubuntu-kernels
 hwe-kernels
 oem-kernels
 ```
