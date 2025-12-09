@@ -40,7 +40,7 @@ In addition to the generic {term}`SRU` requirements, the Ubuntu Kernel team will
   for upstream stable).
 
   - For fixes for serious issues, the patch should be sent to the [kernel-team mailing list] in parallel to being submitted upstream.
-    SRU patches submitted for inclusion into an Ubuntu kernel require ACK's from at least two senior Ubuntu Kernel team members before being applied to an Ubuntu kernel tree.
+    SRU patches submitted for inclusion into an Ubuntu kernel require ACKs from at least two senior Ubuntu Kernel team members before being applied to an Ubuntu kernel tree.
     Again, even when going into an Ubuntu kernel tree on an accelerated path, the patch should also be submitted upstream.
     See the {ref}`Stable patch format example <ref-stable-patch-format-series-example>` for more information.
 

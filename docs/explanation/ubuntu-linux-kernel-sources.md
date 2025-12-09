@@ -42,6 +42,7 @@ You will find the following branches in each Ubuntu kernel source repository.
   branch for the next stable release update (SRU) for the series.
 
 (exp-ubuntu-kernel-source-protocols)=
+
 ## Protocols for accessing kernel sources
 
 | Protocol | Authentication needed? | Use case | Command sample |

@@ -89,6 +89,7 @@ See the {doc}`Ubuntu patch acceptance criteria </reference/patch-acceptance-crit
 for more information.
 
 (exp-sru-kernel-respins)=
+
 ## SRU kernel respins
 
 A respin is a rebuild of a kernel package replacing a previous build. During

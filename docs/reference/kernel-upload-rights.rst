@@ -63,7 +63,7 @@ and meet the criteria listed below:
       multiple patches which were accepted over a six-month development cycle.
 
    b. Demonstrates an understanding of this process by having reviewed and
-      Ack'd/Nack'd multiple patches over a six-month development cycle.
+      :spellexception:`Ack'd/Nack'd` multiple patches over a six-month development cycle.
 
 2. A thorough understanding of the Ubuntu release cycle and associated
    milestone and freeze dates.
@@ -113,7 +113,7 @@ taken.
 As part of the interview you will be asked to briefly introduce yourself, so
 prepare a 2-3 line introduction beforehand to speed up the process. Only
 existing members of the ubuntu-kernel-uploaders team are allowed to vote. An
-applicant must receive a minimum of 3 Ack's in order to be added to the team. 
+applicant must receive a minimum of 3 :spellexception:`Acks` in order to be added to the team. 
 
 Once an applicant has successfully passed the application process, an
 announcement will be made to both the Ubuntu kernel-team and `devel-permissions

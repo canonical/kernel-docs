@@ -4,16 +4,9 @@ If you have patches you need to apply to the Ubuntu Linux kernel, or you want to
 change some kernel configs, you may need to build your kernel from source.
 Follow these steps to customize and build the Ubuntu Linux kernel.
 
-```{only} docx
-*__Important__: Kernels built using this method are not intended for use in
-production.
-```
-
-````{only} default
 ```{important}
 Kernels built using this method are not intended for use in production.
 ```
-````
 
 ## Prerequisites
 
@@ -28,6 +21,7 @@ need to {ref}`how-to-build-kernel-setup` and
 Otherwise, skip ahead to {ref}`how-to-build-kernel-obtain-source`.
 
 (how-to-build-kernel-setup)=
+
 ### Set up build environment
 
 To build an Ubuntu kernel, you will need to enable the necessary source
@@ -36,6 +30,7 @@ repositories in the `sources.list` or `ubuntu.sources` file.
 See {doc}`/how-to/source-code/enable-source-repositories` for details.
 
 (how-to-build-kernel-install-packages)=
+
 ### Install required packages
 
 To install the required packages and build dependencies, run:
@@ -47,6 +42,7 @@ sudo apt update && \
 ```
 
 (how-to-build-kernel-obtain-source)=
+
 ## Obtain the source for an Ubuntu release
 
 There are different ways to get the kernel sources, depending on the kernel
@@ -87,8 +83,7 @@ environment and the necessary scripts have execute permissions:
 
 ```{code-block} shell
 cd <kernel_source_working_directory>
-```
-```{code-block} shell
+
 chmod a+x debian/scripts/* && \
     chmod a+x debian/scripts/misc/* && \
     fakeroot debian/rules clean
@@ -144,25 +139,16 @@ You are now ready to build the kernel.
 
 ```{code-block} shell
 cd <kernel_source_working_directory>
-```
-```{code-block} shell
+
 fakeroot debian/rules clean && \
     fakeroot debian/rules binary
 ```
 
-```{only} docx
-*__Note__: Run `fakeroot debian/rules clean` to clean the build environment each
-time before you recompile the kernel after making any changes to the kernel
-source or configuration.*
-```
-
-````{only} default
 ```{note}
 Run `fakeroot debian/rules clean` to clean the build environment each time
 before you recompile the kernel after making any changes to the kernel source or
 configuration.
 ```
-````
 
 If the build is successful, several .deb binary package files will be produced
 in the directory one level above the kernel source working directory.

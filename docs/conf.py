@@ -1,6 +1,7 @@
 import datetime
 import ast
 import os
+import yaml
 
 # Configuration for the Sphinx documentation builder.
 # All configuration specific to your project should be done in this file.
@@ -145,7 +146,7 @@ html_context = {
     "repo_folder": "/docs/",
     # TODO: To enable or disable the Previous / Next buttons at the bottom of pages
     # Valid options: none, prev, next, both
-    # "sequential_nav": "both",
+    "sequential_nav": "both",
     # TODO: To enable listing contributors on individual pages, set to True
     "display_contributors": False,
 
@@ -161,10 +162,39 @@ html_context = {
 # slug = ''
 
 
+#######################
+# Sitemap configuration: https://sphinx-sitemap.readthedocs.io/
+#######################
+
+# Use RTD canonical URL to ensure duplicate pages have a specific canonical URL
+
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
+
+# URL scheme. Add language and version scheme elements.
+# When configured with RTD variables, check for RTD environment so manual runs succeed:
+
+if 'READTHEDOCS_VERSION' in os.environ:
+    version = os.environ["READTHEDOCS_VERSION"]
+    sitemap_url_scheme = '{version}{link}'
+else:
+    sitemap_url_scheme = 'MANUAL/{link}'
+
+# Include `lastmod` dates in the sitemap:
+
+sitemap_show_lastmod = True
+
+# Exclude generated pages from the sitemap:
+
+sitemap_excludes = [
+    '404/',
+    'genindex/',
+    'search/',
+]
+
 # Template and asset locations
 
-html_static_path = [".sphinx/_static"]
-templates_path = [".sphinx/_templates"]
+#html_static_path = [".sphinx/_static"]
+#templates_path = [".sphinx/_templates"]
 
 
 #############
@@ -247,21 +277,35 @@ linkcheck_retries = 3
 
 extensions = [
     "canonical_sphinx",
+    "notfound.extension",
+    "sphinx_design",
+    "sphinx_reredirects",
+    "sphinx_tabs.tabs",
+    "sphinxcontrib.jquery",
+    "sphinxext.opengraph",
+    "sphinx_config_options",
+    "sphinx_contributor_listing",
+    "sphinx_filtered_toctree",
+    "sphinx_related_links",
+    "sphinx_roles",
+    "sphinx_terminal",
+    "sphinx_ubuntu_images",
+    "sphinx_youtube_links",
     "sphinxcontrib.cairosvgconverter",
+    "sphinx_last_updated_by_git",
+    "sphinx.ext.intersphinx",
+    "sphinx_sitemap",
 ]
 
 # Excludes files or directories from processing
 
-exclude_patterns = [
-    "doc-cheat-sheet*",
-    "how-to-backup/*",
-]
+#exclude_patterns = [""]
 
 # Adds custom CSS files, located under 'html_static_path'
 
-html_css_files = [
-    "css/pdf.css",
-]
+#html_css_files = [
+#    "css/pdf.css",
+#]
 
 
 # Adds custom JavaScript files, located under 'html_static_path'
@@ -290,7 +334,7 @@ rst_epilog = """
 #       adds a link to the corresponding man section at the bottom of the page.
 
 manpages_url = (
-    "https://manpages.ubuntu.com/manpages/noble/en/"
+    "https://manpages.ubuntu.com/manpages/resolute/en/"
     + "man{section}/{page}.{section}.html"
 )
 
@@ -313,26 +357,3 @@ rst_prolog = """
 
 if "discourse_prefix" not in html_context and "discourse" in html_context:
     html_context["discourse_prefix"] = html_context["discourse"] + "/t/"
-
-######################
-# DOCX configuration #
-######################
-
-docx_documents = [
-    ('index', 'docxbuilder.docx', {
-         'title': 'Docxbuilder documentation',
-         'created': 'author',
-         'subject': 'Sphinx builder extension',
-         'keywords': ['sphinx']
-     }, 'true'),
-]
-
-##############
-# Tags setup #
-##############
-
-if ('DEFAULT' in os.environ) and (os.environ['DEFAULT'] == 'True'):
-    tags.add('default')
-else:
-    os.environ['DEFAULT'] = 'False'
-    tags.add('docx')

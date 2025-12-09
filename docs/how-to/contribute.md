@@ -33,7 +33,7 @@ remains the copyright owner of their code (no copyright assignment occurs).
 
 ## Environment setup
 
-Kernel documentation is built on top of [Canonical's Sphinx starter pack] and
+Kernel documentation is built on top of the [Canonical Sphinx starter pack] and
 hosted on [Read the Docs].
 
 To work on the project, you will need to have Python, `python3.12-venv`, and
@@ -50,7 +50,7 @@ sudo apt install python3.12-venv
 The documentation source files are stored in the `docs` directory of the
 repository.
 
-For general guidance, refer to the [starter pack guide](https://canonical-starter-pack.readthedocs-hosted.com/latest/).
+For general guidance, refer to the [starter pack guide](https://canonical-starter-pack.readthedocs-hosted.com/).
 
 For syntax help and guidelines, refer to the [Canonical documentation style guides](https://docs.ubuntu.com/styleguide/en/).
 
@@ -133,6 +133,7 @@ Such structure makes it easier to review contributions and simplifies porting
 fixes to other branches.
 
 (how-to-contribute-sign-off-commits)=
+
 ### Sign off on commits
 
 All changes that go into the Kernel documentation repository need to be signed
@@ -238,7 +239,7 @@ Thank you, and looking forward to your contributions!
 
 [Ubuntu Code of Conduct]: https://ubuntu.com/community/docs/ethos/code-of-conduct
 [Canonical contributor license agreement]: https://canonical.com/legal/contributors
-[Canonical's Sphinx starter pack]: https://github.com/canonical/sphinx-docs-starter-pack
+[Canonical Sphinx starter pack]: https://github.com/canonical/sphinx-docs-starter-pack
 [Read the Docs]: https://about.readthedocs.com/
 [Kernel documentation GitHub repository]: https://github.com/canonical/kernel-docs
 [pull request (PR)]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork

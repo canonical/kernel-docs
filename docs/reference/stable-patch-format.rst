@@ -129,7 +129,7 @@ Comment body
 ^^^^^^^^^^^^
 
 #. Every patch associated with a Launchpad bug must have a link to the bug in
-   the commit's comment section in the form of a "BugLink" block.
+   the comment section of the commit, in the form of a "BugLink" block.
 
    A "BugLink" block must immediately follow the subject line and be the first
    text in the body of the commit comment. A "BugLink" block consists of:

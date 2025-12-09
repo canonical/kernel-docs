@@ -5,16 +5,9 @@ kernel, you will need a kernel snap.
 
 This guide shows how to build a kernel snap for local development and testing.
 
-```{only} docx
-*__Important__: Kernel snaps built using this method are not intended for use in
-production.*
-```
-
-````{only} default
 ```{important}
 Kernel snaps built using this method are not intended for use in production.
 ```
-````
 
 ## Prerequisites
 
@@ -26,21 +19,13 @@ repositories)
 - A build machine running Ubuntu
 - A device running an Ubuntu Core image with "dangerous" model assertion grade
 to install the custom kernel snap
-  ````{only} default
+
   ```{note}
   The Ubuntu version of the build host must match the version of the device
   where the kernel snap will be installed.
   For example, use an Ubuntu 22.04 (Jammy) host to build the kernel snap for an
   Ubuntu Core 22 device.  
   See [Snap - Build environment options] for more information.
-  ```
-  ````
-  ```{only} docx
-  *__Note__: The Ubuntu version of the build host must match the version of the
-  device where the kernel snap will be installed.
-  For example, use an Ubuntu 22.04 (Jammy) host to build the kernel snap for an
-  Ubuntu Core 22 device.  
-  See [Snap - Build environment options] for more information.*
   ```
 
 ## Set up build environment
@@ -69,40 +54,6 @@ Configure the package source repositories for the host architecture by
 specifying the architecture (e.g. "[arch=amd64]" for x86-64 hosts) for each deb
 source list in the data sources file.
 
-````{only} docx
-+ Ubuntu 24.04 (Noble) and newer
-
-  Update the `/etc/apt/sources.list.d/ubuntu.sources` file.
-  For example, on a x86-64 host running Ubuntu 24.04 (Noble):
-
-  ```{code-block} text
-  :emphasize-lines: 6
-  [...]
-  Types: deb deb-src
-  URIs: http://archive.ubuntu.com/ubuntu
-  Suites: noble noble-updates noble-backports
-  Components: main universe restricted multiverse
-  Architectures: amd64
-  [...]
-  ```
-+ Ubuntu 23.10 (Mantic) and older
-
-  Update the `/etc/apt/sources.list` file.
-  For example, on a x86-64 host running Ubuntu 22.04 (Jammy):
-
-  ```{code-block} text
-  deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main restricted
-  ```
-
-  Alternatively, if you are running a default installation of Ubuntu, you can do
-  a global update of all sources in the {file}`/etc/apt/sources.list` file.
-
-  ```{code-block} shell
-  sudo sed -ie 's/deb http/deb [arch=amd64] http/g' /etc/apt/sources.list
-  ```
-````
-
-``````{only} default
 `````{tab-set}
 ````{tab-item} Ubuntu 24.04 (Noble) and newer
 
@@ -139,7 +90,6 @@ sudo sed -ie 's/deb http/deb [arch=amd64] http/g' /etc/apt/sources.list
 ```
 ````
 `````
-``````
 
 ### Add support for cross-compilation
 
@@ -161,7 +111,8 @@ running <code>dpkg &#45;\&#45;print-foreign-architectures</code>:
 ```{terminal}
 :user: user
 :host: host
-:input: dpkg --print-foreign-architectures
+
+dpkg --print-foreign-architectures
 
 arm64
 ```
@@ -240,14 +191,10 @@ You are now ready to build the kernel snap.
    snap install --dangerous --devmode <name>_<version>_<arch>.snap
    ```
 
-   ````{only} default
    ```{note}
    Local snaps can only be installed if the Ubuntu Core image on the target device was created with a model assertion that  specifies the "dangerous" grade.
    ```
-   ````
-   ```{only} docx
-   *__Note__: Local snaps can only be installed if the Ubuntu Core image on the target device was created with a model assertion that  specifies the "dangerous" grade.*
-   ```
+
 
 % LINKS
 [Ubuntu Wiki - Build your own kernel]: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel

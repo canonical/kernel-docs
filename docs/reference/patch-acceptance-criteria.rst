@@ -120,7 +120,7 @@ Example cover letter::
 
     Unknown regressions in the sound subsystem.
 
-    Maksym Glubokiy (1):
+    Kernel Engineer (1):
       ALSA: hda/realtek: fix mute/micmute LEDs for a HP EliteBook 645 G10
 
      sound/pci/hda/patch_realtek.c | 1 +
@@ -158,7 +158,7 @@ Source
 .. highlight:: text
 
 The patches should have a *cherry picked from* or *backported from* line with
-the appropriate sha from the upstream. It can be generated using the
+the appropriate :spellexception:`SHA` from the upstream. It can be generated using the
 ``-x`` option of the :manpage:`git-cherry-pick(1)` command.
 This line should appear just before your *Signed-off-by* line.
 

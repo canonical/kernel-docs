@@ -116,7 +116,6 @@ For other examples of kernel testing projects, see:
 - [Linux Test Project]
 - {spellexception}`[stress-ng]`
 
-
 ### Report regression bugs
 
 If you encounter a regression or bug while testing the kernel, please file a bug
