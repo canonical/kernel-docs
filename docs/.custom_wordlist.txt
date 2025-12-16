@@ -1,6 +1,7 @@
 
 ack'd
 ACKs
+AppArmor
 backport
 backported
 enablement
@@ -11,9 +12,15 @@ master
 metapackage
 packageset
 patchset
+patchsets
 PPAs
+RCs
+rebased
+rebases
 respin
 respins
 selftests
 subtree
 unported
+UKN
+ZFS
