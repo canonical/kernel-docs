@@ -96,15 +96,15 @@ They provide a way for LTS users to consume newer kernel versions and receive su
 
 When working with Ubuntu kernel repositories, you will primarily interact with two key branches.
 
-### `master` branch
+### `master-next`/`main-next` branches
 
-The `master` branch represents the current state of the kernel source as it exists in the `-updates` pocket of the Ubuntu archive.
-It contains the linear history of all the stable releases published for that kernel.
-
-### `master-next` branch
-
-The `master-next` branch serves as the staging area for the **next** Stable Release Update (SRU).
+The `master-next` or `main-next` branches serve as the staging area for the **next** Stable Release Update (SRU).
 
 * **Purpose:** Commits intended for the next update are applied here first after being reviewed and acknowledged by the Canonical Kernel Team.
   This branch will also contain commits for the kernel builds that are published for testing in the `-proposed` pocket of the Ubuntu archive.
 * **Flow:** Patches land in `master-next` for integration and testing before being promoted to `master` after the kernel SRU update is published to `-updates`.
+
+### `master`/`main` branches
+
+The `master` or `main` branches represent the current state of the kernel source as it exists in the `-updates` pocket of the Ubuntu archive.
+It contains the linear history of all the stable releases published for that kernel.
