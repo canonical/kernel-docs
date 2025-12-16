@@ -15,6 +15,14 @@ This document outlines the primary kernel trees, their roles in the development 
 Ubuntu releases every 6 months; therefore, the Canonical Kernel Team constantly works on the active Ubuntu development series to integrate the latest Linux kernel features for the release.
 The development kernels serve as the testing ground for new features, upstream updates, and partner integration before they reach the stable releases.
 
+The following table summarizes the main Ubuntu development kernels:
+
+| Kernel Tree        | Purpose                               | Stability          | Upstream Tracking                  | Notes                                          |
+|--------------------|-----------------------------------------|---------------------|------------------------------------|------------------------------------------------|
+| **linux-unstable** | Early integration & testing            | Highly volatile      | Tracks upstream RCs (frequent rebases) | Lack full Ubuntu integration (AppArmor, NVIDIA, ZFS, etc.) |
+| **Ubuntu Kernel Next** | Stable snapshot for integration work    | Moderately stable   | Snapshot of `linux-unstable`       | Read-only; used for partner/integration testing |
+| **linux**          | Ubuntu kernel               | Relatively stable  | Tracks upstream stable releases     | Becomes the GA kernel for the Ubuntu release   |
+
 ### The `linux-unstable` tree
 
 The [linux-unstable tree](<https://code.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/unstable>) represents the bleeding edge of Ubuntu kernel development.
@@ -27,15 +35,6 @@ It is a fast-moving target designed to track the latest upstream Linux developme
   It may still lack support for core components (e.g., AppArmor, NVIDIA drivers, ZFS, etc.) and is not guaranteed to have all features necessary to fully support an Ubuntu system.
 * **Availability:** As it usually does not have all core components necessary to run a full Ubuntu user-space, it is available only via development PPAs and not in the Ubuntu archive.
 
-### The `linux` tree
-
-Once a `linux-unstable` kernel version includes support for all core components and is deemed relatively stable, it is moved to the `linux` tree.
-
-* **Upstream alignment:** Similar to the `linux-unstable` tree, it usually follows the latest upstream release.
-  However, rebases are less frequent as some level of stability needs to be maintained.
-  During a development cycle, it is expected to be updated to all `major.minor` upstream releases until the last version available before the Ubuntu release GA.
-* **Purpose:** The `linux` kernel is the Ubuntu generic kernel which will be available as the default choice for most installations, and will be the base for all derivatives and custom kernels based on the same upstream `major.minor` version.
-
 ### Ubuntu Kernel Next (UKN)
 
 Because the `linux-unstable` kernel moves too fast for larger integration work, the Canonical Kernel Team maintains the [Ubuntu Kernel Next](<https://canonical-kteam-docs.readthedocs-hosted.com/public/reference/kernels/uknext/uknext.html>) tree.
@@ -44,6 +43,15 @@ UKN integration tree designed to bridge the gap between the volatility of `linux
 * **Workflow:** It is a periodic, read-only snapshot of `linux-unstable`.
 * **Integration:** It provides a stable code base for integration work into the next development kernel.
   Integration issues (e.g., conflicts) can be spotted and fixed earlier.
+
+### The `linux` tree
+
+Once a `linux-unstable` kernel version includes support for all core components and is deemed relatively stable, it is moved to the `linux` tree.
+
+* **Upstream alignment:** Similar to the `linux-unstable` tree, it usually follows the latest upstream release.
+  However, rebases are less frequent as some level of stability needs to be maintained.
+  During a development cycle, it is expected to be updated to all `major.minor` upstream releases until the last version available before the Ubuntu release GA.
+* **Purpose:** The `linux` kernel is the Ubuntu generic kernel which will be available as the default choice for most installations, and will be the base for all derivatives and custom kernels based on the same upstream `major.minor` version.
 
 ## Optimized kernels
 
