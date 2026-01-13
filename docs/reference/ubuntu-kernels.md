@@ -7,7 +7,7 @@ This document outlines the primary kernel trees, their roles in the development 
 
 ```{seealso}
 - See the list of {doc}`reference topics </reference/index>` for more technical details.
-- See the [Ubuntu kernels from Canonical](https://ubuntu.com/kernel) for general information about Ubuntu Linux kernels.
+- See the [Ubuntu kernels from Canonical] for general information about Ubuntu Linux kernels.
 ```
 
 ## Ubuntu development kernels
@@ -17,15 +17,36 @@ The development kernels serve as the testing ground for new features, upstream u
 
 The following table summarizes the main Ubuntu development kernels:
 
-| Kernel Tree        | Purpose                               | Stability          | Upstream Tracking                  | Notes                                          |
-|--------------------|-----------------------------------------|---------------------|------------------------------------|------------------------------------------------|
-| **linux-unstable** | Early integration & testing            | Highly volatile      | Tracks upstream RCs (frequent rebases) | Lack full Ubuntu integration (AppArmor, NVIDIA, ZFS, etc.) |
-| **Ubuntu Kernel Next** | Stable snapshot for integration work    | Moderately stable   | Snapshot of `linux-unstable`       | Read-only; used for partner/integration testing |
-| **linux**          | Ubuntu kernel               | Relatively stable  | Tracks upstream stable releases     | Becomes the GA kernel for the Ubuntu release   |
+```{list-table}
+   :header-rows: 1
+
+* - Kernel tree
+  - Purpose
+  - Stability
+  - Upstream tracking
+  - Notes
+* - **{ref}`linux-unstable <ref-ubuntu-kernel-variants-branches-unstable>`**
+  - Early integration and testing
+  - Highly volatile
+  - Tracks upstream RCs (frequent rebases)
+  - Lacks full Ubuntu integration (AppArmor, NVIDIA, ZFS, etc.)
+* - **{ref}`Ubuntu Kernel Next (UKN) <ref-ubuntu-kernel-variants-branches-ukn>`**
+  - Stable snapshot for integration work
+  - Moderately stable
+  - Snapshot of `linux-unstable`
+  - Read-only; used for partner / integration testing
+* - **{ref}`linux <ref-ubuntu-kernel-variants-branches-linux>`**
+  - Ubuntu kernel
+  - Relatively stable
+  - Tracks upstrean stable releases
+  - Becomes the GA kernel for the Ubuntu release
+```
+
+(ref-ubuntu-kernel-variants-branches-unstable)=
 
 ### The `linux-unstable` tree
 
-The [linux-unstable tree](<https://code.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/unstable>) represents the bleeding edge of Ubuntu kernel development.
+The [linux-unstable tree] represents the bleeding edge of Ubuntu kernel development.
 It is a fast-moving target designed to track the latest upstream Linux developments.
 
 * **Upstream alignment:** It is usually rebased weekly against the latest upstream Release Candidate (`-rcX`) during the most active development period.
@@ -35,14 +56,18 @@ It is a fast-moving target designed to track the latest upstream Linux developme
   It may still lack support for core components (e.g., AppArmor, NVIDIA drivers, ZFS, etc.) and is not guaranteed to have all features necessary to fully support an Ubuntu system.
 * **Availability:** As it usually does not have all core components necessary to run a full Ubuntu user-space, it is available only via development PPAs and not in the Ubuntu archive.
 
+(ref-ubuntu-kernel-variants-branches-ukn)=
+
 ### Ubuntu Kernel Next (UKN)
 
-Because the `linux-unstable` kernel moves too fast for larger integration work, the Canonical Kernel Team maintains the [Ubuntu Kernel Next](<https://canonical-kteam-docs.readthedocs-hosted.com/public/reference/kernels/uknext/uknext.html>) tree.
+Because the `linux-unstable` kernel moves too fast for larger integration work, the Canonical Kernel Team maintains the [Ubuntu Kernel Next] tree.
 UKN integration tree designed to bridge the gap between the volatility of `linux-unstable` and the stability required for partner development.
 
 * **Workflow:** It is a periodic, read-only snapshot of `linux-unstable`.
 * **Integration:** It provides a stable code base for integration work into the next development kernel.
   Integration issues (e.g., conflicts) can be spotted and fixed earlier.
+
+(ref-ubuntu-kernel-variants-branches-linux)=
 
 ### The `linux` tree
 
@@ -58,7 +83,7 @@ Once a `linux-unstable` kernel version includes support for all core components 
 In addition to the generic kernel, Canonical also provides optimized kernels which are derived from the generic kernel. 
 
 ```{seealso}
-- [Ubuntu kernel variants from Canonical](<https://ubuntu.com/kernel/variants>)
+- [Ubuntu kernel variants from Canonical]
 ```
 
 * **Purpose:** Kernels that have their configuration, hardware support, or additional features optimized for a variety of hardware platforms and workloads. Examples include kernels optimized for the Raspberry Pi ARM board (`linux-raspi`), for running as guests on the major public cloud providers, for IoT devices, etc.
@@ -108,3 +133,10 @@ The `master-next` or `main-next` branches serve as the staging area for the **ne
 
 The `master` or `main` branches represent the current state of the kernel source as it exists in the `-updates` pocket of the Ubuntu archive.
 It contains the linear history of all the stable releases published for that kernel.
+
+% LINKS
+
+[Ubuntu kernels from Canonical]: https://ubuntu.com/kernel
+[linux-unstable tree]: https://code.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/unstable
+[Ubuntu Kernel Next]: https://canonical-kteam-docs.readthedocs-hosted.com/public/reference/kernels/uknext/uknext.html
+[Ubuntu kernel variants from Canonical]: https://ubuntu.com/kernel/variants
