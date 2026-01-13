@@ -89,7 +89,7 @@ In addition to the generic kernel, Canonical also provides optimized kernels whi
 * **Purpose:** Kernels that have their configuration, hardware support, or additional features optimized for a variety of hardware platforms and workloads. Examples include kernels optimized for the Raspberry Pi ARM board (`linux-raspi`), for running as guests on the major public cloud providers, for IoT devices, etc.
 * **Release and update cadence:** Optimized kernels are released and receive security updates with the same cadence as the Ubuntu generic kernel upon which they are based.
 
-### OEM Kernels
+### OEM kernels
 
 OEM kernels are optimized derivatives designed specifically for Original Equipment Manufacturer (OEM) projects to support hardware pre-installed with Ubuntu.
 
@@ -105,7 +105,7 @@ OEM kernels are optimized derivatives designed specifically for Original Equipme
 Once an Ubuntu version is released to General Availability (GA), all kernels available in that release become production-ready and stable.
 They are maintained for the duration of the Ubuntu release support period and receive security updates and bug fixes via {doc}`Stable Release Updates (SRU) </explanation/stable-release-updates>`.
 
-### HWE (Hardware Enablement) Kernels
+### HWE (Hardware Enablement) kernels
 
 Hardware Enablement (HWE) kernels are available for Ubuntu Long Term Support (LTS) releases.
 They provide a way for LTS users to consume newer kernel versions and receive support for newer hardware (such as the graphics stack).
