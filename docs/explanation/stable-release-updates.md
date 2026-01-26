@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Understand Ubuntu kernel stable release updates (SRU). Learn about the 4/2 cycle cadence, patch submission, review process, and kernel streams."
+---
+
 # About kernel stable release updates (SRU)
 
 Every supported kernel for an Ubuntu release is part of a Stable Release Updates

@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Guides for Ubuntu kernel development. Learn how to obtain source code, build kernels, test in -proposed versions, and contribute to the documentation."
+---
+
 # How-to guides
 
 These guides accompany through the various stages and building and publishing

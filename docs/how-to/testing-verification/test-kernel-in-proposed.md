@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Learn to enable -proposed pocket, install test kernels, and verify stability of kernels before release."
+---
+
 # How to test kernels in -proposed
 
 Ubuntu kernels are uploaded to the -proposed pocket for testing before being

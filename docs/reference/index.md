@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Reference guides for Ubuntu kernel development processes. Explore kernel variants, patch formats, acceptance criteria, upload rights, and terminology."
+---
+
 # Reference
 
 Reference material about Ubuntu kernel development processes, terminology, and

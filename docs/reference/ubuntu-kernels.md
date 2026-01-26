@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Understand Ubuntu kernel variants including development, optimized, OEM, and HWE kernels. Learn about git branching strategies and lifecycles."
+---
+
 (ref-ubuntu-kernel-variants-branches)=
 
 # Ubuntu kernel variants and branches
@@ -133,6 +139,7 @@ The `master-next` or `main-next` branches serve as the staging area for the **ne
 
 The `master` or `main` branches represent the current state of the kernel source as it exists in the `-updates` pocket of the Ubuntu archive.
 It contains the linear history of all the stable releases published for that kernel.
+
 
 % LINKS
 
