@@ -25,43 +25,31 @@ This documentation serves developers, partners, and others working with Ubuntu
 kernels, offering guidance on kernel workflows, tools, SRU timelines, and
 processes for customization and maintenance.
 
----------
-
 ## In this documentation
 
-````{grid} 1 1 2 2
+% DOMAINS OF CONCERN
 
-```{grid-item-card} [Tutorials](index)
+```{list-table}
+:widths: 25 75
+:header-rows: 0
 
-**Start here**: a hands-on introduction to Ubuntu Linux kernel development for
-new users
+* - **Contributing to Ubuntu kernels**
+  - {doc}`/reference/patch-acceptance-criteria` • {doc}`/reference/stable-patch-format` • {doc}`/how-to/source-code/send-patches`
+* - **Kernel development**
+  - {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/testing-verification/test-kernel-in-proposed` • {doc}`/explanation/ubuntu-linux-kernel-sources`
+* - **Kernel variants**
+  - {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/reference/hwe-kernels` • {doc}`/reference/oem-kernels` • {doc}`/reference/ubuntu-kernels/`
+* - **Upload rights**
+  - {doc}`/reference/kernel-upload-rights` • {doc}`/reference/dkms-upload-rights`
 ```
 
-```{grid-item-card} [How-to guides](/how-to/index)
+## How this documentation is organized
 
-**Step-by-step guides** covering common tasks involved in kernel development.
-```
+This documentation uses the [Diátaxis documentation structure](https://diataxis.fr/).
 
-````
-
-````{grid} 1 1 2 2
-:reverse:
-
-```{grid-item-card} [Reference](/reference/index)
-
-**Reference information** about submitting patches and their criteria, and
-other processes related to Ubuntu kernels.
-```
-
-```{grid-item-card} [Explanation](/explanation/index)
-
-**Discussion and clarification** about different aspects of the Ubuntu kernel
-and kernel development process at Canonical.
-```
-
-````
-
----------
+* {doc}`/how-to/index` assumes you have basic familiarity with kernel development and provide generic instructions for common tasks involved in kernel development.
+* {doc}`/reference/index` provides detailed information about submitting patches and their criteria, and other processes related to Ubuntu kernels.
+* {doc}`explanation/index` discusses the different aspects of the Ubuntu kernel and kernel development process at Canonical.
 
 ## Project and community
 
