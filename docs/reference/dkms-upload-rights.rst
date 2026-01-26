@@ -1,3 +1,6 @@
+.. meta::
+   :description: DKMS (Dynamic Kernel Module Support) upload rights for Ubuntu. Understand permissions, responsibilities, and application procedures.
+
 DKMS upload rights
 ##################
 

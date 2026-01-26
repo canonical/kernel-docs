@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Ubuntu kernel terminology glossary. Find definitions for SRU, DKMS, HWE, edge kernels, and other kernel development terms. Quick reference guide."
+---
+
 # Kernel glossary
 
 This page is a running list of terminology that is frequently used when talking

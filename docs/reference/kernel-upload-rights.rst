@@ -1,3 +1,6 @@
+.. meta::
+   :description: Ubuntu kernel upload rights and permissions. Learn about access levels, responsibilities, and how to obtain upload privileges for kernels.
+
 .. _kernel-upload-rights:
 
 Kernel upload rights

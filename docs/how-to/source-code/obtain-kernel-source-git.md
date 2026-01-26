@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Obtain Ubuntu kernel source code using Git. Follow step-by-step instructions for cloning kernel repositories for any Ubuntu release."
+---
+
 # How to obtain kernel source for an Ubuntu release using Git
 
 The kernel source code for each Ubuntu release is maintained in its own

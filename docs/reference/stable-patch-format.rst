@@ -1,3 +1,6 @@
+.. meta::
+   :description: Ubuntu kernel stable patch format requirements. Learn proper structure, SRU justification, commit messages, and submission guidelines.
+
 Stable patch format
 ===================
 

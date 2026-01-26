@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Find out where to obtain kernel sources via Git, enable repositories, and send patches to the mailing list."
+---
+
 # Source code access and management
 
 These guides cover processes related to obtaining kernel source trees and

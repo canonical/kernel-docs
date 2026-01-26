@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Enable Ubuntu kernel source package repositories. Learn to configure sources.list or ubuntu.sources for kernel development and building."
+---
+
 # How to enable kernel source package repositories
 
 If you want to build or modify an Ubuntu kernel package from source, you will first need the kernel source code.
@@ -31,7 +37,6 @@ file. If not, add or uncomment these lines for your Ubuntu release.
 deb-src http://archive.ubuntu.com/ubuntu jammy main
 deb-src http://archive.ubuntu.com/ubuntu jammy-updates main
 ```
-````
 `````
 
 ## Update package list

@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "Official Ubuntu kernel documentation. Learn to build, customize, and contribute to Ubuntu kernels. Understand the cadence for stable release updates and HWE kernels."
+---
+
 # Ubuntu Kernel documentation
 
 The Ubuntu Linux kernel is the core software enabling applications on Ubuntu to
