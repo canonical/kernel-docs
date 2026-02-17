@@ -18,6 +18,7 @@ Source code access and management </how-to/source-code/index>
 Development and customization </how-to/develop-customise/index>
 Test kernels in -proposed </how-to/testing-verification/test-kernel-in-proposed>
 Contribute to kernel docs </how-to/contribute>
+Kernel Bisect </how-to/kernel-bisection>
 ```
 
 ## Source code access and management
@@ -42,3 +43,10 @@ These guides relate to testing the kernel to ensure its stability and
 functionality before you push or release a patch.
 
 - [Test kernels in -proposed](/how-to/testing-verification/test-kernel-in-proposed)
+
+## Debug and Troubleshooting
+
+These guides explain how to debug and troubleshoot a kernel bug should you
+encounter one.
+
+- [Kernel Bisect](/how-to/kernel-bisection)
