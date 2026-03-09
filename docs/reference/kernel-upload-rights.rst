@@ -90,7 +90,7 @@ Application template
 If you are interested in joining, start by preparing your application using the
 following template:
 
-https://wiki.ubuntu.com/Kernel/Dev/PPUApplicationTemplate
+https://discourse.ubuntu.com/t/developer-application-template/66670
 
 An example application can also be seen at the following: 
 
