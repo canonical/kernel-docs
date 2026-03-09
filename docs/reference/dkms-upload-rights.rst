@@ -36,7 +36,7 @@ application details. Use the DeveloperApplicationTemplate_ to create your
 ``DKMSUploadApplication`` page. See for example
 `PaoloPisati/DKMSUploadApplication`_.
 
-.. _PaoloPisati/DKMSUploadApplication: https://wiki.ubuntu.com/PaoloPisati/DKMSUploadApplication
+.. _PaoloPisati/DKMSUploadApplication: https://github.com/ubuntu/wiki-archives/blob/2831413ef2d929fe020ff33b6bf3cdaa78dd40db/UbuntuWiki/P/PaoloPisati-DKMSUploadApplication.wiki
 .. _DeveloperApplicationTemplate: https://discourse.ubuntu.com/t/developer-application-template/66670
 
 Then, you will need to reserve a meeting with the `Developer Membership Board
