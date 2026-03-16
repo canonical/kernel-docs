@@ -6,7 +6,7 @@ myst:
 
 # How-to guides
 
-These guides accompany through the various stages and building and publishing
+These guides accompany through the various stages of building and publishing
 kernel packages and components.
 
 ```{toctree}
@@ -14,27 +14,30 @@ kernel packages and components.
 :maxdepth: 1
 :hidden:
 
-Source code access and management </how-to/source-code/index>
-Development and customization </how-to/develop-customise/index>
+Enable kernel source package repositories </how-to/source-code/enable-source-repositories>
+Obtain kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>
+Send patches to the mailing-list </how-to/source-code/send-patches>
+Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>
+Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>
 Test kernels in -proposed </how-to/testing-verification/test-kernel-in-proposed>
 Contribute to kernel docs </how-to/contribute>
 ```
 
 ## Source code access and management
 
-Get access to kernel source code if you need to modify the kernel for specific
-requirements, optimize the performance for selected hardware, inspect the source
-tree to build custom kernel modules, and more.
+You can get access to kernel source code via `apt` or directly from the kernel Git repositories.
+You can also check the formatting requirements, review process, and best practices for submitting kernel patches to the Ubuntu kernel team mailing list.
 
-- [Obtain kernel source for an Ubuntu release using Git](/how-to/source-code/obtain-kernel-source-git)
+- {doc}`Enable kernel source package repositories </how-to/source-code/enable-source-repositories>`
+- {doc}`Obtain kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>`
+- {doc}`Send patches to the mailing-list </how-to/source-code/send-patches>`
 
 ## Development and customization
 
-The steps to build a kernel is similar but may have slightly difference
-configuration requirements on different platforms and/or architectures.
+The steps to build a kernel is similar but may have slightly difference configuration requirements on depending on the build package (snap, debs), platform and/or architectures.
 
-- [Build an Ubuntu Linux kernel](/how-to/develop-customise/build-kernel)
-- [Build an Ubuntu Linux kernel snap](/how-to/develop-customise/build-kernel-snap)
+- {doc}`Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>`
+- {doc}`Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>`
 
 ## Testing and verification
 
