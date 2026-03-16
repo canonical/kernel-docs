@@ -207,7 +207,9 @@ templates_path = [".sphinx/_templates"]
 
 redirects = {
     "reference/patch_acceptance_criteria/index.html": "../patch-acceptance-criteria/",
-    "how-to/develop-customize/": "how-to/develop-customise/",
+    "how-to/develop-customize/": "how-to/",
+    "how-to/develop-customise/": "how-to/",
+    "how-to/source-code/": "how-to/",
     "how-to/develop-customize/build-kernel/": "how-to/develop-customise/build-kernel/",
     "how-to/develop-customize/build-kernel-snap/": "how-to/develop-customise/build-kernel-snap/",
 }

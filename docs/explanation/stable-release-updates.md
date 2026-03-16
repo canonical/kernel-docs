@@ -133,7 +133,7 @@ model.
 
 [Ubuntu Kernel Team]: https://kernel.ubuntu.com/
 [Ubuntu Wiki - Kernel Updates]: https://wiki.ubuntu.com/KernelTeam/KernelUpdates
-[Ubuntu archive has a single proposed pocket]: https://canonical-ubuntu-packaging-guide.readthedocs-hosted.com/en/latest/explanation/archive/#archivepockets
+[Ubuntu archive has a single proposed pocket]: https://documentation.ubuntu.com/project/how-ubuntu-is-made/concepts/package-archive/#proposed
 [Discourse - Ubuntu Kernel 4/2 SRU Cycle Announcement]: https://discourse.ubuntu.com/t/ubuntu-kernel-4-2-sru-cycle-announcement/37478
 [Ubuntu Wiki - Stable Kernel Release Cadence]: https://wiki.ubuntu.com/Kernel/StableReleaseCadence
 [Kernel team stable dashboard]: https://kernel.ubuntu.com/reports/kernel-stable-board/

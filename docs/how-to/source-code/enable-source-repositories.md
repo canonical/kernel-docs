@@ -46,4 +46,3 @@ Once you have updated {file}`sources.list` or {file}`ubuntu.sources`, update the
 ```{code-block} shell
 sudo apt update
 ```
-

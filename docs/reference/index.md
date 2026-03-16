@@ -9,17 +9,25 @@ myst:
 Reference material about Ubuntu kernel development processes, terminology, and
 more.
 
-<!--
-.. toctree::
-   :maxdepth: 1
-   :caption: Ubuntu on Xilinx:
+## Kernel patch & contribution guidelines
 
-   xilinx/index
--->
+It's important to follow the Ubuntu kernel patch guidelines so your contributions are accepted into the Ubuntu kernel tree without delays or rejection.
+These pages show how to properly format and submit your patches.
 
 ```{toctree}
 :maxdepth: 1
-:caption: Kernel variants and snaps
+
+stable-patch-format
+patch-acceptance-criteria
+```
+
+## Kernel variants and snaps
+
+Different kernel variants and branches serve different purposes - long-term support, new hardware enablement, or experimental features.
+Understanding them helps you choose the right kernel for testing, development, or deployment.
+
+```{toctree}
+:maxdepth: 1
 
 ubuntu-kernels
 hwe-kernels
@@ -27,25 +35,21 @@ oem-kernels
 snap-lifecycle
 ```
 
-```{toctree}
-:maxdepth: 1
-:caption: Kernel patch guidelines
+## Privileges
 
-stable-patch-format
-patch-acceptance-criteria
-```
+Understand the criteria and process to apply for Ubuntu kernel and DKMS package upload rights.
 
 ```{toctree}
 :maxdepth: 1
-:caption: Privileges
 
 kernel-upload-rights
 dkms-upload-rights
 ```
 
+## General
+
 ```{toctree}
 :maxdepth: 1
-:caption: General
 
 glossary
 ```
