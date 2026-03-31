@@ -17,7 +17,7 @@ have similar life cycles as their newer Ubuntu kernel counterparts. They will
 typically get rolled off to the next HWE kernel once a new Ubuntu series is
 released (until the next LTS).
 
-.. figure:: /_images/ref-hwe-kernel-release-cycle-noble.svg
+.. figure:: /_images/ref-hwe-kernel-release-cycle-noble.png
    :alt: Typical HWE kernel release cycle
 
    Example of HWE kernel release cycle for Noble Numbat
