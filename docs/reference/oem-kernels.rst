@@ -31,28 +31,28 @@ kernels.
    +---------------------------+------------------------------+-------------------------+---------------------------+
    | Kernel and Ubuntu version | Source code and meta package | Key dates               | Migration target          |
    +===========================+==============================+========+================+===========================+
-   | 6.5                       | s: `linux-oem-6.5`_          | Devel  | July 2023      | 22.04.5 HWE kernel (6.8)  |
-   |                           |                              +--------+----------------+                           |
-   | 22.04 LTS (Jammy)         | m: linux-oem-22.04d          | Stable | August 2023    |                           |
-   |                           |                              +--------+----------------+                           |  
-   |                           |                              | EOL    | July 2024      |                           |
-   +---------------------------+------------------------------+--------+----------------+---------------------------+
-   | 6.8                       | s: `linux-oem-6.8`_          | Devel  | March 2024     | 24.04.2 HWE kernel (6.11) |
-   |                           |                              +--------+----------------+                           |
-   | 24.04 LTS (Noble)         | m: linux-oem-24.04a          | Stable | April 2024     |                           |
-   |                           |                              +--------+----------------+                           |  
-   |                           |                              | EOL    | February 2025  |                           |
-   +---------------------------+------------------------------+--------+----------------+---------------------------+
-   | 6.11                      | s: `linux-oem-6.11`_         | Devel  | August 2024    | :spellexception:`TBD`     |
+   | 6.11                      | s: `linux-oem-6.11`_         | Devel  | August 2024    | `linux-oem-6.14`_         |
    |                           |                              +--------+----------------+                           |
    | 24.04 LTS (Noble)         | m: linux-oem-24.04b          | Stable | November 2024  |                           |
    |                           |                              +--------+----------------+                           |  
    |                           |                              | EOL    | July 2025      |                           |
    +---------------------------+------------------------------+--------+----------------+---------------------------+
+   | 6.14                      | s: `linux-oem-6.14`_         | Devel  | March 2025     | `linux-oem-6.17`_         |
+   |                           |                              +--------+----------------+                           |
+   | 24.04 LTS (Noble)         | m: linux-oem-24.04c          | Stable | April 2025     |                           |
+   |                           |                              +--------+----------------+                           |  
+   |                           |                              | EOL    | February 2026  |                           |
+   +---------------------------+------------------------------+--------+----------------+---------------------------+
+   | 6.17                      | s: `linux-oem-6.17`_         | Devel  | September 2025 | linux-hwe-7.0             |
+   |                           |                              +--------+----------------+                           |
+   | 24.04 LTS (Noble)         | m: linux-oem-24.04d          | Stable | October 2025   |                           |
+   |                           |                              +--------+----------------+                           |  
+   |                           |                              | EOL    | July 2026      |                           |
+   +---------------------------+------------------------------+--------+----------------+---------------------------+
 
 .. note::
-   OEM kernels that have reached end-of-life (EOL) are excluded from the table
-   above.
+   - OEM kernels are *supported in LTS releases only*. Interim releases are *unsupported*.
+   - OEM kernels that have reached end-of-life (EOL) are excluded from the table above.
 
 Selection guidelines for OEM kernels
 ------------------------------------
@@ -128,15 +128,14 @@ Related topics
 
 - See the `Stable Updates Cycles`_ for the dates of the last day for kernel
   patches (for OEM kernels) for each stable update cycle.
-- See the Gitea repositories for `jammy-linux-oem`_ and `noble-linux-oem`_ for
+- See the Forgejo repositories for `noble-linux-oem`_ for
   pending pull requests and details on the patches that are merged and released
-  for each OEM kernel.
+  for each OEM kernel (currently only open to partners).
 
 .. LINKS
 
-.. _linux-oem-6.5: https://kernel.ubuntu.com/forgejo/kernel/jammy-linux-oem/src/branch/oem-6.5-next
-.. _linux-oem-6.8: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/src/branch/oem-6.8-next
 .. _linux-oem-6.11: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/src/branch/oem-6.11-next
+.. _linux-oem-6.14: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/src/branch/oem-6.14-next
+.. _linux-oem-6.17: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/src/branch/oem-6.17-next
 .. _Stable Updates Cycles: https://kernel.ubuntu.com/
-.. _jammy-linux-oem: https://kernel.ubuntu.com/forgejo/kernel/jammy-linux-oem/pulls
 .. _noble-linux-oem: https://kernel.ubuntu.com/forgejo/kernel/noble-linux-oem/pulls
