@@ -6,6 +6,7 @@ backport
 backported
 bootable
 enablement
+Forgejo
 gitea
 initramfs
 kconfig
