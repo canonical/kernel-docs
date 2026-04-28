@@ -1,0 +1,9 @@
+Install the tooling needed for the various kernel workflow playbook items:
+
+```{code-block} shell
+pipx install ckt_workflow@git+https://git.launchpad.net/~apw/+git/ckt_workflow@latest
+```
+
+```{note}
+The repository location for this project is subject to change.
+```
