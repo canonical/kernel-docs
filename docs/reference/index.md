@@ -35,6 +35,15 @@ oem-kernels
 snap-lifecycle
 ```
 
+## Kernel release and maintenance
+
+```{toctree}
+:maxdepth: 1
+
+Release an SRU Kernel </reference/kernel-workflow-playbook/kernel-release>
+Rollback a Kernel </reference/kernel-workflow-playbook/kernel-rollback>
+```
+
 ## Privileges
 
 Understand the criteria and process to apply for Ubuntu kernel and DKMS package upload rights.
