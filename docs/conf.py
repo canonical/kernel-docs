@@ -296,7 +296,9 @@ extensions = [
 
 # Excludes files or directories from processing
 
-#exclude_patterns = [""]
+exclude_patterns = [
+    ".github/**",
+]
 
 # Adds custom CSS files, located under 'html_static_path'
 
