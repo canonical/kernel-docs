@@ -50,7 +50,7 @@ git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+sou
 git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/noble
 ```
 
-Each clone produces a new directory containing the full source and history.
+Each `git clone` creates a new directory for a given release, containing the full source and history of the repository.
 
 ```{caution}
 Once two trees are linked this way, you cannot delete or move the upstream
@@ -86,7 +86,7 @@ This creates a `jammy/` subdirectory containing the Jammy kernel source and a
 repository.
 
 To pull future updates into a subtree, specify the remote URL and ref
-explicitly — there is no automatic upstream tracking for subtrees:
+explicitly - there is no automatic upstream tracking for subtrees:
 
 ```{code-block} shell
 git subtree pull --prefix=jammy https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy master
@@ -95,7 +95,7 @@ git subtree pull --prefix=jammy https://git.launchpad.net/~ubuntu-kernel/ubuntu/
 ## Work with a specific kernel version using tags
 
 By default, cloning gives you the latest state of the `master` branch. To work
-with a specific previously released kernel version, use release tags. To list
+with a specific, previously released kernel version, use release tags. To list
 all available tags for a release:
 
 ```{code-block} shell
@@ -119,7 +119,7 @@ To check out a specific version, create a branch pointing to that tag:
 git checkout -b temp Ubuntu-5.4.0-52.57
 ```
 
-You can then work with that version — for example, by adding new commits.
+You can then work with that version - for example, by adding new commits.
 
 ## Related topics
 
