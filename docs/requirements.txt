@@ -30,3 +30,7 @@ sphinx-sitemap
 # Vale dependencies
 rst2html
 vale
+
+git+https://github.com/canonical/sphinx-unified-search.git@main
+#git+ssh://git@github.com/canonical/sphinx-unified-search.git@27f554973f3cd2170586e386709882e2ad98783b
+#-e ../../sphinx-unified-search

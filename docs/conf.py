@@ -292,6 +292,7 @@ extensions = [
     "sphinx_last_updated_by_git",
     "sphinx.ext.intersphinx",
     "sphinx_sitemap",
+    "sphinx_unified_search",
 ]
 
 # Excludes files or directories from processing
@@ -358,3 +359,19 @@ rst_prolog = """
 
 if "discourse_prefix" not in html_context and "discourse" in html_context:
     html_context["discourse_prefix"] = html_context["discourse"] + "/t/"
+
+# sphinx-unified-search configuration
+unified_search_projects = [
+    {
+        "name": "Landscape",
+        "base_url": "https://documentation.ubuntu.com/landscape/",
+        "searchindex_url":
+            "https://documentation.ubuntu.com/landscape/searchindex.js",
+    },
+    {
+        "name": "Pebble",
+        "base_url": "https://ubuntu.com/docs/pebble/",
+        "searchindex_url":
+            "https://ubuntu.com/docs/pebble/searchindex.js",
+    },
+]
