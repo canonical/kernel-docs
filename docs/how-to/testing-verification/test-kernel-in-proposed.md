@@ -6,18 +6,18 @@ myst:
 
 # How to test pre-release Ubuntu kernels
 
-After a kernel's sources are prepared by the Canonical Kernel Team, they are
-uploaded to public build PPAs for compilation and regression testing. Once
-built, you may download and test these kernels before migration to the -proposed
-pocket. It is worth mentionning however that adding these PPAs to a production
-system could cause failures to boot or regressions, and so is heavily
-discouraged.
+Pre-release Ubuntu kernels are available in the Canonical Kernel Team (CKT)
+build PPAs and `-proposed` pocket before they are published to `-updates`.
+To install these pre-release kernels you need to opt in, as neither source is
+enabled by default.
 
-Once testing and certification have concluded, the kernels are then copied to
-the -proposed pocket for testing before being published to -updates and
--security. You can download these pre-release kernels to install and test them
-before a stable release, and although they may still contain regressions, the
-kernels in -proposed are more stable as a result of the testing they undergo.
+This guide explains how to enable and test pre-release Ubuntu kernels, and how
+to report any regressions you find.
+
+```{caution}
+Kernels published to the build PPAs are not suitable for production systems -
+enabling them could cause boot failures or regressions and is not recommended.
+```
 
 ## Enable the -proposed pocket to software sources
 
@@ -62,9 +62,9 @@ Add "\<series\>-proposed" (e.g. "jammy-proposed") to the following line in:
 ````
 `````
 
-## Enable a CKT Build PPA
+## Enable the CKT build PPA
 
-You may add the build PPAs to your system as follows:
+You can add the CKT build PPAs to your system as follows:
 
 ```{code-block} none
 sudo add-apt-repository ppa:canonical-kernel-team/ppa
@@ -72,9 +72,9 @@ sudo add-apt-repository ppa:canonical-kernel-team/ppa2
 ```
 
 ```{warning}
-Do remember that these kernels may be entirely untested at time of
-download and thus potentially fundamentally broken. Only test from build PPAs
-if you have a reason to do so.
+Do remember that these kernels may be entirely untested at time of download and
+thus potentially fundamentally broken. Only test from build PPAs if you have a
+reason to do so.
 ```
 
 ## Install the pre-release kernel
