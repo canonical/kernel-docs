@@ -84,6 +84,8 @@ Once a `linux-unstable` kernel version includes support for all core components 
   During a development cycle, it is expected to be updated to all `major.minor` upstream releases until the last version available before the Ubuntu release GA.
 * **Purpose:** The `linux` kernel is the Ubuntu generic kernel which will be available as the default choice for most installations, and will be the base for all derivatives and custom kernels based on the same upstream `major.minor` version.
 
+(optimized-kernels)=
+
 ## Optimized kernels
 
 In addition to the generic kernel, Canonical also provides optimized kernels which are derived from the generic kernel. 
