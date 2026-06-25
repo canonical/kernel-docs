@@ -84,6 +84,47 @@ Once a `linux-unstable` kernel version includes support for all core components 
   During a development cycle, it is expected to be updated to all `major.minor` upstream releases until the last version available before the Ubuntu release GA.
 * **Purpose:** The `linux` kernel is the Ubuntu generic kernel which will be available as the default choice for most installations, and will be the base for all derivatives and custom kernels based on the same upstream `major.minor` version.
 
+## Kernel flavours
+
+A **kernel flavour** is a distinct binary produced from a single kernel source package, sharing the same source code and patches as all other flavours from that package.
+The only differences between flavours are the configuration options applied at build time.
+
+For example, the Ubuntu `linux` source package produces both `linux-generic` and `linux-lowlatency` binaries from the same tree, each with a different `.config` file tailored to its target workload.
+
+```{note}
+This config-only distinction applies within a single source package.
+Kernels with separate source packages (such as `linux-aws` or `linux-raspi`) are [optimized kernels](#optimized-kernels) and may carry additional patches beyond config changes.
+```
+
+For the generic kernel, the current Ubuntu flavours and their target workloads are:
+
+```{list-table}
+:header-rows: 1
+
+* - Flavour
+  - Architectures
+  - Target workload
+* - `generic`
+  - amd64, arm64, armhf, ppc64el, riscv64, s390x
+  - Default for desktop and server systems
+* - `generic-64k`
+  - arm64
+  - Desktop and server systems requiring 64K memory pages
+* - `lowlatency`
+  - amd64, arm64
+  - Latency-sensitive workloads (audio production, real-time data)
+* - `lowlatency-64k`
+  - arm64
+  - Combines lowlatency tuning with 64K memory pages
+* - `realtime`
+  - amd64, arm64
+  - Deterministic latency via the PREEMPT_RT patchset
+```
+
+Derivative kernels might support only a subset of these flavours, and might also add a portion of the derivative name to the flavour identifier. For example, the raspi kernel has flavours `arm64-raspi` and `arm64-raspi-realtime`.
+
+(ref-ubuntu-kernels-optimized)=
+
 ## Optimized kernels
 
 In addition to the generic kernel, Canonical also provides optimized kernels which are derived from the generic kernel. 
