@@ -1,17 +1,17 @@
 ---
 myst:
   html_meta:
-    description: "Obtain Ubuntu kernel source code using Git. Follow step-by-step instructions for cloning kernel repositories for any Ubuntu release."
+    description: "Obtain and manage Ubuntu kernel source code using Git. Guide for cloning kernel repositories for one or more Ubuntu releases, working with subtrees, tags, and more."
 ---
 
-# How to obtain kernel source for an Ubuntu release using Git
+# How to obtain and manage kernel source for an Ubuntu release using Git
 
 The kernel source code for each Ubuntu release is maintained in its own
 repository in Launchpad. Downloading the kernel source may be needed for
 customization, development, or troubleshooting the kernel.
 
-This document shows how you can obtain the kernel source for an Ubuntu release
-using Git.
+This document shows how you can obtain and manage the kernel source for an
+Ubuntu release using Git.
 
 ## Prerequisites
 
