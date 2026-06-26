@@ -2,6 +2,7 @@ import datetime
 import ast
 import os
 import yaml
+import textwrap
 
 # Configuration for the Sphinx documentation builder.
 # All configuration specific to your project should be done in this file.
@@ -61,7 +62,7 @@ html_title = project + " documentation"
 #         -H 'Accept: application/vnd.github.v3.raw' \
 #         https://api.github.com/repos/canonical/<REPO> | jq '.created_at'
 
-copyright = "%s CC-BY-SA, %s" % (datetime.date.today().year, author)
+copyright = f"{datetime.date.today().year}"
 
 
 # Documentation website URL
@@ -188,31 +189,41 @@ sitemap_excludes = [
 
 # Template and asset locations
 
-html_static_path = [".sphinx/_static"]
-templates_path = [".sphinx/_templates"]
+html_static_path = ["_dev/_static"]
+templates_path = ["_dev/_templates"]
 
 
 #############
 # Redirects #
 #############
 
-# To set up redirects: https://documatt.gitlab.io/sphinx-reredirects/usage.html
-# For example: 'explanation/old-name.html': '../how-to/prettify.html',
+# Add redirects to the 'redirects.txt' file
+# https://sphinxext-rediraffe.readthedocs.io/en/latest/
 
-# To set up redirects in the Read the Docs project dashboard:
-# https://docs.readthedocs.io/en/stable/guides/redirects.html
+rediraffe_redirects = "redirects.txt"
 
-# NOTE: If undefined, set to None, or empty,
-#       the sphinx_reredirects extension will be disabled.
+# Strips '/index.html' from destination URLs when building with 'dirhtml'
+rediraffe_dir_only = True
 
-redirects = {
-    "reference/patch_acceptance_criteria/index.html": "../patch-acceptance-criteria/",
-    "how-to/develop-customize/": "how-to/",
-    "how-to/develop-customise/": "how-to/",
-    "how-to/source-code/": "how-to/",
-    "how-to/develop-customize/build-kernel/": "how-to/develop-customise/build-kernel/",
-    "how-to/develop-customize/build-kernel-snap/": "how-to/develop-customise/build-kernel-snap/",
-}
+
+############################
+# sphinx-llm configuration #
+############################
+
+# This description is included in llms.txt to provide some initial context for your
+# product docs.
+# TODO: Add a description in the form "This is the documentation for <product name>,
+# <first sentence of home page>".
+llms_txt_description = textwrap.dedent(
+    """\
+    This documentation is about the Ubuntu Linux kernel, mainly focused on its
+    development processes, tools, schedules, and more.
+    """
+)
+
+# The base URL for references built by sphinx-markdown-builder.
+if os.environ.get("READTHEDOCS"):
+    markdown_http_base = html_baseurl
 
 
 ###########################
@@ -292,12 +303,16 @@ extensions = [
     "sphinx_last_updated_by_git",
     "sphinx.ext.intersphinx",
     "sphinx_sitemap",
+    "sphinx_rerediraffe",
+    "sphinx_llm.txt",
 ]
 
 # Excludes files or directories from processing
 
 exclude_patterns = [
     ".github/**",
+    ".venv*",
+    "_dev/*",
 ]
 
 # Adds custom CSS files, located under 'html_static_path'
