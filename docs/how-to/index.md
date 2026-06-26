@@ -20,6 +20,7 @@ Send patches to the mailing-list </how-to/source-code/send-patches>
 Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>
 Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>
 Test pre-release Ubuntu kernels </how-to/testing-verification/test-pre-release-kernels>
+Rebuild a single kernel module </how-to/develop-customise/build-kernel-module>
 Contribute to kernel docs </how-to/contribute>
 ```
 
@@ -38,6 +39,7 @@ The steps to build a kernel is similar but may have slightly difference configur
 
 - {doc}`Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>`
 - {doc}`Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>`
+- {doc}`Rebuild a single kernel module </how-to/develop-customise/build-kernel-module>`
 
 ## Testing and verification
 
