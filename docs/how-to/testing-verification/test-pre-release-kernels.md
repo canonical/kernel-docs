@@ -1,15 +1,25 @@
 ---
 myst:
   html_meta:
-    description: "Learn to enable -proposed pocket, install test kernels, and verify stability of kernels before release."
+    description: "Learn to enable the build PPAs and -proposed pocket, install test kernels, and verify stability of kernels before the release."
 ---
 
-# How to test kernels in -proposed
+# How to test pre-release Ubuntu kernels
 
-Ubuntu kernels are uploaded to the -proposed pocket for testing before being
-published to -updates and -security. You can download these pre-release kernels
-to install and test them before a stable release, but you must opt in to package
-from -proposed as they are not enabled by default.
+Pre-release Ubuntu kernels are available in the Canonical Kernel Team (CKT)
+build PPAs and `-proposed` pocket before they are published to `-updates`.
+To install these pre-release kernels you need to opt in, as neither source is
+enabled by default.
+
+This guide explains how to enable and test pre-release Ubuntu kernels, and how
+to report any regressions you find.
+
+```{caution}
+Kernels published to the build PPAs are not suitable for production systems -
+enabling them could cause boot failures or regressions and is not recommended.
+```
+
+For details on the kernel lifecycle, see the {doc}`/explanation/kernel-lifecycle-sru`.
 
 ## Enable the -proposed pocket to software sources
 
@@ -38,7 +48,7 @@ Components: main universe restricted multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 ```
 ````
-````{tab-item} Mantic Minotaur 23.10 (and older)
+````{tab-item} Jammy Jellyfish 22.04 (and older)
 
 Add "\<series\>-proposed" (e.g. "jammy-proposed") to the following line in:
 
@@ -53,6 +63,21 @@ Add "\<series\>-proposed" (e.g. "jammy-proposed") to the following line in:
   ```
 ````
 `````
+
+## Enable the CKT build PPA
+
+You can add the CKT build PPAs to your system as follows:
+
+```{code-block} none
+sudo add-apt-repository ppa:canonical-kernel-team/ppa
+sudo add-apt-repository ppa:canonical-kernel-team/ppa2
+```
+
+```{warning}
+Do remember that these kernels may be entirely untested at time of download and
+thus potentially fundamentally broken. Only test from build PPAs if you have a
+reason to do so. Do not test from build PPAs if you have Secure Boot enabled.
+```
 
 ## Install the pre-release kernel
 

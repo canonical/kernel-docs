@@ -36,9 +36,9 @@ processes for customization and maintenance.
 * - **Contributing to Ubuntu kernels**
   - {doc}`/reference/patch-acceptance-criteria` • {doc}`/reference/stable-patch-format` • {doc}`/how-to/source-code/send-patches`
 * - **Kernel development**
-  - {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/testing-verification/test-kernel-in-proposed` • {doc}`/explanation/ubuntu-linux-kernel-sources`
+  - {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/explanation/ubuntu-linux-kernel-sources`
 * - **Kernel release and maintenance**
-  - {doc}`/reference/kernel-workflow-playbook/kernel-release` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback`
+  - {doc}`/explanation/kernel-lifecycle-sru` • {doc}`/reference/kernel-workflow-playbook/kernel-release` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback`
 * - **Kernel variants**
   - {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/reference/hwe-kernels` • {doc}`/reference/oem-kernels` • {doc}`/reference/ubuntu-kernels/`
 * - **Upload rights**

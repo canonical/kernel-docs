@@ -1,7 +1,7 @@
 ---
 myst:
   html_meta:
-    description: "Guides for Ubuntu kernel development. Learn how to obtain source code, build kernels, test in -proposed versions, and contribute to the documentation."
+    description: "Guides for Ubuntu kernel development. Learn how to obtain source code, build kernels, test pre-release versions, and contribute to the documentation."
 ---
 
 # How-to guides
@@ -19,7 +19,7 @@ Obtain and manage kernel source for an Ubuntu release using Git </how-to/source-
 Send patches to the mailing-list </how-to/source-code/send-patches>
 Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>
 Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>
-Test kernels in -proposed </how-to/testing-verification/test-kernel-in-proposed>
+Test pre-release Ubuntu kernels </how-to/testing-verification/test-pre-release-kernels>
 Contribute to kernel docs </how-to/contribute>
 ```
 
@@ -44,4 +44,4 @@ The steps to build a kernel is similar but may have slightly difference configur
 These guides relate to testing the kernel to ensure its stability and
 functionality before you push or release a patch.
 
-- [Test kernels in -proposed](/how-to/testing-verification/test-kernel-in-proposed)
+- [Test pre-release Ubuntu kernels](/how-to/testing-verification/test-pre-release-kernels)
