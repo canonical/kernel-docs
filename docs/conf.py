@@ -160,7 +160,7 @@ html_context = {
 # TODO: If your documentation is hosted on https://docs.ubuntu.com/,
 #       uncomment and update as needed.
 
-slug = 'https://ubuntu.com/kernel/docs'
+slug = 'kernel/docs'
 
 
 #######################
@@ -326,8 +326,8 @@ html_css_files = [
 # Adds custom JavaScript files, located under 'html_static_path'
 
 html_js_files = [
-    "bundle.js",
-    "overwrite_links.js",
+    "js/bundle.js",
+    "js/overwrite_links.js",
 ]
 
 
