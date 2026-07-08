@@ -72,7 +72,7 @@ copyright = f"{datetime.date.today().year}"
 # NOTE: The Open Graph Protocol (OGP) enhances page display in a social graph
 #       and is used by social media platforms; see https://ogp.me/
 
-ogp_site_url = "https://canonical-kernel-docs.readthedocs-hosted.com/"
+ogp_site_url = "https://ubuntu.com/kernel/docs/"
 
 
 # Preview name of the documentation website
@@ -160,7 +160,7 @@ html_context = {
 # TODO: If your documentation is hosted on https://docs.ubuntu.com/,
 #       uncomment and update as needed.
 
-# slug = ''
+slug = 'kernel/docs'
 
 
 #######################
@@ -169,11 +169,12 @@ html_context = {
 
 # Use RTD canonical URL to ensure duplicate pages have a specific canonical URL
 
-html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
+html_baseurl = "https://ubuntu.com/kernel/docs/"
 
 # sphinx-sitemap uses html_baseurl to generate the full URL for each page:
 
 sitemap_url_scheme = '{link}'
+sitemap_filename = "doc-sitemap.xml"
 
 # Include `lastmod` dates in the sitemap:
 
@@ -189,8 +190,8 @@ sitemap_excludes = [
 
 # Template and asset locations
 
-html_static_path = ["_dev/_static"]
-templates_path = ["_dev/_templates"]
+html_static_path = ["_static"]
+templates_path = ["_templates"]
 
 
 #############
@@ -325,7 +326,8 @@ html_css_files = [
 # Adds custom JavaScript files, located under 'html_static_path'
 
 html_js_files = [
-    "bundle.js",
+    "js/bundle.js",
+    "js/overwrite_links.js",
 ]
 
 
