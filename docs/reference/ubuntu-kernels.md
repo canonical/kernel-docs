@@ -121,7 +121,8 @@ For the generic kernel, the current Ubuntu flavours and their target workloads a
   - Deterministic latency via the PREEMPT_RT patchset
 ```
 
-Derivative kernels might support only a subset of these flavours, and might also add a portion of the derivative name to the flavour identifier. For example, the raspi kernel has flavours `arm64-raspi` and `arm64-raspi-realtime`.
+Derivative kernels might support only a subset of these flavours, and might also add a portion of the derivative name to the flavour identifier.
+For example, the raspi kernel has flavours `arm64-raspi` and `arm64-raspi-realtime`.
 
 (ref-ubuntu-kernels-optimized)=
 
