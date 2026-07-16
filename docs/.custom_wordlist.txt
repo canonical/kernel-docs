@@ -17,6 +17,7 @@ packageset
 patchset
 patchsets
 PPAs
+raspi
 RCs
 rebased
 rebases
