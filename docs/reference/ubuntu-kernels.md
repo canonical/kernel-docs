@@ -93,7 +93,7 @@ For example, the Ubuntu `linux` source package produces both `linux-generic` and
 
 ```{note}
 This config-only distinction applies within a single source package.
-Kernels with separate source packages (such as `linux-aws` or `linux-raspi`) are [optimized kernels](#optimized-kernels) and may carry additional patches beyond config changes.
+Kernels with separate source packages (such as `linux-aws` or `linux-raspi`) are {ref}`optimized kernels <ref-ubuntu-kernels-optimized>` and may carry additional patches beyond config changes.
 ```
 
 For the generic kernel, the current Ubuntu flavours and their target workloads are:
