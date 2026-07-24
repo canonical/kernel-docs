@@ -48,6 +48,24 @@ Patch does not apply
 The patch should always be based on a recent kernel. Expect to resubmit
 again if the tip changes and the patch has conflicts.
 
+Patch fails upstream checks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Patches are expected to pass the upstream kernel patch tools provided with the
+kernel source tree. A patch that fails these checks will be rejected.
+
+Before you submit, do the following:
+
+- Read ``Documentation/process/submitting-patches.rst`` for the upstream
+  patch submission guidelines.
+- Run ``scripts/checkpatch.pl`` against a generated patch to catch style
+  and formatting problems.
+- Run ``scripts/cleanpatch`` if the patch needs to be cleaned before
+  submission.
+- Run ``scripts/cleanfile`` on a new file before you create the patch.
+- Run ``scripts/Lindent`` if a file needs to follow the kernel indentation
+  style.
+
 SRU patches
 -----------
 
