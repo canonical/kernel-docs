@@ -247,6 +247,7 @@ linkcheck_anchors_ignore_for_url = [
     r"https://github\.com/.*",
     r"https://ubuntu.com/about/release-cycle",
     r"https://snapcraft.io/docs/",
+    r"https://matrix.to/",
     ]
 
 # give linkcheck multiple tries on failure

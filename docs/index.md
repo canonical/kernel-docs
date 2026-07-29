@@ -34,7 +34,7 @@ processes for customization and maintenance.
 :header-rows: 0
 
 * - **Contributing to Ubuntu kernels**
-  - {doc}`/reference/patch-acceptance-criteria` • {doc}`/reference/stable-patch-format` • {doc}`/how-to/source-code/send-patches`
+  - {doc}`/reference/patch-acceptance-criteria` • {doc}`/reference/stable-patch-format` • {doc}`/how-to/source-code/send-patches` • {doc}`/how-to/source-code/send-patches-upstream`
 * - **Kernel development**
   - {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/explanation/ubuntu-linux-kernel-sources`
 * - **Kernel release and maintenance**
