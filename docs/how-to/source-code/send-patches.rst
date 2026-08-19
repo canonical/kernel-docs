@@ -3,8 +3,13 @@
 
 .. _how-to-send-patches:
 
-How to send patches to the mailing-list
-#######################################
+How to send patches to the Ubuntu mailing-list
+##############################################
+
+The Ubuntu mailing-list is the place to submit Ubuntu-specific changes, such as Ubuntu kernel configs. 
+
+.. note::
+    If your patch otherwise applies more generally to the Linux kernel, you should :doc:`submit your patches upstream <./send-patches-upstream>` instead.
 
 To send kernel patches to the mailing-list, you should use the ``git
 send-email`` command.
