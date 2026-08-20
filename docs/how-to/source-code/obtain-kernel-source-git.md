@@ -30,7 +30,6 @@ For example, to obtain a local copy of the Jammy kernel tree, run any of the
 following `git clone` commands:
 
 ```{code-block} shell
-git clone git://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy
 git clone git+ssh://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy
 git clone https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy
 ```
@@ -45,7 +44,7 @@ by first downloading the upstream kernel tree and using it as a reference for
 subsequent clones:
 
 ```{code-block} shell
-git clone https://kernel.ubuntu.com/ubuntu/linux.git
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy
 git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/noble
 ```
