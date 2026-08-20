@@ -45,7 +45,7 @@ by first downloading the upstream kernel tree and using it as a reference for
 subsequent clones:
 
 ```{code-block} shell
-git clone https://kernel.ubuntu.com/ubuntu/linux.git
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy
 git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/noble
 ```
