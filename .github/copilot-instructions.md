@@ -235,3 +235,12 @@ Use short section prefixes for anchors when naming labels, for example `tutorial
 - Don't assume reader knowledge without brief explanations or links.
 - Don't link to blog posts when official docs exist.
 - Don't treat this repository as a mixed code-and-docs project.
+
+## AI-inference-friendly docs workflow
+
+When asked to make docs "AI-friendly," "LLM-friendly," or "inference-friendly,"
+use the `docs-ai-friendly-rewrite` skill (`.github/skills/`) and follow
+`AGENTS.md`. That workflow keeps its own working files under
+`.github/ai-friendly-audit/` (audits, an internal working term list,
+reports) — separate from `docs/reference/glossary.md`, which serves a
+different purpose and is not read or edited by this workflow.

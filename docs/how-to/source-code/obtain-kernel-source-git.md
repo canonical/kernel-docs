@@ -23,8 +23,10 @@ sudo apt-get install git
 
 ## Get local copy of kernel source for single release
 
-You can use `git clone` with the selected protocol to obtain a local copy of
-the kernel source for the release you are interested in.
+Each Ubuntu release (e.g. "Noble", "Resolute") has its own codename-based kernel
+series and corresponding Git repository.
+Use `git clone` with the selected protocol to obtain a local copy of the
+kernel source for the Ubuntu kernel series you are interested in.
 
 For example, to obtain a local copy of the Jammy kernel tree, run any of the
 following `git clone` commands:
@@ -39,10 +41,11 @@ See {ref}`exp-ubuntu-kernel-source-protocols` for more information.
 
 ## Clone multiple releases using a shared reference repository
 
-Cloning a single kernel tree downloads several hundred megabytes of data. If
-you plan to work with more than one kernel release, you can save space and time
-by first downloading the upstream kernel tree and using it as a reference for
-subsequent clones:
+Cloning a single kernel tree downloads several hundred megabytes of data.
+If you plan to work with more than one Ubuntu kernel series, clone the upstream
+Linux kernel repository first and use it as a reference repository for the
+subsequent Ubuntu clones.
+This saves time and disk usage by reducing duplicate downloads.
 
 ```{code-block} shell
 git clone https://kernel.ubuntu.com/ubuntu/linux.git
@@ -50,19 +53,22 @@ git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+sou
 git clone --reference linux https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/noble
 ```
 
-Each `git clone` creates a new directory for a given release, containing the full source and history of the repository.
+Each Ubuntu `git clone` creates a separate directory for a given series and has
+the full source and history available locally.
 
 ```{caution}
 Once two trees are linked this way, you cannot delete or move the upstream
-`linux` reference tree without manually updating
-`.git/objects/info/alternates` in each Ubuntu kernel tree that references it.
+`linux` reference tree without manually updating `.git/objects/info/alternates`
+in each Ubuntu kernel tree that references it.
 ```
 
 ## Add multiple series as remotes
 
-If you are an advanced Git user, you can add each Ubuntu series as a remote to
-have all kernel series in a single Git repository, and switch between them
-using branches:
+If you want to compare or switch between several Ubuntu kernel series in one
+working repository, add each series as a remote and switch between them using
+branches.
+This keeps the series in one repository, but makes its remote and branch
+structure more complex than using separate clones:
 
 ```{code-block} shell
 git remote add jammy https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy
@@ -71,10 +77,18 @@ git checkout -b jammy --track jammy/master
 git checkout -b jammy-next --track jammy/master-next
 ```
 
+For example, if you want to check out the current Ubuntu kernel source for
+Jammy, use the `jammy` branch, which tracks `master`.
+If you instead want to check out the commits staged for the next Stable Release
+Update (SRU), you can create the `jammy-next` branch, which tracks
+`master-next`. 
+
 ## Work with multiple series in separate subdirectories
 
-To have the source for each kernel series available in its own subdirectory
-within a single Git repository, use `git subtree add`:
+If you need the source for each Ubuntu kernel series in its own subdirectory
+within one repository, use `git subtree add`. This layout is useful when the
+series should be visible together in one working tree, but it puts the large
+kernel histories into that repository and requires explicit update commands.
 
 ```{code-block} shell
 git subtree add --prefix=jammy https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/jammy master
@@ -94,9 +108,13 @@ git subtree pull --prefix=jammy https://git.launchpad.net/~ubuntu-kernel/ubuntu/
 
 ## Work with a specific kernel version using tags
 
-By default, cloning gives you the latest state of the `master` branch. To work
-with a specific, previously released kernel version, use release tags. To list
-all available tags for a release:
+By default, cloning checks out the repository's default branch, which is
+`master` for the Ubuntu kernel repositories described here. To work with a
+specific, previously released kernel version, use an Ubuntu release tag. An
+Ubuntu release tag starts with `Ubuntu-` and identifies a released kernel
+version.
+
+To list matching tags in the cloned repository:
 
 ```{code-block} shell
 git tag -l Ubuntu-*
@@ -113,18 +131,19 @@ Ubuntu-5.4.0-52.57
 ...
 ```
 
-To check out a specific version, create a branch pointing to that tag:
+To check out a specific version while keeping a branch for additional local
+commits, create a branch pointing to that tag:
 
 ```{code-block} shell
 git checkout -b temp Ubuntu-5.4.0-52.57
 ```
 
-You can then work with that version - for example, by adding new commits.
+The new branch points to the tagged snapshot, so you can add commits without
+leaving the repository in a detached `HEAD` state.
 
 ## Related topics
 
 - {doc}`/explanation/ubuntu-linux-kernel-sources`
-- <https://wiki.ubuntu.com/Kernel/Dev/KernelGitGuide>
 
 % LINKS
 

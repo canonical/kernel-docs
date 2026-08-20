@@ -93,7 +93,9 @@ gh copilot suggest "Follow .github/copilot-instructions.md and suggest improveme
 
 ## Use Copilot Skills
 
-For comprehensive documentation reviews, use the documentation-review skill:
+### Documentation-review skill
+
+For comprehensive documentation reviews:
 
 - Skill file:
   [.github/skills/documentation-review/SKILL.md](.github/skills/documentation-review/SKILL.md)
@@ -103,3 +105,39 @@ For comprehensive documentation reviews, use the documentation-review skill:
 Prompt example:
 
 > Follow .github/copilot-instructions.md. Run the documentation-review skill from SKILL.md on docs/how-to/contribute.md only.
+
+### AI-friendly-rewrite skill
+
+For making documentation AI-inference-friendly:
+
+- Skill file:
+  [.github/skills/docs-ai-friendly-rewrite/SKILL.md](.github/skills/docs-ai-friendly-rewrite/SKILL.md)
+- Coverage: 5-stage pipeline (audit, glossary update, rewrite, consistency check, validate) to improve how LLMs can reason about and infer from documentation.
+
+Prompt example:
+
+> Follow .github/copilot-instructions.md and AGENTS.md. Run the docs-ai-friendly-rewrite skill from .github/skills/docs-ai-friendly-rewrite/SKILL.md on [docs to audit/rewrite].
+
+## AI-friendly documentation pipeline
+
+This repository includes an advanced pipeline for making documentation AI-inference-friendly.
+See [AGENTS.md](AGENTS.md) for detailed workflow instructions.
+
+### Pipeline overview
+
+The 5-stage pipeline helps documentation become more reasoning-friendly for LLMs:
+
+1. **Audit** - Analyze docs for inference-blocking patterns
+2. **Update glossary** - Merge findings into internal working glossary
+3. **Rewrite** - Improve documentation structure and clarity
+4. **Consistency check** - Ensure cross-doc consistency
+5. **Validate** - Run quality checks and inference-question tests
+
+### Key files and directories
+
+- **[AGENTS.md](AGENTS.md)** - Shared convention read by coding agents; documents the complete pipeline, persistent state, and PR conventions
+- **[.github/ai-friendly-audit/](.github/ai-friendly-audit/)** - Working directory containing audit findings, internal glossary, consistency reports, and validation questions
+- **[prompts/](prompts/)** - Standalone prompt files for each pipeline stage, usable in any chat LLM:
+  - `audit-docs.md` - Audit criteria and procedure
+  - `rewrite-docs.md` - Rewrite guidelines
+  - `consistency-check-docs.md` - Cross-doc consistency checks
