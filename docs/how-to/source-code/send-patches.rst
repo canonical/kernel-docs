@@ -3,10 +3,14 @@
 
 .. _how-to-send-patches:
 
-How to send patches to the mailing-list
 #######################################
 
-To send kernel patches to the mailing-list, you should use the ``git
+Patches must be sent to the `Ubuntu kernel-team mailing list`_
+(``kernel-team@lists.ubuntu.com``). If you have not done so already,
+subscribe to the list before submitting your first patch, as
+messages from non-subscribers are held for moderation.
+
+To send kernel patches to the mailing list, you should use the ``git
 send-email`` command.
 
 .. note::
@@ -23,6 +27,7 @@ sending kernel patches. The commonly used settings are:
     git config set sendemail.ubuntu-kernel.chainReplyTo false
     git config set sendemail.ubuntu-kernel.suppresscc true
     git config set sendemail.ubuntu-kernel.thread true
+    git config set sendemail.ubuntu-kernel.to kernel-team@lists.ubuntu.com
 
     # And then include these settings with `--identity=ubuntu-kernel`
     git send-email --identity=ubuntu-kernel ...
@@ -67,3 +72,5 @@ to the previous submitted version.
 .. seealso::
 
    - (Reference) :ref:`ubuntu-patches-acceptance-criteria`
+
+.. _Ubuntu kernel-team mailing list: https://lists.ubuntu.com/mailman/listinfo/kernel-team
