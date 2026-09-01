@@ -3,6 +3,7 @@
 
 .. _how-to-send-patches:
 
+How to send patches to the mailing list
 #######################################
 
 Patches must be sent to the `Ubuntu kernel-team mailing list`_
