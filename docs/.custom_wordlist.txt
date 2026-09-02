@@ -2,6 +2,7 @@
 ack'd
 ACKs
 AppArmor
+armhf
 backport
 backported
 bootable

@@ -124,6 +124,39 @@ For the generic kernel, the current Ubuntu flavours and their target workloads a
 Derivative kernels might support only a subset of these flavours, and might also add a portion of the derivative name to the flavour identifier.
 For example, the raspi kernel has flavours `arm64-raspi` and `arm64-raspi-realtime`.
 
+(ref-ubuntu-kernels-flavour-migration)=
+
+### Migration of kernel flavours
+
+At times the functionality of one kernel flavour may end up being entirely superseded by the functionality of another, making the original kernel flavour no longer necessary. In this scenario, users of the original kernel flavour can be automatically migrated to the superseding one.
+
+The following table provides a summary of these now-obsolete kernel flavours, and their replacements:
+
+```{list-table}
+:header-rows: 1
+
+* - Obsoleted in release
+  - Obsolete flavour
+  - Replacement flavour
+  - Notes
+* - 23.10
+  - `kvm`
+  - `virtual`
+  - The `virtual` kernel flavour received support for `virtio_scsi` and was configured to boot without an initramfs, allowing it to replace `linux-kvm`.
+* - 24.04
+  - `generic-lpae`
+  - `generic`
+  - The `generic` flavour enabled the armhf Large Physical Address Extension by default. [(LP: #2025265)](https://bugs.launchpad.net/bugs/2025265)
+* - 24.04
+  - `laptop-23.10`
+  - `generic`
+  - The `laptop-23.10` flavour was intended to support select ARM-based laptops, and in 24.04 the `generic` flavour received support for these systems as well.
+* - 24.04
+  - `intel-iotg`
+  - `generic-hwe-24.04`
+  - All unique functionality of the `intel-iotg` flavour is included in the Noble `generic` kernel flavour. [(LP: #2128721)](https://bugs.launchpad.net/bugs/2128721)
+```
+
 (ref-ubuntu-kernels-optimized)=
 
 ## Optimized kernels
