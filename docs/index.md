@@ -86,7 +86,11 @@ make this section work as an entry point rather than a filing shelf.
 Note some of this information is in the glossary but could be more prominent.
 ```
 
-### Resources and interfaces
+### Resources
+
+```{important}
+**BJDEAN TODO:** is this section useful / needed?
+```
 
 For readers who need to reach the systems around the kernel: the archive,
 Launchpad, and the kernel team mailing list.
@@ -100,13 +104,10 @@ Launchpad, and the kernel team mailing list.
 
 ### Quality
 
-Canonical is committed to the quality of the Ubuntu kernel ...
+The kernel is part of the Ubuntu project - see [How Ubuntu is made](https://ubuntu.com/project/docs/how-ubuntu-is-made/). As the kernel is very complex and at the core of any Ubuntu system processes exist to ensure the kernel is reliable and that critical updates are applied while being non-disruptive to users:
 
-```{important}
-**BJDEAN TODO:** does this information exist elsewhere? I have not found it in the old wiki either. This needs to be a concrete / provable statement.
+{doc}`/explanation/kernel-lifecycle-sru` • {doc}`/explanation/post-release-updates` • {doc}`/explanation/stable-release-updates`
 
-In the review we noted maybe there is nothing here required but an overview - but it needs to be more than a vague statement.
-```
 
 ### Lifecycle
 
