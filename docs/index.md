@@ -35,23 +35,26 @@ processes for customization and maintenance.
 :widths: 30 70
 :header-rows: 0
 
-* - **Building the Ubuntu Kernel**
-  - {doc}`/explanation/ubuntu-linux-kernel-sources` • {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/develop-customise/build-kernel-module`
+* - **About the Kernel**
+  - {doc}`/explanation/ubuntu-linux-kernel-sources`
 
-* - **Patching the Ubuntu Kernel**
+* - **Building the Kernel**
+  - {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/develop-customise/build-kernel-module`
+
+* - **Patching the Kernel**
   - {doc}`/explanation/ubuntu-kernel-patch-life-cycle` • {doc}`/reference/stable-patch-format` • {doc}`/reference/patch-acceptance-criteria` • {doc}`/how-to/source-code/send-patches`
 
-* - **Releasing the Ubuntu Kernel**
+* - **Releasing the Kernel**
   - {doc}`/reference/ubuntu-kernels` • {doc}`/reference/hwe-kernels` • {doc}`/reference/oem-kernels` • {doc}`/reference/snap-lifecycle` • {doc}`/reference/kernel-workflow-playbook/kernel-release`
 
-* - **Linux: the Upstream Kernel**
+* - **Linux: The Upstream Kernel**
   - TODO: In [kernel-docs PR#119](https://github.com/canonical/kernel-docs/pull/119) we have incoming documentation on how to send patches upstream
 
 * - **A Stable and Reliable Kernel**
-  - {doc}`/explanation/kernel-lifecycle-sru` • {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback` • {doc}`/how-to/contribute`
+  - {doc}`/explanation/kernel-lifecycle-sru` • {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback`
 
 * - **Contributing to the Ubuntu Kernel**
-  - {doc}`/reference/kernel-upload-rights` • {doc}`/reference/dkms-upload-rights`
+  - {doc}`/reference/kernel-upload-rights` • {doc}`/reference/dkms-upload-rights` • {doc}`/how-to/contribute`
 ```
 
 
