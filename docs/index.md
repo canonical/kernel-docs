@@ -45,13 +45,16 @@ processes for customization and maintenance.
   - {doc}`/explanation/ubuntu-kernel-patch-life-cycle` • {doc}`/reference/stable-patch-format` • {doc}`/reference/patch-acceptance-criteria` • {doc}`/how-to/source-code/send-patches`
 
 * - **Releasing the Kernel**
-  - {doc}`/reference/ubuntu-kernels` • {doc}`/reference/hwe-kernels` • {doc}`/reference/oem-kernels` • {doc}`/reference/snap-lifecycle` • {doc}`/reference/kernel-workflow-playbook/kernel-release`
+  - {doc}`/explanation/kernel-lifecycle-sru` • {doc}`/reference/snap-lifecycle` • {doc}`/reference/kernel-workflow-playbook/kernel-release`
+
+* - **Kernel Variants**
+  - {doc}`/reference/ubuntu-kernels` • {doc}`/reference/hwe-kernels` • {doc}`/reference/oem-kernels`
 
 * - **Linux: The Upstream Kernel**
   - TODO: In [kernel-docs PR#119](https://github.com/canonical/kernel-docs/pull/119) we have incoming documentation on how to send patches upstream
 
 * - **A Stable and Reliable Kernel**
-  - {doc}`/explanation/kernel-lifecycle-sru` • {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback`
+  - {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback`
 
 * - **Contributing to the Ubuntu Kernel**
   - {doc}`/reference/kernel-upload-rights` • {doc}`/reference/dkms-upload-rights` • {doc}`/how-to/contribute`
