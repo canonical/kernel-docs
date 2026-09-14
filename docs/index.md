@@ -28,54 +28,46 @@ processes for customization and maintenance.
 (in-this-documentation)=
 ## In this documentation
 
-### Point of entry / Installation
+% DOMAINS OF CONCERN
 
-```{important}
-**BJDEAN GAP?:** As noted in the review 1st September the current documentation doesn't have a entry point for new "users of the kernel" as it starts with people who are patching the kernel. The following section {ref}`contributing-and-participation` may be a good option for now.
+```{list-table}
+:widths: 25 75
+:header-rows: 0
+
+* - **Contributing to Ubuntu kernels**
+  - {doc}`/reference/patch-acceptance-criteria` • {doc}`/reference/stable-patch-format` • {doc}`/how-to/source-code/send-patches`
+* - **Kernel development**
+  - {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/explanation/ubuntu-linux-kernel-sources`
+* - **Kernel release and maintenance**
+  - {doc}`/explanation/kernel-lifecycle-sru` • {doc}`/reference/kernel-workflow-playbook/kernel-release` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback`
+* - **Kernel variants**
+  - {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/reference/hwe-kernels` • {doc}`/reference/oem-kernels` • {doc}`/reference/ubuntu-kernels/`
+* - **Upload rights**
+  - {doc}`/reference/kernel-upload-rights` • {doc}`/reference/dkms-upload-rights`
 ```
 
-(contributing-and-participation)=
-### Contributing and participation
+### Getting started
 
-If you want to take part in Ubuntu kernel work, this is the best place to start.
-You can begin by understanding the source packages and workflow, then move on to
-testing, reporting, and submitting patches.
+If you would like to understand how an Ubuntu kernel is put together, where
+it comes from, and how you might take part — whether by reporting and testing
+as a user, or by sending patches:
 
 {doc}`What the Ubuntu kernel sources are </explanation/ubuntu-linux-kernel-sources>` •
 {doc}`How a patch reaches the kernel </explanation/ubuntu-kernel-patch-life-cycle>` •
-{doc}`Patch acceptance criteria </reference/patch-acceptance-criteria>` •
-{doc}`Stable patch format </reference/stable-patch-format>` •
-{doc}`Send patches to the mailing list </how-to/source-code/send-patches>` •
+See above {ref}`Contributing to Ubuntu kernels above <in-this-documentation>` •
 {doc}`Glossary </reference/glossary>`
 
+```{important}
+**BJDEAN GAP:** nothing here answers "how can I participate?" directly.
 
-### Kernel development and customization
+The patch life cycle page starts further along than a newcomer does. A short "How you can take part" explanation belongs at the head of this section and is likely part of new-content to be added or imported from the old wiki.
+```
 
-This domain covers obtaining source, preparing a development environment, and
-building or modifying Ubuntu kernels for development and testing.
+### What Ubuntu kernels offer
 
-{doc}`Enable source package repositories </how-to/source-code/enable-source-repositories>` •
-{doc}`Obtain kernel source with Git </how-to/source-code/obtain-kernel-source-git>` •
-{doc}`Build a kernel </how-to/develop-customise/build-kernel>` •
-{doc}`How-to guides </how-to/index>`
+If you're deciding which kernel suits your hardware, release or deployment it's important to know that Ubuntu ships more than one kernel. For an overview of our kernels a good place to start is [Ubuntu kernels from Canonical](https://ubuntu.com/kernel) and [Ubuntu kernel variants from Canonical](https://ubuntu.com/kernel/variants).
 
-### Release lifecycle and maintenance
-
-Ubuntu kernels move through a structured SRU lifecycle with staged testing and
-promotion. This section explains how kernels are maintained for stability,
-security, and regression control across releases.
-
-{doc}`Kernel lifecycle (SRU) </explanation/kernel-lifecycle-sru>` •
-{doc}`Stable release updates </explanation/stable-release-updates>` •
-{doc}`Post-release updates </explanation/post-release-updates>` •
-{doc}`Kernel release workflow </reference/kernel-workflow-playbook/kernel-release>` •
-{doc}`Kernel rollback workflow </reference/kernel-workflow-playbook/kernel-rollback>`
-
-### Kernel variants and selection
-
-Ubuntu provides multiple kernel variants to suit different hardware and
-deployment needs (for example generic, HWE, OEM, and snap-based delivery).
-Use this section to understand what each variant is for and how to choose.
+Further information available in this document:
 
 {doc}`Variants and branches </reference/ubuntu-kernels>` •
 {doc}`HWE kernels </reference/hwe-kernels>` •
@@ -94,34 +86,42 @@ make this section work as an entry point rather than a filing shelf.
 Note some of this information is in the glossary but could be more prominent.
 ```
 
-### Publishing, archive and upload rights
+### Resources
 
-This section covers the systems and permissions around getting kernel changes
-into Ubuntu: upload rights, archive paths, and the collaboration surfaces used
-by the kernel team.
+```{important}
+**BJDEAN TODO:** is this section useful / needed?
+```
 
-{doc}`Kernel upload rights </reference/kernel-upload-rights>` •
-{doc}`DKMS upload rights </reference/dkms-upload-rights>` •
+For readers who need to reach the systems around the kernel: the archive,
+Launchpad, and the kernel team mailing list.
+
 {doc}`Enable source package repositories </how-to/source-code/enable-source-repositories>` •
 {doc}`Obtain kernel source with Git </how-to/source-code/obtain-kernel-source-git>` •
 {doc}`Send patches to the mailing list </how-to/source-code/send-patches>`
 
+% GAP: no single page names Launchpad, the build PPAs, the -proposed pocket and
+% the mailing list as a set, so several how-tos re-explain them in passing.
 
 ### Quality
 
-The kernel sits at the core of every Ubuntu system, so it is maintained under
-processes designed to keep it reliable and to deliver critical updates without
-disrupting users. For how this fits into the wider distribution, see
-[How Ubuntu is made](https://ubuntu.com/project/docs/how-ubuntu-is-made/).
+The kernel is part of the Ubuntu project - see [How Ubuntu is made](https://ubuntu.com/project/docs/how-ubuntu-is-made/). As the kernel is very complex and at the core of any Ubuntu system processes exist to ensure the kernel is reliable and that critical updates are applied while being non-disruptive to users:
 
-{doc}`Test pre-release kernels </how-to/testing-verification/test-pre-release-kernels>` •
-{doc}`Security and update policy </explanation/post-release-updates>`
+{doc}`/explanation/kernel-lifecycle-sru` • {doc}`/explanation/post-release-updates` • {doc}`/explanation/stable-release-updates`
+
+
+### Lifecycle
+
+Each Stable Release Update (SRU) cycle, kernels move through several stages
+from initial preparation and build testing through to final publication in the
+-updates or -security pockets. Each stage adds more testing and confidence
+before the kernel reaches a broader audience.
+
+For more information see {doc}`/explanation/kernel-lifecycle-sru`.
 
 
 ### Where Ubuntu kernels are used
 
-Ubuntu kernels are used across desktop, server, IoT, and cloud deployments.
-These pages provide broader platform context and deployment-specific framing.
+The Ubuntu kernel is at the heart of all Ubuntu distributions - for more information see:
 
 [The Ubuntu Linux kernel](https://ubuntu.com/kernel) •
 [Ubuntu for the Internet of Things](https://ubuntu.com/internet-of-things) •
