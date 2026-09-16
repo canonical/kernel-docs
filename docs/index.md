@@ -6,23 +6,15 @@ myst:
 
 # Ubuntu Kernel documentation
 
-The Ubuntu Linux kernel is the core software enabling applications on Ubuntu to
-interact with system resources.
+The Ubuntu kernel is the Linux kernel shipped with Ubuntu. It manages core
+system resources and connects Ubuntu software with the hardware it runs on.
 
-The Ubuntu kernel handles communication between system hardware and user-space
-applications, managing tasks like memory, processing, and security. Regular
-stable release updates (SRU) ensure the kernel stays secure, stable, and
-optimized.
-
-Ubuntu kernels provide a reliable foundation for applications and system
-processes, meeting the need for secure, high-performance, Ubuntu environments.
-Kernels are also tested consistently for regressions to provide users with a
-reliable and smooth experience. Kernels are tailor made for Ubuntu Desktop,
-Ubuntu Server, a wide range of architectures, IoT devices, cloud providers, and
-more.
+Regular stable release updates (SRU) ensure the kernel stays current, secure,
+stable, and optimized. Ubuntu-specific configuration, patches, packaging,
+testing, and release processes distinguish it from the upstream kernel.
 
 This documentation serves developers, partners, and others working with Ubuntu
-kernels, offering guidance on kernel workflows, tools, SRU timelines, and
+kernels - offering guidance on kernel workflows, tools, SRU timelines, and
 processes for customization and maintenance.
 
 
@@ -35,11 +27,9 @@ processes for customization and maintenance.
 :widths: 30 70
 :header-rows: 0
 
-* - **About the Kernel**
-  - {doc}`About the source-code </explanation/ubuntu-linux-kernel-sources>`
-
 * - **Building**
-  - {doc}`Enable source repositories </how-to/source-code/enable-source-repositories>`
+  - {doc}`About source packages </explanation/ubuntu-linux-kernel-sources>`
+    • {doc}`Enable source repositories </how-to/source-code/enable-source-repositories>`
     • {doc}`Get the source-code </how-to/source-code/obtain-kernel-source-git>`
     • {doc}`Build a kernel </how-to/develop-customise/build-kernel>`
     • {doc}`Build a snap </how-to/develop-customise/build-kernel-snap>`
