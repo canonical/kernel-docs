@@ -6,12 +6,12 @@ myst:
 
 # Ubuntu Kernel documentation
 
-The Ubuntu kernel is the Linux kernel shipped with Ubuntu. It manages core
-system resources and connects Ubuntu software with the hardware it runs on.
+The Ubuntu Linux kernel is the core software enabling applications to interact
+with system resources.
 
-Regular stable release updates (SRU) ensure the kernel stays current, secure,
-stable, and optimized. Ubuntu-specific configuration, patches, packaging,
-testing, and release processes distinguish it from the upstream kernel.
+The Stable Release Update (SRU) cycle ensures the kernel stays current, secure,
+and stable. Ubuntu-specific configuration, patches, packaging, testing, and
+release processes distinguish it from the upstream kernel.
 
 This documentation serves developers, partners, and others working with Ubuntu
 kernels - offering guidance on kernel workflows, tools, SRU timelines, and
