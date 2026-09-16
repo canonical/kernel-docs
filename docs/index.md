@@ -36,28 +36,44 @@ processes for customization and maintenance.
 :header-rows: 0
 
 * - **About the Kernel**
-  - {doc}`/explanation/ubuntu-linux-kernel-sources`
+  - {doc}`About the source-code </explanation/ubuntu-linux-kernel-sources>`
 
-* - **Building the Kernel**
-  - {doc}`/how-to/source-code/enable-source-repositories` • {doc}`/how-to/source-code/obtain-kernel-source-git` • {doc}`/how-to/develop-customise/build-kernel` • {doc}`/how-to/develop-customise/build-kernel-snap` • {doc}`/how-to/develop-customise/build-kernel-module`
+* - **Building**
+  - {doc}`Enable source repositories </how-to/source-code/enable-source-repositories>`
+    • {doc}`Get the source-code </how-to/source-code/obtain-kernel-source-git>`
+    • {doc}`Build a kernel </how-to/develop-customise/build-kernel>`
+    • {doc}`Build a snap </how-to/develop-customise/build-kernel-snap>`
+    • {doc}`Build a module </how-to/develop-customise/build-kernel-module>`
 
-* - **Patching the Kernel**
-  - {doc}`/explanation/ubuntu-kernel-patch-life-cycle` • {doc}`/reference/stable-patch-format` • {doc}`/reference/patch-acceptance-criteria` • {doc}`/how-to/source-code/send-patches`
+* - **Patching**
+  - {doc}`Patch life-cycle </explanation/ubuntu-kernel-patch-life-cycle>`
+    • {doc}`Patch format </reference/stable-patch-format>`
+    • {doc}`Patch acceptance </reference/patch-acceptance-criteria>`
+    • {doc}`Sending patches to Ubuntu </how-to/source-code/send-patches>`
 
-* - **Releasing the Kernel**
-  - {doc}`/explanation/kernel-lifecycle-sru` • {doc}`/reference/snap-lifecycle` • {doc}`/reference/kernel-workflow-playbook/kernel-release`
+* - **Releasing**
+  - {doc}`Stable Release Update (SRU) cycle </explanation/kernel-lifecycle-sru>`
+    • {doc}`Snap lifecycle </reference/snap-lifecycle>`
+    • {doc}`Releasing a kernel </reference/kernel-workflow-playbook/kernel-release>`
 
-* - **Kernel Variants**
-  - {doc}`/reference/ubuntu-kernels` • {doc}`/reference/hwe-kernels` • {doc}`/reference/oem-kernels`
+* - **Variants**
+  - {doc}`Kernel variants </reference/ubuntu-kernels>`
+    • {doc}`HWE </reference/hwe-kernels>`
+    • {doc}`OEM </reference/oem-kernels>`
 
-* - **Linux: The Upstream Kernel**
+* - **Upstream**
   - TODO: In [kernel-docs PR#119](https://github.com/canonical/kernel-docs/pull/119) we have incoming documentation on how to send patches upstream
 
-* - **A Stable and Reliable Kernel**
-  - {doc}`/explanation/stable-release-updates` • {doc}`/explanation/post-release-updates` • {doc}`/how-to/testing-verification/test-pre-release-kernels` • {doc}`/reference/kernel-workflow-playbook/kernel-rollback`
+* - **Kernel quality**
+  - {doc}`About the SRU </explanation/stable-release-updates>`
+    • {doc}`Post-release updates </explanation/post-release-updates>`
+    • {doc}`Testing pre-release </how-to/testing-verification/test-pre-release-kernels>`
+    • {doc}`Rollback </reference/kernel-workflow-playbook/kernel-rollback>`
 
-* - **Contributing to the Ubuntu Kernel**
-  - {doc}`/reference/kernel-upload-rights` • {doc}`/reference/dkms-upload-rights` • {doc}`/how-to/contribute`
+* - **Contributing**
+  - {doc}`Upload rights </reference/kernel-upload-rights>`
+    • {doc}`DKMS upload rights </reference/dkms-upload-rights>`
+    • {doc}`Documentation </how-to/contribute>`
 ```
 
 
