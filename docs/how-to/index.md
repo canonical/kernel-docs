@@ -16,7 +16,8 @@ kernel packages and components.
 
 Enable kernel source package repositories </how-to/source-code/enable-source-repositories>
 Obtain and manage kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>
-Send patches to the mailing-list </how-to/source-code/send-patches>
+Send patches to the Ubuntu mailing-list </how-to/source-code/send-patches>
+Send patches to the Linux kernel mailing-list </how-to/source-code/send-patches-upstream>
 Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>
 Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>
 Test pre-release Ubuntu kernels </how-to/testing-verification/test-pre-release-kernels>
@@ -31,7 +32,8 @@ You can also check the formatting requirements, review process, and best practic
 
 - {doc}`Enable kernel source package repositories </how-to/source-code/enable-source-repositories>`
 - {doc}`Obtain kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>`
-- {doc}`Send patches to the mailing-list </how-to/source-code/send-patches>`
+- {doc}`Send patches to the Ubuntu mailing-list </how-to/source-code/send-patches>`
+- {doc}`Send patches to the Linux kernel mailing-list </how-to/source-code/send-patches-upstream>`
 
 ## Development and customization
 
