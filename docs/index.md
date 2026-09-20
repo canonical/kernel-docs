@@ -52,6 +52,10 @@ processes for customization and maintenance.
 {doc}`OEM </reference/oem-kernels>`
 ```
 
+```{slice} Upstream
+{doc}`Sending patches upstream to the Linux kernel </how-to/source-code/send-patches-upstream>`
+```
+
 ```{slice} Kernel quality
 {doc}`About the SRU </explanation/stable-release-updates>`
 {doc}`Post-release updates </explanation/post-release-updates>`
@@ -65,10 +69,6 @@ processes for customization and maintenance.
 {doc}`Documentation </how-to/contribute>`
 ```
 ````
-
-```{important}
-**TODO: "Upstream" slice (after Variants):** In [kernel-docs PR#119](https://github.com/canonical/kernel-docs/pull/119) we have incoming documentation on how to send patches upstream
-```
 
 
 ## How this documentation is organized
