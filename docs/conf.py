@@ -3,6 +3,12 @@ import ast
 import os
 import yaml
 import textwrap
+import sys
+
+HERE = os.path.abspath(os.path.dirname(__file__))
+
+# Add the _ext directory itself to sys.path
+sys.path.insert(0, os.path.join(HERE, "_ext"))
 
 # Configuration for the Sphinx documentation builder.
 # All configuration specific to your project should be done in this file.
@@ -307,6 +313,7 @@ extensions = [
     "sphinx_sitemap",
     "sphinx_rerediraffe",
     "sphinx_llm.txt",
+    "owners",
 ]
 
 # Excludes files or directories from processing
