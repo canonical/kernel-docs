@@ -4,6 +4,9 @@ myst:
     description: "Obtain and manage Ubuntu kernel source code using Git. Guide for cloning kernel repositories for one or more Ubuntu releases, working with subtrees, tags, and more."
 ---
 
+```{owners} team:ckt-tnt
+```
+
 # How to obtain and manage kernel source for an Ubuntu release using Git
 
 The kernel source code for each Ubuntu release is maintained in its own
