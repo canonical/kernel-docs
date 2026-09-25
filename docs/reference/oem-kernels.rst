@@ -1,6 +1,8 @@
 .. meta::
    :description: OEM kernels for Ubuntu hardware partners. Understand specialized kernels for pre-installed systems, staging processes, and release timelines.
 
+.. owners:: team:ckt-oem
+
 OEM kernels
 ===========
 

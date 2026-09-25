@@ -1,3 +1,6 @@
+
+.. owners:: team:ckt-iot
+
 **************
 Snap lifecycle
 **************
