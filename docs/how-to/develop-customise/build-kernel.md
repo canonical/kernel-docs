@@ -17,7 +17,7 @@ Kernels built using this method are not intended for use in production.
 ## Prerequisites
 
 - This guide supports Xenial Xerus and newer.
-- It is recommended to have at least 8GB of RAM and 30GB free disk space on the
+- It is recommended to have at least 8GB of RAM and 40GB free disk space on the
 build machine.
 
 If this is the first time you are building a kernel on your system, you will
@@ -54,14 +54,20 @@ sudo apt update && \
 There are different ways to get the kernel sources, depending on the kernel
 version you want to make changes to.
 
-### Get kernel source for version installed on build machine
+### Get the latest kernel source for your Ubuntu release
 
-Use the `apt source` command to get the source code for the kernel version
-currently running on your build machine.
+Use the `apt source` command to get the latest kernel source for your Ubuntu
+release. This is the version in the archive, which may be newer than the kernel
+you are running. 
+
+In this guide we will assume you are using the generic kernel:
 
 ```{code-block} shell
 apt source linux-image-unsigned-$(uname -r)
 ```
+
+Otherwise, append your flavour name onto the end (like `-realtime` for the real-time
+kernel). Keep in mind some folder names will be different in this case.
 
 This will download and unpack the kernel source files to your current working
 directory.
@@ -75,11 +81,11 @@ directory.
 └── linux_X.Y.Z.orig.tar.gz
 ```
 
-### Get kernel source for other versions
+### Get kernel source for a specific version
 
-% TODO: Create how-to for Git method
-
-Use Git to get the source code for other kernel versions. See {doc}`How to obtain kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>` for detailed instructions.
+To build a particular kernel version, including the one you are currently
+running, use Git. Released versions are available as `Ubuntu-*` tags. See
+{doc}`How to obtain kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>` for detailed instructions.
 
 ## Prepare the kernel source
 
@@ -101,8 +107,8 @@ You should modify the kernel version number to avoid conflicts and to
 differentiate the development kernel from the kernel released by Canonical.
 
 To do so, modify the ABI number (the number after the dash following the kernel
-version) to "999" in the first line of the
-`<kernel_source_working_directory>/debian.master/changelog` file.
+version) to "999" in the first line of the changelog file. For the generic kernel
+this file is at `debian.master/changelog`.
 
 For example, modify the ABI number to "999" for Noble Numbat:
 
@@ -111,15 +117,14 @@ linux (6.8.0-999.48) noble; urgency=medium
 ```
 
 If you are building something other than the generic Ubuntu Linux kernel, modify
-the ABI number in the
-`<kernel_source_working_directory>/debian.<derivative>/changelog` file instead.
+the ABI number in `debian.<flavour>/changelog`
+instead.
 
 ## Modify kernel configuration
 
 (Optional) To enable or disable any features using the kernel configuration, run:
 
 ```{code-block} shell
-cd <kernel_source_working_directory>
 fakeroot debian/rules editconfigs
 ```
 
@@ -141,11 +146,32 @@ as you don't intend to build binaries for those architectures.
 
 ## Build the kernel
 
+`````{tab-set}
+:sync-group: release
+````{tab-item} Resolute Raccoon 26.04 (and newer)
+:sync: resolute
+
+To simplify the build process for development, export this config option:
+```
+export do_linux_main_modules_depends=false
+```
+
+```{important}
+zfs and v4l2loopback modules are not included in this mode. If you need these modules
+during development we recommend installing their dkms packages.
+```
+````
+
+````{tab-item} Questing Quokka 25.10 (and older)
+:sync: questing
+
+No action needed.
+````
+`````
+
 You are now ready to build the kernel.
 
 ```{code-block} shell
-cd <kernel_source_working_directory>
-
 fakeroot debian/rules clean && \
     fakeroot debian/rules binary
 ```
@@ -169,16 +195,23 @@ will produce the following .deb packages (and more):
 
 ## Install the new kernel
 
+```{important}
+The packages produced by this build are unsigned. On a system with Secure
+Boot enabled, the new kernel will not boot. Either test on a system with
+Secure Boot disabled, such as a virtual machine, or sign the kernel image
+with an enrolled Machine Owner Key (MOK) first before installing.
+```
+
 Install all the debian packages generated from the previous step (on your build
 system or a different target system with the same architecture) with
 <code>dpkg -i</code> and reboot:
 
 ```{code-block} shell
-cd <kernel_source_working_directory>/../
-sudo dpkg -i linux-headers-<kernel version>*_all.deb
-sudo dpkg -i linux-headers-<kernel version>-<generic or derivative>*.deb
-sudo dpkg -i linux-image-unsigned-<kernel version>-<generic or derivative>*.deb
-sudo dpkg -i linux-modules-<kernel version>-<generic or derivative>*.deb
+cd ..
+sudo dpkg -i linux-headers-<kernel version>*_all.deb \
+    linux-headers-<kernel version>-<flavour>*.deb \
+    linux-image-unsigned-<kernel version>-<flavour>*.deb \
+    linux-modules-<kernel version>-<flavour>*.deb
 sudo reboot
 ```
 
