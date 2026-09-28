@@ -1,3 +1,5 @@
+.. meta::
+   :description: Understanding the lifecycle of the various kernel snap forms. 
 
 .. owners:: team:ckt-iot
 
