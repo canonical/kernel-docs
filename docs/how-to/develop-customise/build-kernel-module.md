@@ -19,9 +19,20 @@ For managing kernel modules across kernel upgrades, consider using
 
 ## Prerequisites
 
-- The kernel version for which you are rebuilding the module must match the
-  running kernel (`uname -r`).
-- The driver patch you intent to apply.
+Use this method when your patch is confined to the driver's own sources.
+
+If your patch changes shared kernel headers, Kconfig options, or the signature
+of an exported symbol, the rebuilt module no longer matches the running kernel.
+`CONFIG_MODVERSIONS` refuses to load a module whose exported symbol signatures
+changed, but it does not detect structure layout changes inside headers. For
+those changes, build and boot a complete kernel instead. See
+{doc}`/how-to/develop-customise/build-kernel`.
+
+The module is built against the running kernel version (`uname -r`) and works 
+only on that version. Installing a different kernel requires rebuilding the 
+module.
+
+This guide supports Trusty Tahr and newer.
 
 ### Install required packages
 
@@ -80,11 +91,17 @@ sudo modprobe -r <driver>
 sudo insmod drivers/<path/to/driver>/<driver>.ko
 ```
 
+```{important}
+On a system with Secure Boot enabled, loading an unsigned module will fail.
+Either test on a system with Secure Boot disabled, such as a virtual
+machine, or sign the module with an enrolled Machine Owner Key (MOK).
+```
+
 Confirm the module loaded successfully:
 
 ```{code-block} shell
 lsmod | grep <driver>
-dmesg | tail -20
+sudo dmesg | tail -20
 ```
 
 Test and verify that your patch is working as intended.
@@ -95,4 +112,36 @@ run `sudo modprobe -r <driver>` followed by `sudo modprobe <driver>`.
 ```{note}
 Loading a module with `insmod` affects only the running system and will not 
 persist through reboots. 
+```
+
+## Make the module persist across reboots
+
+To test the behaviour of a module at boot, install it into the `updates`
+directory. `depmod` searches this directory ahead of the one holding the
+module shipped with the kernel, so your build takes precedence without
+modifying any file owned by a package:
+
+```{code-block} shell
+sudo mkdir -p /lib/modules/$(uname -r)/updates
+sudo cp drivers/<path/to/driver>/<driver>.ko /lib/modules/$(uname -r)/updates/
+sudo depmod -a
+modinfo -F filename <driver>
+```
+
+The path reported by `modinfo` must be the one under `updates`.
+
+If the driver is in the initramfs, you need to rebuild that too:
+
+```{code-block} shell
+lsinitramfs /boot/initrd.img-$(uname -r) | grep <driver>
+sudo update-initramfs -u -k $(uname -r)
+```
+
+To remove the override, delete the file from `updates`, then rerun `depmod`, and
+`update-initramfs` if you rebuilt the initramfs.
+
+```{note}
+The override applies only to the kernel version you installed it under.
+Installing a new kernel provides a new module tree, and your build is no longer
+used.
 ```
