@@ -15,7 +15,7 @@ The described process and criteria are built on the normal {doc}`Stable release 
 
 In addition to the generic {term}`SRU` requirements, the Ubuntu Kernel team will accept patches that fall into any of the following categories:
 
-1. It fixes a critical issue (e.g. data-loss, OOPs, crashes) or is security related.
+1. It fixes a critical issue (e.g. data-loss, {spellexception}`OOPs`, crashes) or is security related.
    Security related issues might be covered by security releases which are special in handling and publication.
 1. Simple, obvious and short fixes or hardware enablement patches.
    If there is a related upstream stable tree open, this class of patches is required to come through the upstream process.
