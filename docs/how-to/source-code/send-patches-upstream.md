@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "How to send patches to the upstream Linux kernel mailing-list - understanding the process."
+---
+
 ```{owners} team:ckt-stable
 ```
 

@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    description: "How to contribute to Kernel documentation. Why to contribute, the requirements to do so and the processes used."
+---
+
 # How to contribute to Kernel documentation
 
 We believe that everyone has something valuable to contribute, whether you're a
