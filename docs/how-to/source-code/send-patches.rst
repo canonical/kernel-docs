@@ -1,6 +1,8 @@
 .. meta::
    :description: Submit kernel patches to the Ubuntu kernel team mailing list. Learn formatting requirements, review process, and best practices for patches.
 
+.. owners:: team:ckt-stable
+
 .. _how-to-send-patches:
 
 How to send patches to the Ubuntu mailing-list

@@ -4,6 +4,9 @@ myst:
     description: "Step-by-step guide to build an Ubuntu Linux kernel from source. Learn prerequisites, configuration, customization, and installation procedures."
 ---
 
+```{owners} anthonywong
+```
+
 # How to build an Ubuntu Linux kernel
 
 If you have patches you need to apply to the Ubuntu Linux kernel, or you want to

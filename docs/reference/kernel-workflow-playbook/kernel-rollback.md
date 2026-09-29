@@ -4,6 +4,9 @@ myst:
     description: "Roll back a faulty kernel by reverting to an earlier version. Covers revert-kernels-to-spin and Archive Admin remove-package and copy-package commands."
 ---
 
+```{owners} team:ckt-aa
+```
+
 # Kernel rollback
 
 When a kernel is found to be so bad that the only option is to withdraw it from the archive, the typical approach is to replace it with the previous kernel.

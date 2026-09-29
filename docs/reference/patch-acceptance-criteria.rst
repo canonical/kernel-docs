@@ -1,6 +1,8 @@
 .. meta::
    :description: Understand Ubuntu kernel patch acceptance criteria. Learn what patches are accepted for stable releases and the evaluation process used.
 
+.. owners:: team:ckt-stable
+
 .. highlight:: email
 
 .. _ubuntu-patches-acceptance-criteria:

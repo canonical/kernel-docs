@@ -1,6 +1,8 @@
 .. meta::
    :description: Hardware Enablement (HWE) kernels for Ubuntu LTS releases. Learn about support lifecycles, installation procedures, and edge kernel variants.
 
+.. owners:: tswhison, jacobmartin0, maskedarray
+
 HWE kernels
 ===========
 

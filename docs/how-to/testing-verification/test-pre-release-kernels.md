@@ -4,6 +4,9 @@ myst:
     description: "Learn to enable the build PPAs and -proposed pocket, install test kernels, and verify stability of kernels before the release."
 ---
 
+```{owners} team:ckt-tnt
+```
+
 # How to test pre-release Ubuntu kernels
 
 Pre-release Ubuntu kernels are available in the Canonical Kernel Team (CKT)
