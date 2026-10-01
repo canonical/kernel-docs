@@ -4,6 +4,9 @@ myst:
     description: "Understand Ubuntu kernel variants including development, optimized, OEM, and HWE kernels. Learn about git branching strategies and lifecycles."
 ---
 
+```{owners} anthonywong
+```
+
 (ref-ubuntu-kernel-variants-branches)=
 
 # Ubuntu kernel variants and branches

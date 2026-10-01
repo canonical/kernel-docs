@@ -4,6 +4,9 @@ myst:
     description: "Learn Ubuntu kernel security and update policies for post-release trees. Understand SRU criteria, patch submission process, and archive updates."
 ---
 
+```{owners} team:ckt-security
+```
+
 # Kernel security and update policy for post-release trees
 
 This document describes the process and criteria for post-release kernel updates.

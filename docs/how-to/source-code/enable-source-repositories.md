@@ -4,6 +4,9 @@ myst:
     description: "Enable Ubuntu kernel source package repositories. Learn to configure sources.list or ubuntu.sources for kernel development and building."
 ---
 
+```{owners} team:ckt-tnt
+```
+
 # How to enable kernel source package repositories
 
 If you want to build or modify an Ubuntu kernel package from source, you will first need the kernel source code.

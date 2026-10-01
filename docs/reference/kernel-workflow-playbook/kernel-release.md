@@ -4,6 +4,9 @@ myst:
     description: "Expedite an SRU kernel release to updates using copy-package-kernel. Learn the workflow for kernel team preparation and Archive Admin execution steps."
 ---
 
+```{owners} team:ckt-aa
+```
+
 # Releasing an SRU kernel
 
 If you need to expedite the release of a kernel build as part of the SRU cycle process but you are unable to get hold of a Kernel Archive Admin (AA), you can use the following recipe.

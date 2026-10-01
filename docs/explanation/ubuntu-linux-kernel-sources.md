@@ -4,6 +4,9 @@ myst:
     description: "Overview of Ubuntu Linux kernel source repository structure, how to find Launchpad Git URLs, branches, and protocols for accessing source code."
 ---
 
+```{owners} team:ckt-tnt
+```
+
 # About Ubuntu Linux kernel sources
 
 Ubuntu Linux kernel source packages are essential for users and developers who

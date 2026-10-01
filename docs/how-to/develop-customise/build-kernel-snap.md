@@ -4,6 +4,9 @@ myst:
     description: "Learn to build Ubuntu Linux kernel snaps. Follow detailed instructions for creating snap packages from kernel source code for local testing and development."
 ---
 
+```{owners} team:ckt-iot
+```
+
 # How to build an Ubuntu Linux kernel snap
 
 If you are running an Ubuntu Core system and want to use boot into a custom

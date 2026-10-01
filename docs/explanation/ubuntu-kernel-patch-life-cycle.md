@@ -4,6 +4,9 @@ myst:
     description: "Understand how a kernel patch moves from a bug report through upstream review and into the Ubuntu kernel."
 ---
 
+```{owners} khbecker, mrphilcox 
+```
+
 # Ubuntu kernel patch life cycle
 
 A patch does not move straight from a developer's tree into the Ubuntu kernel.

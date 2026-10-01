@@ -4,6 +4,9 @@ myst:
     description: "Ubuntu kernel terminology glossary. Find definitions for SRU, DKMS, HWE, edge kernels, and other kernel development terms. Quick reference guide."
 ---
 
+```{owners} khbecker
+```
+
 # Ubuntu kernel SRU lifecycle
 
 Each Stable Release Update (SRU) cycle, kernels move through several stages

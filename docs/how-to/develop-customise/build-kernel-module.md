@@ -4,6 +4,9 @@ myst:
     description: "How to rebuild a single Ubuntu kernel module out-of-tree to quickly test a patch, without rebuilding the entire kernel."
 ---
 
+```{owners} ogandojose
+```
+
 # How to rebuild a single kernel module
 
 If you have a patch for a specific kernel driver and want to test it quickly,

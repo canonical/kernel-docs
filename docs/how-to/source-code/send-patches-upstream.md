@@ -1,3 +1,6 @@
+```{owners} team:ckt-stable
+```
+
 # How to send patches to the Linux kernel mailing-list
 
 This guide shows you how to submit a change to the upstream Linux kernel. It assumes you have already made a code change, in a separate branch, that would benefit the wider kernel community.
