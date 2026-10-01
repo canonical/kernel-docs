@@ -1,7 +1,7 @@
 ---
 myst:
   html_meta:
-    description: "How to contribute to Kernel documentation. Why to contribute, the requirements to do so and the processes used."
+    description: "How to contribute to the Ubuntu Kernel documentation, the requirements to do so and the processes used."
 ---
 
 # How to contribute to Kernel documentation
