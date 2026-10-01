@@ -25,9 +25,9 @@ processes for customization and maintenance.
 
 ````{domain}
 ```{slice} Building
-{doc}`About source packages </explanation/ubuntu-linux-kernel-sources>`
-{doc}`Enable source repositories </how-to/source-code/enable-source-repositories>`
-{doc}`Get the source-code </how-to/source-code/obtain-kernel-source-git>`
+{doc}`Source packages </explanation/ubuntu-linux-kernel-sources>`
+{doc}`Source repositories </how-to/source-code/enable-source-repositories>`
+{doc}`Source-code </how-to/source-code/obtain-kernel-source-git>`
 {doc}`Build a kernel </how-to/develop-customise/build-kernel>`
 {doc}`Build a snap </how-to/develop-customise/build-kernel-snap>`
 {doc}`Build a module </how-to/develop-customise/build-kernel-module>`
@@ -43,21 +43,21 @@ processes for customization and maintenance.
 ```{slice} Releasing
 {doc}`Stable Release Update (SRU) cycle </explanation/kernel-lifecycle-sru>`
 {doc}`Snap lifecycle </reference/snap-lifecycle>`
-{doc}`Releasing a kernel </reference/kernel-workflow-playbook/kernel-release>`
+{doc}`Kernel releases </reference/kernel-workflow-playbook/kernel-release>`
 ```
 
 ```{slice} Variants
-{doc}`Kernel variants </reference/ubuntu-kernels>`
+{doc}`Ubuntu kernels </reference/ubuntu-kernels>`
 {doc}`HWE </reference/hwe-kernels>`
 {doc}`OEM </reference/oem-kernels>`
 ```
 
 ```{slice} Upstream
-{doc}`Sending patches upstream to the Linux kernel </how-to/source-code/send-patches-upstream>`
+{doc}`Sending patches upstream </how-to/source-code/send-patches-upstream>`
 ```
 
 ```{slice} Kernel quality
-{doc}`About the SRU </explanation/stable-release-updates>`
+{doc}`The SRU </explanation/stable-release-updates>`
 {doc}`Post-release updates </explanation/post-release-updates>`
 {doc}`Testing pre-release </how-to/testing-verification/test-pre-release-kernels>`
 {doc}`Rollback </reference/kernel-workflow-playbook/kernel-rollback>`
