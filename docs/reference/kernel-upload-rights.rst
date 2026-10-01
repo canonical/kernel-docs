@@ -90,11 +90,11 @@ Application template
 If you are interested in joining, start by preparing your application using the
 following template:
 
-https://wiki.ubuntu.com/Kernel/Dev/PPUApplicationTemplate
+https://discourse.ubuntu.com/t/developer-application-template/66670
 
 An example application can also be seen at the following: 
 
-https://wiki.ubuntu.com/LuisHenriques/PerPackageUploaderApplication 
+https://github.com/ubuntu/wiki-archives/blob/2831413ef2d929fe020ff33b6bf3cdaa78dd40db/UbuntuWiki/L/LuisHenriques-PerPackageUploaderApplication.wiki 
 
 At least three existing ubuntu-kernel-uploaders members must confirm that they
 have worked with you sufficiently to assess your skills and verify that you meet

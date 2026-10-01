@@ -14,8 +14,8 @@ There is one packageset per release. See for example the
 
 .. _Noble kernel-dkms packageset: https://ubuntu-archive-team.ubuntu.com/packagesets/noble/kernel-dkms
 .. _ubuntu-kernel-dkms-uploaders: https://launchpad.net/~ubuntu-kernel-dkms-uploaders
-.. _MOTU: https://wiki.ubuntu.com/UbuntuDevelopers#MOTU
-.. _Ubuntu Core Developer: https://wiki.ubuntu.com/UbuntuDevelopers#CoreDev
+.. _MOTU: https://documentation.ubuntu.com/project/who-makes-ubuntu/developers/dmb-joining-MOTU/#dmb-joining-motu
+.. _Ubuntu Core Developer: https://documentation.ubuntu.com/project/who-makes-ubuntu/developers/dmb-joining-core-dev/#dmb-joining-core-dev
 
 Adding packages to the packageset
 =================================
@@ -36,8 +36,8 @@ application details. Use the DeveloperApplicationTemplate_ to create your
 ``DKMSUploadApplication`` page. See for example
 `PaoloPisati/DKMSUploadApplication`_.
 
-.. _PaoloPisati/DKMSUploadApplication: https://wiki.ubuntu.com/PaoloPisati/DKMSUploadApplication
-.. _DeveloperApplicationTemplate: https://wiki.ubuntu.com/UbuntuDevelopment/DeveloperApplicationTemplate
+.. _PaoloPisati/DKMSUploadApplication: https://github.com/ubuntu/wiki-archives/blob/2831413ef2d929fe020ff33b6bf3cdaa78dd40db/UbuntuWiki/P/PaoloPisati-DKMSUploadApplication.wiki
+.. _DeveloperApplicationTemplate: https://discourse.ubuntu.com/t/developer-application-template/66670
 
 Then, you will need to reserve a meeting with the `Developer Membership Board
 (DMB)`_ for applying [#]_. To do so, `edit the DMB agenda`_ to add yourself to a
@@ -48,7 +48,7 @@ free slot.
    ubuntu-kernel-dkms-uploaders_ Launchpad group. This means we have no team
    process to review applications and must delegate to the DMB.
 
-.. _edit the DMB agenda: https://wiki.ubuntu.com/DeveloperMembershipBoard/Agenda
+.. _edit the DMB agenda: https://discourse.ubuntu.com/t/ubuntu-developer-membership-board-agenda/66634
 .. _ubuntu-kernel-uploaders: https://launchpad.net/~ubuntu-kernel-uploaders
 .. _has no admin: https://launchpad.net/~ubuntu-kernel-dkms-uploaders/+contactuser
-.. _Developer Membership Board (DMB): https://wiki.ubuntu.com/DeveloperMembershipBoard
+.. _Developer Membership Board (DMB): https://documentation.ubuntu.com/project/who-makes-ubuntu/councils/dmb/
