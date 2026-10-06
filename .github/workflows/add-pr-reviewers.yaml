@@ -167,32 +167,41 @@ jobs:
         env:
           CHANGED_FILES: ${{ needs.changed-pages.outputs.files }}
         with:
+          # Needs org read access (read:org / Members + Teams read) so that
+          # team and membership lookups work for private teams.
           github-token: ${{ secrets.CKT_BOT_PR }}
           script: |
             const fs = require('fs');
             const path = require('path');
 
             const TEAM_ORG = 'canonical';
+            const { owner, repo } = context.repo;
 
             const files = process.env.CHANGED_FILES
               .split(' ')
               .filter(Boolean);
 
-            const users = new Set();
-            const teams = new Set();
+            // name -> Set of files that declared this owner
+            const users = new Map();
+            const teams = new Map();
 
-            function addOwner(entry) {
+            function addOwner(entry, file) {
               const key = entry.trim();
 
               if (!key) {
                 return;
               }
 
-              if (key.toLowerCase().startsWith('team:')) {
-                teams.add(key.slice(5).trim());
-              } else {
-                users.add(key.replace(/^@/, ''));
+              const isTeam = key.toLowerCase().startsWith('team:');
+              const name = isTeam
+                ? key.slice(5).trim()
+                : key.replace(/^@/, '');
+              const map = isTeam ? teams : users;
+
+              if (!map.has(name)) {
+                map.set(name, new Set());
               }
+              map.get(name).add(file);
             }
 
             function extractMd(content) {
@@ -236,7 +245,7 @@ jobs:
                 );
               }
 
-              owners.forEach(addOwner);
+              owners.forEach(entry => addOwner(entry, file));
             }
 
             const author =
@@ -247,9 +256,9 @@ jobs:
             console.log('Org (teams):', TEAM_ORG);
             console.log(
               'Users:',
-              [...users],
+              [...users.keys()],
               'Teams:',
-              [...teams]
+              [...teams.keys()]
             );
 
             if (users.size === 0 && teams.size === 0) {
@@ -257,17 +266,155 @@ jobs:
               return;
             }
 
+            // Returns null if the user can be requested, otherwise a
+            // human-readable reason why not.
+            async function checkUser(login) {
+              // Does the account exist at all?
+              try {
+                await github.rest.users.getByUsername({
+                  username: login,
+                });
+              } catch (e) {
+                if (e.status === 404) {
+                  return `user "${login}" does not exist on GitHub`;
+                }
+                throw e;
+              }
+
+              // Reviewers must be collaborators on the repo
+              try {
+                await github.rest.repos.checkCollaborator({
+                  owner,
+                  repo,
+                  username: login,
+                });
+                return null;
+              } catch (e) {
+                if (e.status !== 404) {
+                  throw e;
+                }
+              }
+
+              // Not a collaborator: work out why
+              try {
+                await github.rest.orgs.checkMembershipForUser({
+                  org: TEAM_ORG,
+                  username: login,
+                });
+                return `user "${login}" is in the ${TEAM_ORG} org ` +
+                  `but has no access to ${owner}/${repo}`;
+              } catch (e) {
+                if (e.status === 404) {
+                  return `user "${login}" is not a member of the ` +
+                    `${TEAM_ORG} org and is not a collaborator on ` +
+                    `${owner}/${repo}`;
+                }
+                throw e;
+              }
+            }
+
+            // Returns null if the team can be requested, otherwise a
+            // human-readable reason why not.
+            async function checkTeam(slug) {
+              try {
+                await github.rest.teams.getByName({
+                  org: TEAM_ORG,
+                  team_slug: slug,
+                });
+              } catch (e) {
+                if (e.status === 404) {
+                  return `team "${slug}" not found in the ` +
+                    `${TEAM_ORG} org (or not visible to the bot token)`;
+                }
+                throw e;
+              }
+
+              try {
+                await github.rest.teams.checkPermissionsForRepoInOrg({
+                  org: TEAM_ORG,
+                  team_slug: slug,
+                  owner,
+                  repo,
+                });
+                return null;
+              } catch (e) {
+                if (e.status === 404) {
+                  return `team "${slug}" exists but has no access to ` +
+                    `${owner}/${repo}`;
+                }
+                throw e;
+              }
+            }
+
+            const problems = [];
+            const validUsers = [];
+            const validTeams = [];
+
             try {
-              await github.rest.pulls.requestReviewers({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number:
-                  context.payload.pull_request.number,
-                reviewers: [...users],
-                team_reviewers: [...teams],
-              });
+              for (const [login, sources] of users) {
+                const problem = await checkUser(login);
+                if (problem) {
+                  problems.push(
+                    `${problem} (declared in: ${[...sources].join(', ')})`
+                  );
+                } else {
+                  validUsers.push(login);
+                }
+              }
+
+              for (const [slug, sources] of teams) {
+                const problem = await checkTeam(slug);
+                if (problem) {
+                  problems.push(
+                    `${problem} (declared in: ${[...sources].join(', ')})`
+                  );
+                } else {
+                  validTeams.push(slug);
+                }
+              }
             } catch (error) {
               core.setFailed(
-                `requestReviewers failed: ${error.message}`
+                `Owner validation failed unexpectedly: ${error.message}`
+              );
+              return;
+            }
+
+            // Request whoever is valid, so one typo doesn't block
+            // everyone else.
+            if (validUsers.length > 0 || validTeams.length > 0) {
+              try {
+                await github.rest.pulls.requestReviewers({
+                  owner,
+                  repo,
+                  pull_number:
+                    context.payload.pull_request.number,
+                  reviewers: validUsers,
+                  team_reviewers: validTeams,
+                });
+                console.log(
+                  'Requested reviewers:',
+                  validUsers,
+                  validTeams
+                );
+              } catch (error) {
+                core.setFailed(
+                  `requestReviewers failed: ${error.message}`
+                );
+              }
+            }
+
+            // Report the ones that could not be requested
+            if (problems.length > 0) {
+              for (const problem of problems) {
+                core.error(problem);
+              }
+
+              await core.summary
+                .addHeading('Reviewers that could not be requested')
+                .addList(problems)
+                .write();
+
+              core.setFailed(
+                `${problems.length} owner(s) could not be requested.`
               );
             }
