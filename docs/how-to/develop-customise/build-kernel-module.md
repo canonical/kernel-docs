@@ -22,14 +22,32 @@ For managing kernel modules across kernel upgrades, consider using
 
 ## Prerequisites
 
-- The kernel version for which you are rebuilding the module must match the
-  running kernel (`uname -r`).
-- The driver patch you intent to apply.
+Use this method when your patch is confined to the driver's own sources.
+
+If your patch changes shared kernel headers, Kconfig options, or the signature
+of an exported symbol, the rebuilt module no longer matches the running kernel.
+`CONFIG_MODVERSIONS` refuses to load a module whose exported symbol signatures
+changed, but it does not detect structure layout changes inside headers. For
+those changes, build and boot a complete kernel instead. See
+{doc}`/how-to/develop-customise/build-kernel`.
+
+The module is built against the running kernel version (`uname -r`) and works 
+only on that version. Installing a different kernel requires rebuilding the 
+module.
+
+This guide supports Trusty Tahr and newer.
 
 ### Install required packages
 
 ```{code-block} shell
-sudo apt update && sudo apt install -y linux-source build-essential
+sudo apt update && \
+    sudo apt install -y linux-source build-essential linux-headers-$(uname -r)
+```
+
+```{note}
+If you are developing against a custom kernel you will need to manually
+install it's headers using `dpkg`, rather than getting Ubuntu kernel headers 
+from `apt`.
 ```
 
 ## Obtain and patch the kernel source
@@ -53,45 +71,6 @@ cd linux-source-$(uname -r | cut -d- -f1)
 patch -p1 < /path/to/your.patch
 ```
 
-## Set up the out-of-tree build directory
-
-Create a separate build directory and populate it with the build artefacts from
-the running kernel:
-
-```{code-block} shell
-cd ~
-mkdir build_module
-
-cp /lib/modules/$(uname -r)/build/.config    ./build_module/
-cp /lib/modules/$(uname -r)/build/Module.symvers ./build_module/
-cp /lib/modules/$(uname -r)/build/Makefile   ./build_module/
-```
-
-## Prepare the build environment
-
-From inside the kernel source tree, prepare the out-of-tree build directory:
-
-```{code-block} shell
-cd linux-source-$(uname -r | cut -d- -f1)
-
-make O=../build_module outputmakefile
-make O=../build_module archprepare
-```
-
-```{note}
-If `archprepare` fails with an error, run `make mrproper` in the source
-directory, re-copy the three files from `/lib/modules/$(uname -r)/build/`
-as shown in the previous step, then retry rerunning from
-`make O=../build_module outputmakefile`.
-```
-
-Complete the build preparation:
-
-```{code-block} shell
-make O=../build_module prepare
-make O=../build_module M=scripts
-```
-
 ## Build the module
 
 Build only the driver subdirectory containing your change. Replace
@@ -99,20 +78,12 @@ Build only the driver subdirectory containing your change. Replace
 root (for example, `drivers/net/ethernet/intel/e1000e`):
 
 ```{code-block} shell
-make O=../build_module M=drivers/<path/to/driver> modules
+make -C /lib/modules/$(uname -r)/build \
+    M=$PWD/drivers/<path/to/driver> modules
 ```
 
 The compiled module file (`<driver>.ko`) will appear inside
-`build_module/drivers/<path/to/driver>/`.
-
-## Install the module
-
-Copy the new `.ko` file over the existing one in the live module tree:
-
-```{code-block} shell
-sudo cp build_module/drivers/<path/to/driver>/<driver>.ko \
-    /lib/modules/$(uname -r)/kernel/drivers/<path/to/driver>/
-```
+`drivers/<path/to/driver>/`.
 
 ## Load and test the module
 
@@ -120,14 +91,60 @@ Unload the old module if it is currently loaded, then load the new one:
 
 ```{code-block} shell
 sudo modprobe -r <driver>
-sudo modprobe <driver>
+sudo insmod drivers/<path/to/driver>/<driver>.ko
+```
+
+```{important}
+On a system with Secure Boot enabled, loading an unsigned module will fail.
+Either test on a system with Secure Boot disabled, such as a virtual
+machine, or sign the module with an enrolled Machine Owner Key (MOK).
 ```
 
 Confirm the module loaded successfully:
 
 ```{code-block} shell
 lsmod | grep <driver>
-dmesg | tail -20
+sudo dmesg | tail -20
 ```
 
 Test and verify that your patch is working as intended.
+
+To restore the module shipped with the kernel, 
+run `sudo modprobe -r <driver>` followed by `sudo modprobe <driver>`.
+
+```{note}
+Loading a module with `insmod` affects only the running system and will not 
+persist through reboots. 
+```
+
+## Make the module persist across reboots
+
+To test the behaviour of a module at boot, install it into the `updates`
+directory. `depmod` searches this directory ahead of the one holding the
+module shipped with the kernel, so your build takes precedence without
+modifying any file owned by a package:
+
+```{code-block} shell
+sudo mkdir -p /lib/modules/$(uname -r)/updates
+sudo cp drivers/<path/to/driver>/<driver>.ko /lib/modules/$(uname -r)/updates/
+sudo depmod -a
+modinfo -F filename <driver>
+```
+
+The path reported by `modinfo` must be the one under `updates`.
+
+If the driver is in the initramfs, you need to rebuild that too:
+
+```{code-block} shell
+lsinitramfs /boot/initrd.img-$(uname -r) | grep <driver>
+sudo update-initramfs -u -k $(uname -r)
+```
+
+To remove the override, delete the file from `updates`, then rerun `depmod`, and
+`update-initramfs` if you rebuilt the initramfs.
+
+```{note}
+The override applies only to the kernel version you installed it under.
+Installing a new kernel provides a new module tree, and your build is no longer
+used.
+```
