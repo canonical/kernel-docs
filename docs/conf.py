@@ -192,6 +192,7 @@ sitemap_excludes = [
     '404/',
     'genindex/',
     'search/',
+    '_tags/',
 ]
 
 # Template and asset locations
@@ -227,6 +228,12 @@ llms_txt_description = textwrap.dedent(
     development processes, tools, schedules, and more.
     """
 )
+
+llm_txt_exclude = [
+    "_tags/",
+    "search*",
+    "404",
+]
 
 # The base URL for references built by sphinx-markdown-builder.
 if os.environ.get("READTHEDOCS"):
@@ -314,6 +321,7 @@ extensions = [
     "sphinx_rerediraffe",
     "sphinx_llm.txt",
     "owners",
+    "sphinx_tags",
 ]
 
 # Excludes files or directories from processing
@@ -383,3 +391,20 @@ rst_prolog = """
 
 if "discourse_prefix" not in html_context and "discourse" in html_context:
     html_context["discourse_prefix"] = html_context["discourse"] + "/t/"
+
+# Enable the use of sphinx-tags extension
+
+tags_create_tags = True
+tags_extension = ["md", "rst"]
+tags_intro_text = "🏷️"
+tags_create_badges = True
+
+def _mark_tagsindex_orphan(app, docname, source):
+    # sphinx-tags regenerates _tags/tagsindex.md without front matter, which
+    # trips the "not included in any toctree" warning; mark it orphan instead
+    # of adding it to a toctree.
+    if docname == "_tags/tagsindex":
+        source[0] = "---\norphan: true\n---\n\n" + source[0]
+
+def setup(app):
+    app.connect("source-read", _mark_tagsindex_orphan)
