@@ -3,6 +3,8 @@
 
 .. owners:: team:ckt-iot
 
+.. tags:: kernel snap, packaging
+
 **************
 Snap lifecycle
 **************

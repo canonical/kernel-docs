@@ -7,6 +7,9 @@ myst:
 ```{owners} team:ckt-aa
 ```
 
+```{tags} sru, respin, release pockets, tracking bug
+```
+
 # Kernel rollback
 
 When a kernel is found to be so bad that the only option is to withdraw it from the archive, the typical approach is to replace it with the previous kernel.

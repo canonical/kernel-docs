@@ -7,6 +7,9 @@ myst:
 ```{owners} team:ckt-stable
 ```
 
+```{tags} sru, respin, mailing lists, kernel dashboard
+```
+
 # About kernel stable release updates (SRU)
 
 Every supported kernel for an Ubuntu release is part of a Stable Release Updates

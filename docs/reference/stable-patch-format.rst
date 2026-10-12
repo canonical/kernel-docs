@@ -3,6 +3,8 @@
 
 .. owners:: team:ckt-stable
 
+.. tags:: patches, mailing list
+
 Stable patch format
 ===================
 

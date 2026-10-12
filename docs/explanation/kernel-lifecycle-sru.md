@@ -7,6 +7,9 @@ myst:
 ```{owners} khbecker
 ```
 
+```{tags} sru, release pockets, signoff
+```
+
 # Ubuntu kernel SRU lifecycle
 
 Each Stable Release Update (SRU) cycle, kernels move through several stages

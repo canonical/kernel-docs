@@ -7,6 +7,9 @@ myst:
 ```{owners} team:ckt-aa
 ```
 
+```{tags} sru, tracking bug, release pockets
+```
+
 # Releasing an SRU kernel
 
 If you need to expedite the release of a kernel build as part of the SRU cycle process but you are unable to get hold of a Kernel Archive Admin (AA), you can use the following recipe.
