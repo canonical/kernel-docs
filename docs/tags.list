@@ -1,0 +1,11 @@
+kernel dashboard | explanation/stable-release-updates.md
+kernel snap | reference/snap-lifecycle.rst
+mailing list | reference/stable-patch-format.rst
+mailing lists | explanation/stable-release-updates.md
+packaging | reference/snap-lifecycle.rst
+patches | reference/stable-patch-format.rst
+release pockets | reference/kernel-workflow-playbook/kernel-rollback.md, reference/kernel-workflow-playbook/kernel-release.md, explanation/kernel-lifecycle-sru.md
+respin | reference/kernel-workflow-playbook/kernel-rollback.md, explanation/stable-release-updates.md
+signoff | explanation/kernel-lifecycle-sru.md
+sru | reference/kernel-workflow-playbook/kernel-rollback.md, reference/kernel-workflow-playbook/kernel-release.md, explanation/kernel-lifecycle-sru.md, explanation/stable-release-updates.md
+tracking bug | reference/kernel-workflow-playbook/kernel-rollback.md, reference/kernel-workflow-playbook/kernel-release.md
