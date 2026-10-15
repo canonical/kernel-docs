@@ -9,6 +9,7 @@ bootable
 enablement
 Forgejo
 gitea
+hotplugged
 initramfs
 kconfig
 LEDs
@@ -29,6 +30,7 @@ signoff
 subtree
 subtrees
 unported
+upstreamed
 UKIs
 UKN
 ZFS
