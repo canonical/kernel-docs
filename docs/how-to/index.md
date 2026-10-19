@@ -20,6 +20,7 @@ Send patches to the Ubuntu mailing-list </how-to/source-code/send-patches>
 Send patches to the Linux kernel mailing-list </how-to/source-code/send-patches-upstream>
 Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>
 Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>
+Test a bug with a mainline kernel </how-to/testing-verification/test-with-mainline-kernel>
 Test pre-release Ubuntu kernels </how-to/testing-verification/test-pre-release-kernels>
 Rebuild a single kernel module </how-to/develop-customise/build-kernel-module>
 Contribute to kernel docs </how-to/contribute>
