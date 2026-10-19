@@ -11,8 +11,9 @@ myst:
 
 # Mainline kernel archive
 
-The [Ubuntu mainline kernel archive](https://kernel.ubuntu.com/mainline/?C=N;O=D)
-contains mainline builds published by the Ubuntu Kernel Team at Canonical.
+The [Ubuntu mainline kernel archive] contains mainline builds published by the
+Kernel Team at Canonical.
+
 To install and test a build, see
 {doc}`/how-to/testing-verification/test-with-mainline-kernel`.
 
@@ -117,3 +118,7 @@ applies its own patches and configuration.
 - {doc}`/how-to/testing-verification/test-with-mainline-kernel`
 - {doc}`/explanation/about-mainline-builds`
 - {doc}`/reference/ubuntu-kernels`
+
+% LINKS
+
+[Ubuntu mainline kernel archive]: https://kernel.ubuntu.com/mainline/?C=N;O=D

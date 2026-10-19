@@ -43,9 +43,6 @@ mainline builds.
   boot.
 - **Remove out-of-tree modules.** If you use proprietary or out-of-tree modules,
   such as the NVIDIA proprietary driver or VirtualBox, uninstall them first.
-  Differences in the kernel interface and build toolchain mean that modules
-  built for your Ubuntu kernel might not work with a mainline build. An
-  incompatible module can prevent the kernel from installing or booting.
 - **Note your current kernel.** Run {manpage}`uname(1)` with the `-r` option,
   so you can tell your normal kernel from the test kernel later.
 - **Check your architecture.** Run `dpkg --print-architecture`.
