@@ -50,9 +50,4 @@ These guides relate to testing the kernel to ensure its stability and
 functionality before you push or release a patch.
 
 - [Test pre-release Ubuntu kernels](/how-to/testing-verification/test-pre-release-kernels)
-
-## Debugging
-
-These guides explain how to debug issues with the kernel, especially useful for communicating a bug over Launchpad.
-
 - [Kernel Bisection](/how-to/kernel-bisection)
