@@ -11,8 +11,12 @@ myst:
 
 # About mainline kernel builds
 
-The Ubuntu Kernel Team publishes builds from upstream kernel source, using
-Ubuntu kernel configuration files and packaging the result as `.deb` files.
+```{include} /reuse/mainline-builds-warning.txt
+```
+
+The Ubuntu Kernel Team publishes builds from upstream kernel source on a best
+effort basis, using Ubuntu kernel configuration files and packaging the result
+as `.deb` files.
 These mainline builds let you compare an issue with upstream kernel code.
 
 Ubuntu kernels include Ubuntu-specific patches and configuration, so they

@@ -11,18 +11,16 @@ myst:
 
 # How to test a bug with a mainline kernel
 
-```{warning}
-Mainline build kernels are unsupported, unsuitable for production, and never
-receive security updates. Remove them once you've finished testing.
+```{include} /reuse/mainline-builds-warning.txt
 ```
 
 When you encounter an Ubuntu kernel bug, testing an unmodified upstream kernel
 can help you determine whether an issue is specific to Ubuntu's kernel patches
 or has already been fixed upstream.
 
-The Ubuntu Kernel Team publishes mainline builds using upstream kernel source
-and Ubuntu kernel configuration files; these are packaged as `.deb` files which
-are ready to be installed.
+The Ubuntu Kernel Team publishes mainline builds on a best effort basis using
+upstream kernel source and Ubuntu kernel configuration files; these are
+packaged as `.deb` files which are ready to be installed.
 
 This guide shows you how to select, verify, install, and remove one of these
 mainline builds.
@@ -84,8 +82,8 @@ For details about the package names, see {ref}`ref-mainline-package-files`.
 ## Verify the downloaded files
 
 ```{warning}
-A compromised kernel can compromise the entire system. Verify every kernel
-package before you install it.
+A compromised kernel can compromise the security of the entire system.
+Verify every kernel package before you install it.
 ```
 
 1. Import the mainline builder's signing key from the Ubuntu keyserver:
@@ -185,6 +183,9 @@ If `dpkg` reports an error, match it against the following causes.
    and findings in that bug.
 
 ## Return to your normal kernel
+
+```{include} /reuse/mainline-builds-warning.txt
+```
 
 Once you've completed the necessary testing, make sure to remove the mainline
 build and return to your original kernel.

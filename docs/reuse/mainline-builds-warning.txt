@@ -1,0 +1,7 @@
+```{warning}
+**Mainline build kernels** are **not supported** and **never receive security updates**.
+Mainline build kernels are **not suitable for production** use.
+**Remove** them once you've finished testing.
+**Support is not provided** to users who are running mainline build kernels outside
+of diagnostic uses.
+```
