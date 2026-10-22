@@ -23,7 +23,7 @@ A reverse bisect is the process of finding the midpoint between a known bad soft
 
 ## How do I bisect a Ubuntu kernel bug?
 
-For example, you started with a fully updated 24.04 Noble Numbat install using kernel 6.8 and you had no problem. Then, instead of upgrading you just did a clean install of 26.04 Resolute Racoon, and found what appears to be a [linux](https://launchpad.net/ubuntu/+source/linux) kernel bug. Hence, to confirm this is a regression in the linux kernel, to rule out a userspace issue, and to identify the specific regression, the next step is release bisecting Ubuntu.
+For example, you started with a fully updated 24.04 Noble Numbat install using kernel 6.8 and you had no problem. Then, instead of upgrading you just did a clean install of 26.04 Resolute Racoon, and found what appears to be a [linux](https://launchpad.net/ubuntu/+source/linux) kernel bug. Hence, to confirm this is a regression in the linux kernel, to rule out a user space issue, and to identify the specific regression, the next step is release bisecting Ubuntu.
 
 ### Release bisecting Ubuntu
 
@@ -88,10 +88,10 @@ Now, how many commits are in there?
 git log --oneline Ubuntu-2.6.35-24.42..Ubuntu-2.6.35-25.43 | wc
 ```
 
-It says 325, but two of those are the startnewrelease and final changelog changes, so there are 323 commits, and the bad one is among them.
+It says 325, but two of those are the opening and closing commits, so there are 323 commits, and the bad one is among them.
 
 Sometimes you can easily find the problem if it's in a subsystem that only has changes from a few patches.
-In this example, it's Radeon hardware that is affected, so try looking at the commits to the radeon driver:
+In this example, it's Radeon hardware that is affected, so try looking at the commits to the Radeon driver:
 
 ```
 git log --oneline Ubuntu-2.6.35-24.42..Ubuntu-2.6.35-25.43 drivers/gpu/drm/radeon/
@@ -140,7 +140,7 @@ linux (2.6.35-25.43) UNRELEASED; urgency=low
 The top line of that file has the version in it. Choose a version that is:
 
 - clearly a test
-- will be superceded by later kernels
+- will be superseded by later kernels
 - has meaning to you in your bisection testing
 
 For example use an incrementing number, plus an indicator of the launchpad bug associated with the problem:
@@ -149,7 +149,7 @@ For example use an incrementing number, plus an indicator of the launchpad bug a
 2.6.35-25.44~01LP703553
 ```
 
-The '~' is a special versioning trick that means that this kernel will be superceded and replaced by any version higher than 2.6.35-25.44, yet this version is considered higher than .44 - using this versioning makes sure that if a user tests our kernel they won't keep it around after the next update comes along.
+The '~' is a special versioning trick that means that this kernel will be superseded and replaced by any version higher than 2.6.35-25.44, yet this version is considered higher than .44 - using this versioning makes sure that if a user tests our kernel they won't keep it around after the next update comes along.
 
 You also need to change the UNRELEASED to the maverick pocket, or it will not be accepted for your PPA build.
 
@@ -163,7 +163,7 @@ linux (2.6.35-25.44~01LP703553) maverick; urgency=low
  --  Steve Conklin <sconklin@canonical.com>  Mon, 24 Jan 2011 22:45:38 -0600
 ```
 
-Do not commit the change you just made to the changelog into your local git repo. There's no need and it makes it harder to build subsequent tests.
+Do not commit the change you just made to the changelog into your local git repository. There's no need and it makes it harder to build subsequent tests.
 
 Now [build the kernel](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel). You can use a PPA, but it will probably take a lot longer to build.
 
