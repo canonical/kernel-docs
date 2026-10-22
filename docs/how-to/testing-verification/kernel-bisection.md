@@ -27,7 +27,7 @@ For example, you started with a fully updated 24.04 Noble Numbat install using k
 
 ### Release bisecting Ubuntu
 
-To find the introduction point of the bug first narrow down the first Ubuntu release after Noble that this problem began in. The midpoint release between Noble and Resolute is 25.10 Questing Quokka. These releases are downloadable from [http://releases.ubuntu.com/](http://releases.ubuntu.com/). If the bug is reproducible in Questing, then the regression happened going from Noble to Questing, and the next step is version bisecting Questing. Inversely, if the bug is not reproducable in Questing, then Resolute is responsible for the regression.
+To find the introduction point of the bug first narrow down the first Ubuntu release after Noble that this problem began in. The midpoint release between Noble and Resolute is 25.10 Questing Quokka. These releases are downloadable from [http://releases.ubuntu.com/](http://releases.ubuntu.com/). If the bug is reproducible in Questing, then the regression happened going from Noble to Questing, and the next step is version bisecting Questing. Inversely, if the bug is not reproducible in Questing, then Resolute is responsible for the regression.
 
 ```
 26.04 Resolute Racoon  (known bad)
