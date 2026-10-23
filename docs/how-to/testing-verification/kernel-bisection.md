@@ -53,7 +53,7 @@ Noble     6.8.0-130.130   (newest known pass)
 The next step is to install kernel 6.17.0-9.9 (the midpoint between the first release of Questing and the most recent). 
 
 After going to the page for your selected kernel version, click **amd64**. On the build page under **Build files**
-you will find the files needed to install the kernel, see [here](https://wiki.ubuntu.com/Kernel/MainlineBuilds) for instructions on how to do this.
+you will find the files needed to install the kernel, see [here](https://ubuntu.com/kernel/docs/explanation/about-mainline-builds/) for instructions on how to do this.
 
 If the bug is reproducible, you now know that the Ubuntu kernel bug was introduced between 6.17.0-9.9 and 6.14.0-15.15. Repeat these steps, once the guilty kernel version has been determined the next step is commit bisecting the kernel.
 
@@ -61,7 +61,7 @@ If the bug is reproducible, you now know that the Ubuntu kernel bug was introduc
 
 ### What do I need to build and commit bisect Ubuntu kernels?
 
-The rest of this page assumes that you know how to fetch a kernel from the Ubuntu git repository and build it. If you can't do that yet, try starting with [this wiki page](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel). 
+The rest of this page assumes that you know how to fetch a kernel from the Ubuntu git repository and build it. If you can't do that yet, try starting with [this doc](https://ubuntu.com/kernel/docs/how-to/develop-customise/build-kernel/). 
 
 ### Example of commit bisecting Ubuntu kernels
 
@@ -165,7 +165,7 @@ linux (2.6.35-25.44~01LP703553) maverick; urgency=low
 
 Do not commit the change you just made to the changelog into your local git repository. There's no need and it makes it harder to build subsequent tests.
 
-Now [build the kernel](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel). You can use a PPA, but it will probably take a lot longer to build.
+Now [build the kernel](https://ubuntu.com/kernel/docs/how-to/develop-customise/build-kernel/). You can use a PPA, but it will probably take a lot longer to build.
 
 #### Using the test results
 
