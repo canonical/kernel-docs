@@ -24,6 +24,7 @@ Test a bug with a mainline kernel </how-to/testing-verification/test-with-mainli
 Test pre-release Ubuntu kernels </how-to/testing-verification/test-pre-release-kernels>
 Rebuild a single kernel module </how-to/develop-customise/build-kernel-module>
 Contribute to kernel docs </how-to/contribute>
+Kernel Bisection </how-to/testing-verification/kernel-bisection>
 ```
 
 ## Source code access and management
@@ -50,3 +51,4 @@ These guides relate to testing the kernel to ensure its stability and
 functionality before you push or release a patch.
 
 - [Test pre-release Ubuntu kernels](/how-to/testing-verification/test-pre-release-kernels)
+- [Kernel Bisection](/how-to/testing-verification/kernel-bisection)

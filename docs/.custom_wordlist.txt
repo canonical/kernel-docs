@@ -18,6 +18,8 @@ packageset
 patchset
 patchsets
 PPAs
+Quokka
+Radeon
 raspi
 RCs
 rebased
