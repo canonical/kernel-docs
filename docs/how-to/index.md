@@ -50,4 +50,4 @@ These guides relate to testing the kernel to ensure its stability and
 functionality before you push or release a patch.
 
 - [Test pre-release Ubuntu kernels](/how-to/testing-verification/test-pre-release-kernels)
-- [Kernel Bisection](/how-to/kernel-bisection)
+- [Kernel Bisection](/how-to/testing-verification/kernel-bisection)
