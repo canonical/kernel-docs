@@ -15,7 +15,7 @@ kernel packages and components.
 :hidden:
 
 Enable kernel source package repositories </how-to/source-code/enable-source-repositories>
-Obtain and manage kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>
+Obtain and manage kernel source </how-to/source-code/obtain-kernel-source>
 Send patches to the Ubuntu mailing-list </how-to/source-code/send-patches>
 Send patches to the Linux kernel mailing-list </how-to/source-code/send-patches-upstream>
 Build an Ubuntu Linux kernel </how-to/develop-customise/build-kernel>
@@ -33,6 +33,7 @@ You can also check the formatting requirements, review process, and best practic
 
 - {doc}`Enable kernel source package repositories </how-to/source-code/enable-source-repositories>`
 - {doc}`Obtain kernel source for an Ubuntu release using Git </how-to/source-code/obtain-kernel-source-git>`
+- {doc}`Obtain kernel source for an Ubuntu release from the archive </how-to/source-code/obtain-kernel-source-archive>`
 - {doc}`Send patches to the Ubuntu mailing-list </how-to/source-code/send-patches>`
 - {doc}`Send patches to the Linux kernel mailing-list </how-to/source-code/send-patches-upstream>`
 

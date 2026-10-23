@@ -52,9 +52,31 @@ version when checking whether upstream has fixed an issue. To locate when a
 regression began, test tagged versions on either side of the known working and
 broken versions.
 
-Optionally, use the [Ubuntu to mainline version mapping] to find the upstream
-release that your current Ubuntu kernel is based on. This helps you choose
-versions on either side of it.
+### Determining upstream stable base version(s)
+
+Optionally, you can determine what upstream stable updates
+have been consumed by your kernel by [obtaining the
+source](/how-to/source-code/obtain-kernel-source) and then reading
+`linux-<version>/debian.master/upstream-stable`.
+
+That file is going to look similar to this:
+
+```
+# The following upstream stable releases have been ported:
+[upstream-stable]
+    linux-6.6.y = v6.6.158
+    linux-6.8.y = v6.8.12
+    linux-6.9.y = v6.9.12
+    linux-6.10.y = v6.10.14
+    linux-6.11.y = v6.11.11
+    linux-6.12.y = v6.12.112
+```
+
+If there are new builds available for any of the stable channels (those ending
+in `.y`) listed there, you may want to test those versions to see if your kernel
+is expected to eventually get those patches via upstream stable updates. You
+also may be interested in trying older versions of the upstream stable channels
+to determine if upstream stable introduced a regression.
 
 ## Download the files
 
@@ -222,4 +244,3 @@ build and return to your original kernel.
 % LINKS
 
 [mainline archive]: https://kernel.ubuntu.com/mainline/?C=N;O=D
-[Ubuntu to mainline version mapping]: https://people.canonical.com/~kernel/info/kernel-version-map.html
