@@ -32,6 +32,7 @@ Understanding them helps you choose the right kernel for testing, development, o
 ubuntu-kernels
 hwe-kernels
 oem-kernels
+mainline-builds
 snap-lifecycle
 ```
 
