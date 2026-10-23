@@ -23,7 +23,7 @@ Build an Ubuntu Linux kernel snap </how-to/develop-customise/build-kernel-snap>
 Test pre-release Ubuntu kernels </how-to/testing-verification/test-pre-release-kernels>
 Rebuild a single kernel module </how-to/develop-customise/build-kernel-module>
 Contribute to kernel docs </how-to/contribute>
-Kernel Bisection </how-to/kernel-bisection>
+Kernel Bisection </how-to/testing-verification/kernel-bisection>
 ```
 
 ## Source code access and management
