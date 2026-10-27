@@ -66,6 +66,15 @@ linux-signed
   deployment process. This package works in tandem with the linux-meta package
   to deliver signed kernel updates.
 
+LRM
+  Stands for Linux Restricted Modules, refers to a collection of software modules
+  that provide additional, often proprietary or specialized functionality for the
+  Linux kernel. There modules are typically necessary to enable operation of certain
+  hardware components, which may not be fully supported by the open source drivers
+  included in the standard Linux kernel.
+
+  See [LRM] for more information
+
 respin
   A kernel respin is a rebuild of a kernel package in the same kernel SRU cycle
   to incorporate fixes or important updates.
@@ -100,3 +109,4 @@ unstable kernel
 
 [dkms manpages]: https://manpages.ubuntu.com/manpages/noble/en/man8/dkms.8.html
 [unstable Git repository]: https://code.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/unstable
+[LRM]: https://help.ubuntu.com/community/CustomRestrictedModules
