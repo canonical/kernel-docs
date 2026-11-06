@@ -1,7 +1,7 @@
 ---
 myst:
   html_meta:
-    description: "Understand Ubuntu kernel stable release updates (SRU). Learn about the 4/2 cycle cadence, patch submission, review process, and kernel streams."
+    description: "Understand Ubuntu kernel stable release updates (SRU). Learn about the 4/2 cycle cadence, patch submission, review process, held kernels, and kernel streams."
 ---
 
 ```{owners} team:ckt-stable
@@ -40,8 +40,8 @@ improve predictability and responsiveness. It involves a 4-week ("4/") stable
 update cycle for regular fixes and features, combined with an additional
 mid-cycle 2-week ("/2") update focused on urgent CVE security patches and
 critical fixes. This approach enables more timely updates for critical issues
-while maintaining stability, and continues to support mid-cycle
-{ref}`respins <exp-sru-kernel-respins>` for regression fixes as needed.
+while maintaining stability, and continues to support held kernels for
+regression fixes as needed.
 
 ```{figure} /_images/exp-kernel-sru-life cycle-stages.svg
 :alt: Ubuntu kernel life cycle stages and ideal SRU 4/2 cadence timeline
@@ -97,37 +97,49 @@ associated stable Ubuntu kernel tree.
 The patch will then be considered for release in an upcoming SRU cycle if all
 the patch acceptance criteria are met.
 
-See the {doc}`Ubuntu patch acceptance criteria </reference/patch-acceptance-criteria>`
+See the {doc}`/reference/patch-acceptance-criteria`
 for more information.
 
-(exp-sru-kernel-respins)=
+(exp-sru-kernel-held)=
 
-## SRU kernel respins
+## Held kernels
 
-A respin is a rebuild of a kernel package replacing a previous build. During
-each SRU cycle, kernel respins may need to happen for several reasons.
+A held kernel is a kernel that cannot proceed to the next SRU cycle due to
+pending fixes or quality gates. During each SRU cycle, kernels may be held
+for several reasons.
 
 - A regression was introduced in a previous cycle or in the current cycle.
-- Additional fixes need to be added.
-- An important update needs to be added mid-cycle which cannot wait until the
-next cycle.
+- Additional critical fixes need to be added.
+- Quality assurance testing has not yet completed.
+
+Once held kernels are resolved, they proceed to release in a subsequent cycle
+with fixed dates and no flexibility.
+
+## Kernel access
+
+The Ubuntu Kernel Team maintains repositories for collaborative development.
+
+**Internal teams:** Access the kernel repositories through Forgejo. Contact a
+kernel team member for access details.
+
+**Partners and customers:** Reach out to a member of the Ubuntu Kernel Team for
+collaboration options and repository access.
 
 ## Kernel streams
 
 Kernels that are ready for the full suite of testing and verification are
 promoted to the "testing" phase, where the built kernel binaries (and artifacts)
-are copied to a proposed location.
+are copied to a testing location.
 
-As the [Ubuntu archive has a single proposed pocket], the support for multiple
-kernel streams was implemented in the kernel SRU workflow.
-These streams consist of a set of locations (Ubuntu archive pockets or PPAs)
-that can be used for parallel (and generally independent) preparation and
-testing of kernels.
+The Ubuntu Kernel Team maintains multiple kernel streams to enable parallel
+preparation and testing while maintaining the 4/2 SRU cycle cadence:
 
-For example, when a respin is required for a regression released in the previous
-cycle it can be prepared while the kernel spin for the current SRU cycle is
-still in progress. These streams are also what enables the 4/2 Kernel SRU cycle
-model.
+- **1st week stream:** Regular weekly updates and fixes prepared during the
+  first week of the cycle.
+- **2nd week stream:** Mid-cycle security patches and urgent CVE fixes prepared
+  during the second week.
+- **Release stream:** Final kernel ready for full release after testing and
+  verification completion.
 
 ## Related topics
 
