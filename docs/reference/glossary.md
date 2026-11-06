@@ -19,6 +19,12 @@ ABI
   for one version of the kernel remain compatible with subsequent versions, as long as the
   ABI remains unchanged.
 
+  In kernel packaging, ABI also refers to the interface between the kernel
+  and its modules. The ABI number in the package version (for example, the
+  `186` in `5.15.0-186.196`) identifies this kernel ABI. It is incremented for
+  each new kernel released, so modules built against one ABI number are not
+  assumed to work with another.
+
 DKMS
   Dynamic Kernel Module Support, or DKMS is a framework that provides support
   for installing supplementary versions of kernel modules in a simplified manner.
@@ -28,6 +34,16 @@ edge kernel
   An edge kernel is the next HWE kernel still in development with features
   and/or updates that will be backported from the latest Ubuntu release (until
   the next LTS).
+
+flavour
+  A kernel flavour is a distinct binary kernel built from a kernel source
+  package. Flavours built from the same source package share the same source
+  code and patches, and differ only in their configuration. For example, the
+  `linux` source package builds the `generic` and `generic-64k` flavours.
+  The flavour name appears as the suffix in kernel package names and in the
+  version reported by `uname -r`, for example `6.8.0-147-generic`.
+
+  See {doc}`/reference/ubuntu-kernels` for more information.
 
 HWE
   Hardware enablement, or HWE kernels are Ubuntu kernels based on newer upstream
@@ -53,7 +69,7 @@ linux-meta
   When a new kernel version is released and marked stable, the linux-meta
   package is updated to reference the new version, allowing automatic upgrades.  
 
-linux-signed 
+linux-signed
   Refers to kernel packages that are cryptographically signed to ensure their
   integrity and authenticity.
   These signatures are crucial for secure boot environments, as they enable the  
