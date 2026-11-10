@@ -1,7 +1,7 @@
 ---
 myst:
   html_meta:
-    description: "Understand Ubuntu kernel stable release updates (SRU). Learn about the 4/2 cycle cadence, patch submission, review process, held kernels, and kernel streams."
+    description: "Understand Ubuntu kernel stable release updates (SRU). Learn about the 2-week unified cycle, weekly releases, patch submission, review process, held kernels, and the -proposed pocket."
 ---
 
 ```{owners} team:ckt-stable
@@ -12,10 +12,13 @@ myst:
 
 # About kernel stable release updates (SRU)
 
-Every supported kernel for an Ubuntu release is part of a Stable Release Updates
-(SRU) cycle. The Ubuntu Kernel {term}`SRU` is a structured procedure to ensure
-that kernel updates in Ubuntu's stable releases are both reliable and
+The Ubuntu Kernel Stable Release Updates ({term}`SRU`) is a structured procedure
+to ensure that kernel updates in Ubuntu's stable releases are both reliable and 
 non-disruptive to users.
+
+Supported Ubuntu kernels proceed through each SRU cycle, though individual
+kernels may be held or dropped from a particular cycle based on quality gates, 
+testing results, and specific release needs. 
 
 This document aims to provide an overview about the various aspects of the
 Ubuntu kernel SRU process.
@@ -24,7 +27,9 @@ Ubuntu kernel SRU process.
 
 Kernel SRU focuses on delivering necessary updates without changing core
 functionalities with low potential of introducing regressions in stable Ubuntu
-releases. This typically covers:
+releases. This is especially critical for addressing the growing volume of
+{spellexception}`CVEs` and security vulnerabilities. Typical updates covered
+include:
 
 - Upstream stable updates
 - Bug fixes that address relevant issues or improve system stability
@@ -35,33 +40,59 @@ releases. This typically covers:
 
 ## SRU cycle cadence
 
-Since August 2023, the Ubuntu Kernel team has adopted a 4/2 Kernel SRU cycle to
-improve predictability and responsiveness. It involves a 4-week ("4/") stable
-update cycle for regular fixes and features, combined with an additional
-mid-cycle 2-week ("/2") update focused on urgent CVE security patches and
-critical fixes. This approach enables more timely updates for critical issues
-while maintaining stability, and continues to support held kernels for
-regression fixes as needed.
+The Ubuntu Kernel Team has transitioned to a [unified 2-week Stable Release
+Update cycle] published weekly. This rapid cycle enables faster delivery of
+critical CVE fixes and security updates while maintaining rigorous testing and
+certification standards.
 
-```{figure} /_images/exp-kernel-sru-life cycle-stages.svg
-:alt: Ubuntu kernel life cycle stages and ideal SRU 4/2 cadence timeline
+The cycles cascade -- each cycle begins the week after the previous one starts,
+resulting in kernel releases happening weekly.
 
-Ubuntu kernel life cycle stages and ideal SRU 4/2 cadence timeline
+- **Week 1 - Preparation (builds, smoke tests, integration and regression
+  testing)**
+
+  Kernel package preparation phase where updates and patches are selected for
+  each kernel based on specific needs. Builds are created, and smoke tests,
+  {spellexception}`distro` integration, and regression testing confirm kernels
+  boot and run correctly. By the end of this week, kernels are published in
+  the `-proposed` pocket for early testing by users.
+
+- **Week 2 - Certification testing**
+
+  Extensive certification testing through the
+  [Ubuntu Certified](https://ubuntu.com/certified) program. Kernels are
+  rigorously tested on different hardware types to ensure reliability and
+  stability. By the end of this week, test artifacts are completed.
+
+- **Release**
+
+  Kernels that pass our tests and quality standards are released to the
+  `-updates` and `-security` pockets and are ready for production.
+
+Individual kernels may be held, deferred, or excluded from a particular cycle
+depending on testing results, quality gates, or specific release needs.
+
+```{figure} /_images/kernel-2-week-sru.png
+:alt: Ubuntu kernel SRU cycle timeline
+
+Ubuntu kernel SRU cycle timeline
 ```
 
 See the [Ubuntu Kernel Team] home page for details on SRU cycle dates.
-
-```{important}
-While the Ubuntu kernel team strives to meet the SRU cycle 4/2 cadence, please
-note that SRU cycle dates are tentative. As such, they cannot be guaranteed and
-may be subject to change.
-```
 
 ## SRU patch submission and review process
 
 All updates that are applied to stable kernels go through the following patch
 submission and review process. More details can be found at
-:doc:`./stable-patch-format`.
+{doc}`/reference/stable-patch-format`.
+
+### Kernel access
+
+The Ubuntu Kernel Team maintains [kernel repositories for collaborative
+development](https://kernel.ubuntu.com/git/).
+
+If you are a Canonical partners or customers, reach out to a member of the
+Ubuntu Kernel Team for other means of collaboration.
 
 ### Patch creation
 
@@ -70,8 +101,8 @@ information, including a link to the associated public Launchpad bug report that
 contains the SRU justification.
 The only exception to this are CVE fixes, where only the CVE number is required.
 
-See the [Ubuntu Wiki - Kernel Updates] for more information on the SRU
-requirements and justification.
+See the {doc}`ubuntu-project-docs:SRU/reference/exception-Kernel-Updates` for
+more information on the Kernel SRU requirements and justification.
 
 ### Patch submission
 
@@ -104,54 +135,47 @@ for more information.
 
 ## Held kernels
 
-A held kernel is a kernel that cannot proceed to the next SRU cycle due to
-pending fixes or quality gates. During each SRU cycle, kernels may be held
-for several reasons.
+Given the overlapping 2-week SRU cadence, there is limited flexibility to
+respin kernels without impacting subsequent release cycles. As a result,
+kernels may need to be held or deferred from a release cycle for various
+reasons, including:
 
-- A regression was introduced in a previous cycle or in the current cycle.
-- Additional critical fixes need to be added.
-- Quality assurance testing has not yet completed.
+- A regression was introduced in the current cycle.
+- Additional critical fixes need to be added before release.
+- Quality assurance or certification testing failed or has not yet completed.
+- Specific release needs require excluding a kernel from a particular cycle.
 
-Once held kernels are resolved, they proceed to release in a subsequent cycle
-with fixed dates and no flexibility.
-
-## Kernel access
-
-The Ubuntu Kernel Team maintains repositories for collaborative development.
-
-**Internal teams:** Access the kernel repositories through Forgejo. Contact a
-kernel team member for access details.
-
-**Partners and customers:** Reach out to a member of the Ubuntu Kernel Team for
-collaboration options and repository access.
+Once held kernels are resolved and meet all quality criteria, they proceed to
+release in a subsequent cycle.
 
 ## Kernel streams
 
-Kernels that are ready for the full suite of testing and verification are
-promoted to the "testing" phase, where the built kernel binaries (and artifacts)
-are copied to a testing location.
+Kernels progress through a testing and release pipeline as part of the SRU
+cycle. The `-proposed` pocket is key to this process.
 
-The Ubuntu Kernel Team maintains multiple kernel streams to enable parallel
-preparation and testing while maintaining the 4/2 SRU cycle cadence:
+- **-proposed pocket:**
 
-- **1st week stream:** Regular weekly updates and fixes prepared during the
-  first week of the cycle.
-- **2nd week stream:** Mid-cycle security patches and urgent CVE fixes prepared
-  during the second week.
-- **Release stream:** Final kernel ready for full release after testing and
-  verification completion.
+  During Week 1 of the SRU cycle, kernel release candidates are published in the
+  `-proposed` pocket for early testing by users and systems that prioritize
+  faster turnaround over waiting for certification. This allows users to begin
+  their own acceptance tests and catch issues before full release. Kernels in
+  `-proposed` are updated weekly as part of the overlapping SRU cycles.
+
+- **Certified and released kernels:**
+
+  After passing Week 2 certification and extensive testing, kernels are released
+  to the `-updates` and `-security` pockets.
+
+  Individual kernels may be held, deferred, or excluded from a particular cycle
+  based on testing results and quality gates, so not every kernel proceeds
+  through every cycle.
 
 ## Related topics
 
-- [Discourse - Ubuntu Kernel 4/2 SRU Cycle Announcement]
-- [Ubuntu Wiki - Stable Kernel Release Cadence]
 - [Kernel team stable dashboard]
 
 % LINKS
 
 [Ubuntu Kernel Team]: https://kernel.ubuntu.com/
-[Ubuntu Wiki - Kernel Updates]: https://wiki.ubuntu.com/KernelTeam/KernelUpdates
-[Ubuntu archive has a single proposed pocket]: https://documentation.ubuntu.com/project/how-ubuntu-is-made/concepts/package-archive/#proposed
-[Discourse - Ubuntu Kernel 4/2 SRU Cycle Announcement]: https://discourse.ubuntu.com/t/ubuntu-kernel-4-2-sru-cycle-announcement/37478
-[Ubuntu Wiki - Stable Kernel Release Cadence]: https://wiki.ubuntu.com/Kernel/StableReleaseCadence
+[unified 2-week Stable Release Update cycle]: https://canonical.com/blog/accelerating-delivery-of-cve-fixes-with-a-new-kernel-release-strategy
 [Kernel team stable dashboard]: https://kernel.ubuntu.com/reports/kernel-stable-board/
