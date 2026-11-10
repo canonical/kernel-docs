@@ -120,6 +120,9 @@ lint-md: pymarkdownlnt-install
 			--recurse \
 			--exclude=$(DEV_DIR)/** \
 			--exclude=$(DOCS_VENVDIR)/** \
+			--exclude=$(DOCS_BUILDDIR)/** \
+			--exclude="_tags/" \
+			--exclude=".github/skills" \
 			$(DOCS_SOURCEDIR); \
 	status=$$?; \
 	if [ $$status -eq 1 ]; then \
