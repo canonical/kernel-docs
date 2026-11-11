@@ -408,3 +408,8 @@ def _mark_tagsindex_orphan(app, docname, source):
 
 def setup(app):
     app.connect("source-read", _mark_tagsindex_orphan)
+
+# Configuration for Intersphinx projects
+intersphinx_mapping = {
+    "ubuntu-project-docs": ("https://ubuntu.com/project/docs/", None),
+}
