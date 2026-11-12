@@ -36,6 +36,19 @@ mainline-builds
 snap-lifecycle
 ```
 
+## Kernel source tree and packaging
+
+Ubuntu kernel source trees combine the upstream Linux source with Ubuntu
+packaging, configuration, and patches.
+These pages describe the layout of the tree and how the kernel configuration is maintained.
+
+```{toctree}
+:maxdepth: 1
+
+ubuntu-kernel-source-packaging
+ubuntu-kernel-configuration
+```
+
 ## Kernel release and maintenance
 
 ```{toctree}
