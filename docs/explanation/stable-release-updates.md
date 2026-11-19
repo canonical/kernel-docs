@@ -44,7 +44,7 @@ The Ubuntu Kernel Team has transitioned to a [unified 2-week Stable Release
 Update cycle] published weekly. This rapid cycle enables faster delivery of
 critical CVE fixes and security updates while maintaining rigorous testing and
 certification standards.
-
+ 
 The cycles cascade -- each cycle begins the week after the previous one starts,
 resulting in kernel releases happening weekly.
 
@@ -58,7 +58,7 @@ resulting in kernel releases happening weekly.
   kernels are published in the `-proposed` pocket for early testing by users.
 
 - **Week 2 - Testing (complete integration and regression testing, and
-  certification testing**
+  certification testing)**
 
   By the end of this week, test artifacts are completed.
   The full suite of integration and regression testing continues throughout
@@ -110,8 +110,8 @@ more information on the Kernel SRU requirements and justification.
 
 ### Patch submission
 
-Next, contributors send the stable patches to the Ubuntu Kernel Team mailing
-list (kernel-team@lists.ubuntu.com) for review.
+Next, contributors send the stable patches to the Kernel Team Email Patch
+Reviews mailing list (kernel-reviews@canonical.com).
 Where appropriate, the patch should also be submitted to upstream stable in
 parallel.
 
