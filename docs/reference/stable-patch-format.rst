@@ -14,14 +14,6 @@ However, patches must comply with the required format.
 
 See `The Ubuntu lifecycle and release cadence`_ for more information.
 
-Prerequisites
--------------
-
-Subscribe `here
-<https://lists.ubuntu.com/mailman/listinfo/kernel-team>`__ to join
-kernel-team@lists.ubuntu.com before submitting your first patch. Messages
-from non-subscribers will be held in a queue pending admin approval.
-
 Preparing commits
 -----------------
 
@@ -53,9 +45,7 @@ abbreviated using the first letter of the release name (e.g. "N" for
   .. note::
 
      Historically, the rule has been somewhat flexible, and various styles
-     have been permitted.  You may find examples of various styles (such as the
-     ones below) in the `mailing list archive
-     <https://lists.ubuntu.com/archives/kernel-team/>`_:
+     have been permitted.
 
      .. code-block:: none
         :linenos:
@@ -308,7 +298,7 @@ Sending as a pull request
 Submitting the patch
 --------------------
 
-Stable patches must be sent to kernel-team@lists.ubuntu.com.
+Stable patches must be sent to: kernel-reviews@canonical.com
 
 Once the patch receives two "Acked-by" replies from members of the Ubuntu
 Kernel Team, it will be merged.
@@ -329,7 +319,7 @@ Cover letter (PATCH 0/1)
    Subject: [SRU][F][PATCH 0/1] s390/cpum_cf: Add new extended counters for IBM z15 (LP: 1881096)
    From: frank.heimes@canonical.com
    Date: 24.06.20, 22:11
-   To: kernel-team@lists.ubuntu.com
+   To: kernel-reviews@canonical.com
 
    BugLink: https://bugs.launchpad.net/bugs/1881096
 
@@ -370,7 +360,7 @@ Patch 1/1
    Subject: [SRU][F][PATCH 1/1] s390/cpum_cf: Add new extended counters for IBM z15
    From: frank.heimes@canonical.com
    Date: 24.06.20, 22:11
-   To: kernel-team@lists.ubuntu.com
+   To: kernel-reviews@canonical.com
 
    From: Thomas Richter <tmricht@linux.ibm.com>
 
