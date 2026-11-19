@@ -76,7 +76,7 @@ requirements and justification.
 ### Patch submission
 
 Next, contributors send the stable patches to the Ubuntu Kernel Team mailing
-list (kernel-team@lists.ubuntu.com) for review.
+list (kernel-reviews@canonical.com) for review.
 Where appropriate, the patch should also be submitted to upstream stable in
 parallel.
 
