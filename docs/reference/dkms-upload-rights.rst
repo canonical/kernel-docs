@@ -24,9 +24,44 @@ If you need to add DKMS packages to the packageset, send a mail to the
 ``devel-permissions@lists.u.c`` mailing list. List the source
 packages and releases you need in your request.
 
-See for example `this request for the mofed-modules-24.10 package`_.
+See for example this request for the mofed-modules-24.10 package:
 
-.. _this request for the mofed-modules-24.10 package: https://lists.ubuntu.com/archives/devel-permissions/2025-January/002679.html
+.. code-block:: none
+
+   Subject: Request to add mofed-modules-* to kernel-dkms packageset
+   From: agathe.porte@canonical.com
+   Date: Tue Jan 7 13:25:09 UTC 2025
+   To: devel-permissions@lists.ubuntu.com
+    
+   Hello,
+    
+   I recently introduced the following packages in the archive:
+    
+   - mofed-modules-24.07: https://launchpad.net/ubuntu/+source/mofed-modules-24.07
+   - mofed-modules-24.10: https://launchpad.net/ubuntu/+source/mofed-modules-24.10
+   
+   To ease the upload process and not rely on coredevs or MOTU for upload,
+   we need to add them to the kernel-dkms packageset:
+   
+   - mofed-modules-24.07 for oracular
+   - mofed-modules-24.10 for plucky and oracular [2]
+   
+   FYI, I may apply to get PPU to this kernel-dkms packageset in the
+   future. It would make more sense for me for the kernel team owners to
+   review the application but since there are no kteam admins I guess this
+   needs to go through the DMB.
+   
+   Thanks.
+   
+   Agathe.
+   
+   [1] eg. for oracular:
+       https://ubuntu-archive-team.ubuntu.com/packagesets/oracular/kernel-dkms
+   
+   [2] Note that the mofed-modules-24.10 package has been sitting in the
+       NEW queue for oracular for more than a month, but we would need the
+       upload rights on this one too. If you have any tips on how I can get
+       attention for this package to enter oracular, they are welcome.
 
 Applying for packageset upload rights
 =====================================
