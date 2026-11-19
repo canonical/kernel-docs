@@ -48,21 +48,25 @@ certification standards.
 The cycles cascade -- each cycle begins the week after the previous one starts,
 resulting in kernel releases happening weekly.
 
-- **Week 1 - Preparation (builds, smoke tests, integration and regression
-  testing)**
+- **Week 1 - Preparation (builds, smoke tests, and initial integration and
+  regression testing)**
 
   Kernel package preparation phase where updates and patches are selected for
   each kernel based on specific needs. Builds are created, and smoke tests,
-  {spellexception}`distro` integration, and regression testing confirm kernels
-  boot and run correctly. By the end of this week, kernels are published in
-  the `-proposed` pocket for early testing by users.
+  along with initial {spellexception}`distro` integration and regression
+  testing, confirm kernels boot and run correctly. By the end of this week,
+  kernels are published in the `-proposed` pocket for early testing by users.
 
-- **Week 2 - Certification testing**
+- **Week 2 - Testing (complete integration and regression testing, and
+  certification testing**
 
-  Extensive certification testing through the
-  [Ubuntu Certified](https://ubuntu.com/certified) program. Kernels are
-  rigorously tested on different hardware types to ensure reliability and
-  stability. By the end of this week, test artifacts are completed.
+  By the end of this week, test artifacts are completed.
+  The full suite of integration and regression testing continues throughout
+  Week 2. In addition, extensive certification testing is carried out on
+  kernels intended for [Ubuntu Certified](https://ubuntu.com/certified)
+  hardware, covering diverse hardware types to ensure reliability and stability.
+  By the end of Week 2, all testing is complete and results are ready for
+  release decision.
 
 - **Release**
 
@@ -91,7 +95,7 @@ submission and review process. More details can be found at
 The Ubuntu Kernel Team maintains [kernel repositories for collaborative
 development](https://kernel.ubuntu.com/git/).
 
-If you are a Canonical partners or customers, reach out to a member of the
+If you are a Canonical partner or customer, reach out to a member of the
 Ubuntu Kernel Team for other means of collaboration.
 
 ### Patch creation
@@ -157,9 +161,10 @@ cycle. The `-proposed` pocket is key to this process.
 
   During Week 1 of the SRU cycle, kernel release candidates are published in the
   `-proposed` pocket for early testing by users and systems that prioritize
-  faster turnaround over waiting for certification. This allows users to begin
-  their own acceptance tests and catch issues before full release. Kernels in
-  `-proposed` are updated weekly as part of the overlapping SRU cycles.
+  faster turnaround over waiting for certification or extensive tests to
+  complete. This allows users to begin their own acceptance tests and catch
+  issues before full release. Kernels in `-proposed` are updated weekly as part
+  of the overlapping SRU cycles.
 
 - **Certified and released kernels:**
 
