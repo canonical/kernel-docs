@@ -206,5 +206,5 @@ You are now ready to build the kernel snap.
 
 
 % LINKS
-[Ubuntu Wiki - Build your own kernel]: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
+
 [Snap - Build environment options]:  https://documentation.ubuntu.com/snapcraft/stable/reference/build-environment-options/
