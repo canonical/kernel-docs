@@ -37,6 +37,16 @@ module.
 
 This guide supports Trusty Tahr and newer.
 
+```{important}
+This guide produces unsigned kernel modules. A kernel may reject them if it
+enforces module signatures, e.g. if the kernel was built with
+`CONFIG_MODULE_SIG_FORCE=y`, or the boot parameter `module.sig_enforce=1` is set,
+or because the system uses Secure Boot.
+
+This guide assumes you are running a kernel with all such signature enforcement 
+disabled.
+```
+
 ### Install required packages
 
 ```{code-block} shell
@@ -92,12 +102,6 @@ Unload the old module if it is currently loaded, then load the new one:
 ```{code-block} shell
 sudo modprobe -r <driver>
 sudo insmod drivers/<path/to/driver>/<driver>.ko
-```
-
-```{important}
-On a system with Secure Boot enabled, loading an unsigned module will fail.
-Either test on a system with Secure Boot disabled, such as a virtual
-machine, or sign the module with an enrolled Machine Owner Key (MOK).
 ```
 
 Confirm the module loaded successfully:
