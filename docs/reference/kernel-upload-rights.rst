@@ -26,7 +26,9 @@ Ubuntu kernel.
 - Generally have commit access to the `Ubuntu kernel git repositories`_.
 
 - Actively follow and participate in discussions and patch reviews on the
-  `Ubuntu kernel-team mailing list`_.
+  Ubuntu kernel-team mailing list. To subscribe to the Ubuntu kernel-team
+  mailing list send an email to kernel-reviews@canonical.com asking to
+  join the list.
 
 - Are collectively responsible for the maintenance of packages in the Ubuntu
   kernel package set for all supported releases as well as the development
@@ -107,7 +109,7 @@ Screening process
 =================
 
 Once your application has been prepared and you are ready to be screened,
-send an email to the `Ubuntu kernel-team mailing list`_ requesting your
+send an email to the Ubuntu kernel-team mailing list requesting your
 application be reviewed.
 
 You will then get a notification from the team about the scheduled Matrix
@@ -129,4 +131,3 @@ ubuntu-kernel-uploaders team by an administrator.
 .. _devel-permissions mailing lists: https://lists.ubuntu.com/mailman/listinfo/devel-permissions
 .. _ubuntu-kernel-uploaders: https://launchpad.net/~ubuntu-kernel-uploaders
 .. _Ubuntu kernel git repositories: https://kernel.ubuntu.com/git
-.. _Ubuntu kernel-team mailing list: https://lists.ubuntu.com/mailman/listinfo/kernel-team
