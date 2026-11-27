@@ -68,5 +68,5 @@ In addition to the generic {term}`SRU` requirements, the Ubuntu Kernel team will
 
 % LINKS
 
-[kernel-team mailing list]: mailto:kernel-team@lists.ubuntu.com
+[kernel-team mailing list]: mailto:kernel-reviews@canonical.com
 [stable@kernel.org]: mailto:stable@kernel.org

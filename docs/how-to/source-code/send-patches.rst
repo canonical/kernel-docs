@@ -13,10 +13,7 @@ The Ubuntu mailing-list is the place to submit Ubuntu-specific changes, such as 
 .. note::
     If your patch otherwise applies more generally to the Linux kernel, you should :doc:`submit your patches upstream <./send-patches-upstream>` instead.
 
-Patches must be sent to the `Ubuntu kernel-team mailing list`_
-(``kernel-team@lists.ubuntu.com``). If you have not done so already,
-subscribe to the list before submitting your first patch, as
-messages from non-subscribers are held for moderation.
+Patches must be sent to the Ubuntu kernel-team mailing list (``kernel-reviews@canonical.com``).
 
 To send kernel patches to the mailing list, you should use the ``git
 send-email`` command.
@@ -35,7 +32,7 @@ sending kernel patches. The commonly used settings are:
     git config set sendemail.ubuntu-kernel.chainReplyTo false
     git config set sendemail.ubuntu-kernel.suppresscc true
     git config set sendemail.ubuntu-kernel.thread true
-    git config set sendemail.ubuntu-kernel.to kernel-team@lists.ubuntu.com
+    git config set sendemail.ubuntu-kernel.to kernel-reviews@canonical.com
 
     # And then include these settings with `--identity=ubuntu-kernel`
     git send-email --identity=ubuntu-kernel ...
@@ -81,4 +78,3 @@ to the previous submitted version.
 
    - (Reference) :ref:`ubuntu-patches-acceptance-criteria`
 
-.. _Ubuntu kernel-team mailing list: https://lists.ubuntu.com/mailman/listinfo/kernel-team
