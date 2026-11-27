@@ -165,7 +165,7 @@ methods:
 1. Manually file a bug online at <https://bugs.launchpad.net/ubuntu/+filebug>.
 Make sure to target the correct kernel source package and Ubuntu series.
 
-For more information on Ubuntu bug reporting, see [Reporting Bugs].
+For more information on Ubuntu bug reporting, see {doc}`ubuntu-project-docs:contributors/qa-and-testing/report-a-bug`.
 
 ## Related topics
 
@@ -174,5 +174,4 @@ For more information on Ubuntu bug reporting, see [Reporting Bugs].
 [built-in Linux selftests]: https://docs.kernel.org/dev-tools/kselftest.html
 [Linux Test Project]: https://linux-test-project.readthedocs.io/en/latest/
 [stress-ng]: https://github.com/ColinIanKing/stress-ng
-[Reporting Bugs]: https://help.ubuntu.com/community/ReportingBugs
 [Ubuntu Wiki - Enable Proposed]: https://wiki.ubuntu.com/Testing/EnableProposed

@@ -255,7 +255,7 @@ Sending as a patch series
 
 #. The cover letter **must** contain the SRU justification from the launchpad
    bug or the CVE fix.
-   See `KernelTeam/KernelUpdates`_ wiki for more information about the SRU
+   See :doc:`ubuntu-project-docs:SRU/reference/exception-Kernel-Updates` for more information about the SRU
    justification format to be added to a bug.
 
 #. All the emails in the patch series **must** be numbered (e.g. "[PATCH 0/3]",
@@ -280,7 +280,7 @@ Sending as a pull request
 
 #. The cover letter **must** contain the SRU justification from the launchpad
    bug or the CVE fix.
-   See `KernelTeam/KernelUpdates`_ wiki for more information about the SRU
+   See :doc:`ubuntu-project-docs:SRU/reference/exception-Kernel-Updates` for more information about the SRU
    justification format to be added to a bug.
 
 #. The subject line of the cover letter **must** contain the "[PULL]" tag,
@@ -379,7 +379,7 @@ Patch 1/1
 Related topics
 --------------
 
-* `KernelTeam/KernelUpdates`_:
+* :doc:`ubuntu-project-docs:SRU/reference/exception-Kernel-Updates`:
   shows the SRU Justification format to be added to a bug.
 * `ubuntu-check-commit`_:
   script to check commits against Ubuntu submission rules.
@@ -388,5 +388,4 @@ Related topics
 
 .. _The Ubuntu lifecycle and release cadence: https://ubuntu.com/about/release-cycle
 .. _Discourse - Kernel configuration in Ubuntu: https://discourse.ubuntu.com/t/kernel-configuration-in-ubuntu/35857
-.. _KernelTeam/KernelUpdates: https://wiki.ubuntu.com/KernelTeam/KernelUpdates
 .. _ubuntu-check-commit: https://kernel.ubuntu.com/forgejo/actions/ubuntu-check-commit/src/branch/main/ubuntu-check-commit
